@@ -7,7 +7,8 @@ FROM node:20-alpine AS frontend-builder
 WORKDIR /app/mmeui
 
 COPY mmeui/package*.json ./
-RUN npm ci --legacy-peer-deps
+# 💡 FIX: Swapped `npm ci` for `npm install` to handle missing lockfiles
+RUN npm install --legacy-peer-deps
 
 COPY mmeui ./
 RUN npm run build
