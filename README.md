@@ -1,6 +1,6 @@
 # ⚡ RayzHub — The Ultimate Open Source Alternative to guns.lol & Linktree
 
-> **Created by [Rayzien](https://github.com/rayzien) & [Phoenix14](https://github.com/phoenix14)**  
+> **Created by [Rayzien](https://github.com/rayzien)**  
 > *100% Free, Self-Hostable, Glassmorphic 2D Drag-and-Drop Bio Link & Portfolio Pinboard Engine.*
 
 ---
@@ -68,6 +68,6 @@ Access the application at [http://localhost:8000](http://localhost:8000).
 
 RayzHub is crafted with passion by:
 - **Rayzien** — Lead System Architect & UI/UX Designer
-- **Phoenix14** — Fullstack & Backend Systems Engineer
+
 
 Licensed under the MIT License. Contributions and PRs welcome!
