@@ -1,19 +1,7 @@
 # ════════════════════════════════════════════════════════════════════════════
-# MULTI-STAGE DOCKERFILE FOR RAYZHUB COMPLETE PLATFORM & ENGINE
+# DOCKERFILE FOR RAYZHUB PRODUCTION PLATFORM & BLAST GATEWAY ADAPTER
 # ════════════════════════════════════════════════════════════════════════════
 
-# ── STAGE 1: Build Next.js Static Frontend ──
-FROM node:20-alpine AS frontend-builder
-WORKDIR /app/mmeui
-
-COPY mmeui/package*.json ./
-# 💡 FIX: Swapped `npm ci` for `npm install` to handle missing lockfiles
-RUN npm install --legacy-peer-deps
-
-COPY mmeui ./
-RUN npm run build
-
-# ── STAGE 2: Python FastAPI Server & Production Runtime ──
 FROM python:3.11-slim
 WORKDIR /app
 
@@ -30,9 +18,6 @@ RUN pip install --no-cache-dir -r requirements.txt
 
 # Copy application files
 COPY . .
-
-# Copy built frontend static export from Stage 1
-COPY --from=frontend-builder /app/mmeui/out ./mmeui/out
 
 EXPOSE 8000
 

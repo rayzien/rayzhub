@@ -6,9 +6,9 @@
 
 ---
 
-## 1. OVERVIEW
+## 1. OVERVIEW & ABOUT
 
-**RayzHub** is an open-source, high-performance distributed web platform and real-time pinboard system architected by **Rayzien** and **Pheonix14**.
+**RayzHub** is an open-source, high-performance distributed web platform and real-time portfolio system architected by **Rayzien** and **Pheonix14**.
 
 Built for speed and simplification of life, RayzHub eliminates third-party platform limitations with zero paywalls, zero tracking, and complete privacy.
 
@@ -37,23 +37,20 @@ RayzHub decouples backend storage through the **BLAST Gateway** queue:
 
 ---
 
-## 3. ARCHITECTS & PROFILES
+## 3. ARCHITECTS & CHANNELS
 
 - **Rayzien**: https://github.com/rayzien
 - **Pheonix14**: https://github.com/pheonix14
+- **Official YouTube Channel**: Data maintained in folder `yt/` (`yt/channel.txt`, `yt/yt.txt`, `yt/info.json`, `yt/yt.png`)
 
 ---
 
-## 4. CRYPTOGRAPHIC DONATION DIRECTORIES
+## 4. CRYPTOGRAPHIC DONATION (LITECOIN & POLYGON ONLY)
 
-Public addresses and QR codes are mapped directly to filesystem directories:
+Public addresses and QR codes are restricted to Litecoin and Polygon:
 
-- `ltc/` -> `ltc.png` & `ltc.txt` (Litecoin)
-- `sltc/` -> `ltc.png` & `ltc.txt` (SLTC alias)
-- `sol/` -> `sol.png` & `sol.txt` (Solana SPL)
-- `btc/` -> `btc.png` & `btc.txt` (Bitcoin Native SegWit)
-- `eth/` -> `eth.png` & `eth.txt` (Ethereum ERC-20)
-- `usdt/` -> `usdt.png` & `usdt.txt` (Tether USD)
+- `ltc/` (and `sltc/`) -> `ltc.png` & `ltc.txt` (Litecoin)
+- `pol/` (and `polygon/`) -> `pol.png` & `pol.txt` (Polygon POL / MATIC)
 
 To update any QR or address, drop `<coin>.png` and `<coin>.txt` into the corresponding folder. The web interface updates automatically.
 

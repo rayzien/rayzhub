@@ -445,41 +445,29 @@ def get_verification_logs(limit: int = 50, db: Session = Depends(get_db)):
 async def serve_frontend(full_path: str):
     clean_path = full_path.lstrip("/")
 
-    # Check for direct local files (e.g., ltc/ltc.png, sol/sol.txt, crypto QRs)
+    # Check for direct local files (e.g., ltc/ltc.png, pol/pol.png, yt/yt.png, yt/info.json)
     if clean_path and os.path.isfile(clean_path):
         return FileResponse(clean_path)
 
-    out_dir = "mmeui/out"
-    if not os.path.exists(out_dir):
-        if os.path.exists("ref.html"):
+    # Root or empty path serves main portal (ref.html)
+    if clean_path == "" or clean_path == "/" or clean_path == "index.html":
+        if os.path.isfile("ref.html"):
             return FileResponse("ref.html")
-        raise HTTPException(status_code=404, detail="Frontend build not found")
-    
-    # 1. Exact file match (e.g., _next/..., favicon.ico)
-    exact_file = os.path.join(out_dir, clean_path)
-    if os.path.isfile(exact_file):
-        return FileResponse(exact_file)
 
-    # 2. Check path.html (e.g. login -> login.html, contacthub -> contacthub.html)
-    html_file = os.path.join(out_dir, f"{clean_path}.html")
-    if os.path.isfile(html_file):
-        return FileResponse(html_file)
+    # Check local html file directly (e.g. ref.html)
+    if clean_path.endswith(".html") and os.path.isfile(clean_path):
+        return FileResponse(clean_path)
 
-    # 3. Check path/index.html
-    index_in_dir = os.path.join(out_dir, clean_path, "index.html")
-    if os.path.isfile(index_in_dir):
-        return FileResponse(index_in_dir)
+    # Check built static directory fallback if present
+    out_dir = "mmeui/out"
+    if os.path.exists(out_dir):
+        exact_file = os.path.join(out_dir, clean_path)
+        if os.path.isfile(exact_file):
+            return FileResponse(exact_file)
 
-    # 4. If path is empty, serve root index.html
-    if clean_path == "" or clean_path == "/":
-        root_index = os.path.join(out_dir, "index.html")
-        if os.path.isfile(root_index):
-            return FileResponse(root_index)
-
-    # 5. Fallback to main index.html for SPA client-side routing
-    fallback_index = os.path.join(out_dir, "index.html")
-    if os.path.isfile(fallback_index):
-        return FileResponse(fallback_index)
+    # Fallback to ref.html
+    if os.path.isfile("ref.html"):
+        return FileResponse("ref.html")
 
     raise HTTPException(status_code=404, detail="Resource not found")
 

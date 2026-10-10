@@ -36,47 +36,57 @@ RayzHub implements a decoupled database security model:
 
 ---
 
-## 2. SYSTEM ARCHITECTS
+## 2. SYSTEM ARCHITECTS & ABOUT
 
 - **Rayzien**: System Architecture, Distributed Routing, Autonomous Infrastructure  
   Profile: https://github.com/rayzien
 - **Pheonix14**: Core Engine, Anti-Detect Modules, High-Throughput Pipelines  
   Profile: https://github.com/pheonix14
 
+### Core Philosophy
+Rayzien and Pheonix14 build open-source software engineered for speed, privacy, and simplification of life. All tools eliminate artificial paywalls and third-party tracking, providing developers with absolute sovereignty over their data.
+
+### Published GitHub Marketplace Actions
+- **Pheonix14 MCP Shield**: Automated CI/CD security linter for Model Context Protocol and AI agents.
+- **Pheonix14 Achievement Radar**: Dynamic tier milestone tracker for GitHub developer accomplishments.
+- **Pheonix14 Glass Bento Cards**: Ultra-modern cybernetic Bento Grid components.
+
 ---
 
-## 3. CRYPTOGRAPHIC DONATION & QR FOLDERS
+## 3. OFFICIAL YOUTUBE CHANNEL (`yt/` FOLDER)
 
-All cryptocurrency QR codes and public wallet addresses are organized into dedicated disk directories. Anyone can replace the files in these directories to instantly update the live web portal without touching code.
+Channel metadata and resources are maintained in the `yt/` folder:
+
+- `yt/channel.txt`: Direct YouTube channel URL (`https://youtube.com/@rayzien`).
+- `yt/handle.txt`: Channel handle (`@rayzien`).
+- `yt/yt.txt`: Text description of channel content and release devlogs.
+- `yt/info.json`: Structured channel metadata (subscribers, releases, bio, featured topics).
+- `yt/yt.png`: High-resolution channel emblem graphic.
+
+The web interface dynamically loads from `/yt/info.json`. Updating these files immediately updates the live UI without modifying code.
+
+---
+
+## 4. CRYPTOGRAPHIC DONATION & QR FOLDERS (LITECOIN & POLYGON ONLY)
+
+Public donation addresses and QR codes are strictly limited to **Litecoin** and **Polygon**:
 
 ### Storage Directory Layout:
-- `ltc/`
+- `ltc/` (and `sltc/` alias)
   - `ltc.png`: High-contrast QR code image for Litecoin
   - `ltc.txt`: Plaintext Litecoin wallet address
-- `sltc/`
-  - `ltc.png` / `sltc.png`: Compatible alias for SLTC/LTC
-  - `ltc.txt` / `sltc.txt`: Compatible address file
-- `sol/`
-  - `sol.png`: QR code image for Solana
-  - `sol.txt`: Plaintext Solana SPL wallet address
-- `btc/`
-  - `btc.png`: QR code image for Bitcoin
-  - `btc.txt`: Plaintext Bitcoin Native SegWit address
-- `eth/`
-  - `eth.png`: QR code image for Ethereum
-  - `eth.txt`: Plaintext Ethereum EVM / ERC-20 address
-- `usdt/`
-  - `usdt.png`: QR code image for Tether USD
-  - `usdt.txt`: Plaintext USDT address (ERC-20 / TRC-20)
+- `pol/` (and `polygon/` alias)
+  - `pol.png` / `polygon.png`: High-contrast QR code image for Polygon
+  - `pol.txt` / `polygon.txt`: Plaintext Polygon (POL / MATIC) wallet address
 
 ### Updating Addresses
-1. Save your custom QR image as `<coin>/<coin>.png`.
-2. Save your wallet string into `<coin>/<coin>.txt`.
-3. Refresh `http://127.0.0.1:8000/#donation` to view the updated credentials.
+1. Save your custom QR image as `ltc/ltc.png` or `pol/pol.png`.
+2. Save your wallet string into `ltc/ltc.txt` or `pol/pol.txt`.
+3. Refresh `http://127.0.0.1:8000/#donation` to view the updated credentials live.
 
 ---
 
-## 4. HOSTING & DEPLOYMENT GUIDE
+## 5. HOSTING & DEPLOYMENT GUIDE
 
 The platform supports three deployment targets, all routing into BLAST Gateway.
 
@@ -115,7 +125,7 @@ python receive/main.py
 
 ---
 
-## 5. REPOSITORY PRIVACY & GIT HYGIENE
+## 6. REPOSITORY PRIVACY & GIT HYGIENE
 
 - Repository is maintained as **Private** on GitHub: `https://github.com/rayzien/rayzhub`.
 - Strict zero-emoji policy enforced across all source files, HTML, comments, and documentation.

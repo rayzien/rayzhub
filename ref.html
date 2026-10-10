@@ -1171,11 +1171,13 @@
         <a href="#" class="logo" style="letter-spacing:2px; font-weight:900;">RAYZHUB</a>
         <ul class="nav-links">
             <li><a href="#hero" data-symbol="[01]">Overview</a></li>
-            <li><a href="#profiles" data-symbol="[02]">Architects</a></li>
-            <li><a href="#stars" data-symbol="[03]">Stars &amp; Repos</a></li>
-            <li><a href="#donation" data-symbol="[04]">Donate</a></li>
-            <li><a href="#messages" data-symbol="[05]">Transmit</a></li>
-            <li><a href="#contact" data-symbol="[06]">Contact &amp; Host</a></li>
+            <li><a href="#about" data-symbol="[02]">About</a></li>
+            <li><a href="#youtube" data-symbol="[03]">YouTube</a></li>
+            <li><a href="#profiles" data-symbol="[04]">Architects</a></li>
+            <li><a href="#stars" data-symbol="[05]">Stars &amp; Repos</a></li>
+            <li><a href="#donation" data-symbol="[06]">Donate (LTC/POL)</a></li>
+            <li><a href="#messages" data-symbol="[07]">Transmit</a></li>
+            <li><a href="#contact" data-symbol="[08]">Contact &amp; Host</a></li>
             <li><a href="http://127.0.0.1:8001" target="_blank" data-symbol="[RX]">Receiver</a></li>
         </ul>
         <div class="nav-right">
@@ -1195,14 +1197,17 @@
             <p class="menu-tag">// Navigation //</p>
             <ul class="menu-nav">
                 <li><a href="#hero" onclick="closeMenu()"><span class="sym">[01]</span>Overview</a></li>
-                <li><a href="#profiles" onclick="closeMenu()"><span class="sym">[02]</span>Architects</a></li>
-                <li><a href="#stars" onclick="closeMenu()"><span class="sym">[03]</span>Stars &amp; Repos</a></li>
-                <li><a href="#donation" onclick="closeMenu()"><span class="sym">[04]</span>Donate</a></li>
-                <li><a href="#messages" onclick="closeMenu()"><span class="sym">[05]</span>Transmit</a></li>
-                <li><a href="#contact" onclick="closeMenu()"><span class="sym">[06]</span>Contact &amp; Host</a></li>
+                <li><a href="#about" onclick="closeMenu()"><span class="sym">[02]</span>About Us</a></li>
+                <li><a href="#youtube" onclick="closeMenu()"><span class="sym">[03]</span>YouTube Channel</a></li>
+                <li><a href="#profiles" onclick="closeMenu()"><span class="sym">[04]</span>Architects</a></li>
+                <li><a href="#stars" onclick="closeMenu()"><span class="sym">[05]</span>Stars &amp; Repos</a></li>
+                <li><a href="#donation" onclick="closeMenu()"><span class="sym">[06]</span>Donate (LTC / POL)</a></li>
+                <li><a href="#messages" onclick="closeMenu()"><span class="sym">[07]</span>Transmit</a></li>
+                <li><a href="#contact" onclick="closeMenu()"><span class="sym">[08]</span>Contact &amp; Host</a></li>
                 <li><a href="http://127.0.0.1:8001" target="_blank" onclick="closeMenu()"><span class="sym">[RX]</span>Live Receiver</a></li>
             </ul>
             <div class="menu-social">
+                <a href="https://youtube.com/@rayzien" target="_blank">YouTube @rayzien</a>
                 <a href="https://github.com/rayzien" target="_blank">GitHub @rayzien</a>
                 <a href="https://github.com/pheonix14" target="_blank">GitHub @pheonix14</a>
                 <a href="http://127.0.0.1:8000/api/blast/status" target="_blank">BLAST Gateway Health</a>
@@ -1252,10 +1257,12 @@
         </div>
 
         <div class="hero-cta" style="display: flex; gap: 14px; flex-wrap: wrap; justify-content: center;">
-            <a href="#profiles" class="btn-primary" style="text-decoration:none;"><span>View Architects</span></a>
-            <a href="#stars" class="btn-ghost" style="text-decoration:none;">Verified Repositories</a>
-            <a href="#donation" class="btn-ghost" style="text-decoration:none; border-color:#ff2d55; color:#ff8099;">Sponsor / Donate</a>
-            <a href="#messages" class="btn-ghost" style="text-decoration:none; border-color:#0affe4; color:#0affe4;">Transmit Message</a>
+            <a href="#about" class="btn-primary" style="text-decoration:none;"><span>About Us</span></a>
+            <a href="#youtube" class="btn-ghost" style="text-decoration:none; border-color:#ff2d55; color:#ff8099;">YouTube Channel</a>
+            <a href="#profiles" class="btn-ghost" style="text-decoration:none;">Architects</a>
+            <a href="#stars" class="btn-ghost" style="text-decoration:none;">Repositories</a>
+            <a href="#donation" class="btn-ghost" style="text-decoration:none; border-color:#9945ff; color:#bb7eff;">Donate (LTC/POL)</a>
+            <a href="#messages" class="btn-ghost" style="text-decoration:none; border-color:#0affe4; color:#0affe4;">Transmit</a>
             <a href="#contact" class="btn-ghost" style="text-decoration:none; border-color:#00ff66; color:#00ff66;">Contact &amp; Host</a>
         </div>
     </section>
@@ -1354,14 +1361,102 @@
         </div>
     </section>
 
-    <!-- ═══ CREATOR PHILOSOPHY ═══ -->
-    <section id="about">
-        <p class="section-label">// CREATOR PHILOSOPHY</p>
-        <h2 class="section-h2">Engineered For<br><em>Function</em><br>&amp; Speed</h2>
-        <p
-            style="font-family:'Space Grotesk',sans-serif; font-weight:300; font-size:clamp(14px,1.5vw,17px); color:rgba(255,255,255,.65); max-width:540px; line-height:1.8; margin-top:8px">
-            Pheonix14 and Rayzien design open-source automation, privacy tools, and cluster gateways with zero bloat and zero logging. Everything is engineered to simplify life and give users ultimate control.
+    <!-- ============================================================== -->
+    <!-- SECTION: ABOUT RAYZIEN & PHEONIX14                              -->
+    <!-- ============================================================== -->
+    <section id="about" style="padding: 60px 20px; display: flex; flex-direction: column; align-items: center; position: relative; z-index: 10;">
+        <p class="section-label" style="justify-content:center;">// ABOUT RAYZIEN &amp; PHEONIX14</p>
+        <h2 class="section-h2" style="text-align:center;">Autonomous<br><em>Architects</em><br>&amp; Builders</h2>
+        <p style="font-family:'Space Grotesk',sans-serif; color:rgba(255,255,255,0.65); max-width:680px; text-align:center; font-size:15px; margin: 12px 0 36px 0; line-height: 1.7;">
+            Rayzien and Pheonix14 design open-source automation, privacy systems, and cluster gateways with zero bloat and zero tracking. Everything is engineered to simplify life and give developers full sovereignty over their data.
         </p>
+
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 20px; width: 100%; max-width: 980px;">
+            <div style="background: rgba(14, 18, 30, 0.85); backdrop-filter: blur(16px); border: 1px solid rgba(10,255,228,0.3); border-radius: 10px; padding: 24px; display: flex; flex-direction: column; gap: 10px;">
+                <div style="font-family: monospace; font-size: 11.5px; color: #0affe4; font-weight: 700;">[PILLAR 01]</div>
+                <h3 style="font-family:'Bebas Neue',sans-serif; font-size: 24px; color: #fff; margin: 0; letter-spacing: 1px;">Zero Paywalls &amp; Tracking</h3>
+                <p style="font-family:'Space Grotesk',sans-serif; font-size: 13px; color: rgba(255,255,255,0.7); line-height: 1.6; margin: 0;">
+                    Complete elimination of third-party platform limitations. Self-hostable, transparent codebases designed for total user sovereignty.
+                </p>
+            </div>
+
+            <div style="background: rgba(14, 18, 30, 0.85); backdrop-filter: blur(16px); border: 1px solid rgba(255,45,85,0.35); border-radius: 10px; padding: 24px; display: flex; flex-direction: column; gap: 10px;">
+                <div style="font-family: monospace; font-size: 11.5px; color: #ff5e7e; font-weight: 700;">[PILLAR 02]</div>
+                <h3 style="font-family:'Bebas Neue',sans-serif; font-size: 24px; color: #fff; margin: 0; letter-spacing: 1px;">BLAST Gateway Proxy</h3>
+                <p style="font-family:'Space Grotesk',sans-serif; font-size: 13px; color: rgba(255,255,255,0.7); line-height: 1.6; margin: 0;">
+                    Decoupled database queuing architecture ensuring zero direct database credentials are exposed to frontend applications or public clients.
+                </p>
+            </div>
+
+            <div style="background: rgba(14, 18, 30, 0.85); backdrop-filter: blur(16px); border: 1px solid rgba(153,69,255,0.35); border-radius: 10px; padding: 24px; display: flex; flex-direction: column; gap: 10px;">
+                <div style="font-family: monospace; font-size: 11.5px; color: #bb7eff; font-weight: 700;">[PILLAR 03]</div>
+                <h3 style="font-family:'Bebas Neue',sans-serif; font-size: 24px; color: #fff; margin: 0; letter-spacing: 1px;">Marketplace Publisher</h3>
+                <p style="font-family:'Space Grotesk',sans-serif; font-size: 13px; color: rgba(255,255,255,0.7); line-height: 1.6; margin: 0;">
+                    Creators of verified tools in the GitHub Marketplace including MCP Shield, Achievement Radar, and Glass Bento Cards.
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- ============================================================== -->
+    <!-- SECTION: OFFICIAL YOUTUBE CHANNEL & RELEASES                    -->
+    <!-- ============================================================== -->
+    <section id="youtube" style="padding: 60px 20px; display: flex; flex-direction: column; align-items: center; position: relative; z-index: 10;">
+        <p class="section-label" style="justify-content:center;">// OFFICIAL YOUTUBE CHANNEL</p>
+        <h2 class="section-h2" style="text-align:center;">Engineering<br><em>Devlogs</em><br>&amp; Releases</h2>
+        <p style="font-family:'Space Grotesk',sans-serif; color:rgba(255,255,255,0.6); max-width:620px; text-align:center; font-size:14px; margin: 12px 0 32px 0; line-height: 1.6;">
+            Deep-dives into anti-detect systems, distributed high-throughput routing, and autonomous cluster tooling by Rayzien and Pheonix14.
+        </p>
+
+        <!-- YOUTUBE SHOWCASE CARD -->
+        <div style="background: rgba(14, 18, 30, 0.88); backdrop-filter: blur(20px); border: 1px solid rgba(255, 45, 85, 0.4); border-radius: 12px; padding: 28px; width: 100%; max-width: 820px; box-shadow: 0 16px 40px rgba(0,0,0,0.6); display: flex; flex-direction: column; gap: 20px;">
+            <div style="display: flex; gap: 18px; align-items: center; flex-wrap: wrap;">
+                <div style="background: #111; border-radius: 12px; padding: 10px; width: 84px; height: 84px; display: flex; align-items: center; justify-content: center; border: 1px solid rgba(255,45,85,0.4); box-shadow: 0 0 20px rgba(255,45,85,0.25);">
+                    <img src="/yt/yt.png" alt="YouTube Channel Icon" style="width: 64px; height: 64px; object-fit: contain;">
+                </div>
+                <div style="flex: 1; min-width: 240px;">
+                    <div style="display: inline-block; background: rgba(255,45,85,0.15); color: #ff5e7e; border: 1px solid rgba(255,45,85,0.4); padding: 2px 8px; border-radius: 4px; font-size: 10px; font-weight: 700; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 4px;">
+                        OFFICIAL CHANNEL
+                    </div>
+                    <h3 id="ytChannelName" style="font-family:'Bebas Neue',sans-serif; font-size: 30px; letter-spacing: 1px; color: #fff; margin: 0;">
+                        Rayzien &amp; Pheonix14 Tech
+                    </h3>
+                    <div id="ytChannelHandle" style="font-family: monospace; font-size: 13px; color: #ff8099;">
+                        @rayzien // @pheonix14
+                    </div>
+                </div>
+                <a id="ytChannelBtn" href="https://youtube.com/@rayzien" target="_blank" 
+                    style="background: linear-gradient(135deg, #ff2d55, #ff5e7e); color: #fff; text-decoration: none; padding: 12px 22px; border-radius: 6px; font-family:'Space Grotesk',sans-serif; font-size: 13px; font-weight: 700; text-transform: uppercase; letter-spacing: 1px; transition: opacity 0.2s; box-shadow: 0 4px 16px rgba(255,45,85,0.4);">
+                    Watch on YouTube &gt;
+                </a>
+            </div>
+
+            <p id="ytChannelDesc" style="font-family:'Space Grotesk',sans-serif; font-size: 13.5px; color: #d0d8e2; line-height: 1.6; margin: 0; background: rgba(0,0,0,0.35); padding: 14px 16px; border-radius: 6px; border: 1px solid rgba(255,255,255,0.06);">
+                Deep-dives into anti-detect systems, distributed high-throughput routing, and autonomous cluster tooling.
+            </p>
+
+            <!-- STATS ROW -->
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 12px; text-align: center;">
+                <div style="background: rgba(0,0,0,0.4); padding: 12px 10px; border-radius: 6px; border: 1px solid rgba(255,255,255,0.06);">
+                    <div id="ytSubs" style="font-family:'Bebas Neue',sans-serif; font-size: 24px; color: #ff5e7e;">1.2K+</div>
+                    <div style="font-size: 11px; color: rgba(255,255,255,0.5); text-transform: uppercase;">Subscribers</div>
+                </div>
+                <div style="background: rgba(0,0,0,0.4); padding: 12px 10px; border-radius: 6px; border: 1px solid rgba(255,255,255,0.06);">
+                    <div id="ytVideos" style="font-family:'Bebas Neue',sans-serif; font-size: 24px; color: #0affe4;">28 Releases</div>
+                    <div style="font-size: 11px; color: rgba(255,255,255,0.5); text-transform: uppercase;">Technical Showcases</div>
+                </div>
+                <div style="background: rgba(0,0,0,0.4); padding: 12px 10px; border-radius: 6px; border: 1px solid rgba(255,255,255,0.06);">
+                    <div style="font-family:'Bebas Neue',sans-serif; font-size: 24px; color: #00ff66;">100% Free</div>
+                    <div style="font-size: 11px; color: rgba(255,255,255,0.5); text-transform: uppercase;">Open Knowledge</div>
+                </div>
+            </div>
+
+            <!-- FOLDER DATA FOOTNOTE -->
+            <div style="font-family: monospace; font-size: 11px; color: rgba(255,255,255,0.45); border-top: 1px solid rgba(255,255,255,0.06); padding-top: 10px; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 8px;">
+                <span>Data Source: folder /yt/ [channel.txt, yt.txt, info.json, yt.png]</span>
+                <a href="/yt/info.json" target="_blank" style="color: #0affe4; text-decoration: none;">[View JSON Metadata]</a>
+            </div>
+        </div>
     </section>
 
     <!-- ============================================================== -->
@@ -1760,137 +1855,65 @@
         </p>
 
         <!-- QR CODE STORAGE INFO BANNER -->
-        <div style="background: rgba(10, 14, 24, 0.85); border: 1px solid rgba(10,255,228,0.3); border-radius: 8px; padding: 12px 18px; margin-bottom: 24px; max-width: 960px; width: 100%; font-family:'Space Grotesk',sans-serif; font-size: 12.5px; color: rgba(255,255,255,0.8); display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 8px;">
+        <div style="background: rgba(10, 14, 24, 0.85); border: 1px solid rgba(10,255,228,0.3); border-radius: 8px; padding: 12px 18px; margin-bottom: 24px; max-width: 880px; width: 100%; font-family:'Space Grotesk',sans-serif; font-size: 12.5px; color: rgba(255,255,255,0.8); display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 8px;">
             <div>
                 <span style="color:#0affe4; font-weight:700;">[STORAGE STRUCTURE]</span>
-                Folders: <code style="color:#ff8099; background:rgba(255,45,85,0.1); padding:2px 6px; border-radius:3px;">ltc/</code>, <code style="color:#ff8099; background:rgba(255,45,85,0.1); padding:2px 6px; border-radius:3px;">sltc/</code>, <code style="color:#0affe4; background:rgba(10,255,228,0.1); padding:2px 6px; border-radius:3px;">sol/</code>, <code style="color:#f7931a; background:rgba(247,147,26,0.1); padding:2px 6px; border-radius:3px;">btc/</code>, <code style="color:#0affe4; background:rgba(10,255,228,0.1); padding:2px 6px; border-radius:3px;">eth/</code>, <code style="color:#3ecf8e; background:rgba(62,207,142,0.1); padding:2px 6px; border-radius:3px;">usdt/</code>
+                Folders: <code style="color:#ff8099; background:rgba(255,45,85,0.1); padding:2px 6px; border-radius:3px;">ltc/</code>, <code style="color:#ff8099; background:rgba(255,45,85,0.1); padding:2px 6px; border-radius:3px;">sltc/</code>, <code style="color:#bb7eff; background:rgba(153,69,255,0.15); padding:2px 6px; border-radius:3px;">pol/</code>, <code style="color:#bb7eff; background:rgba(153,69,255,0.15); padding:2px 6px; border-radius:3px;">polygon/</code>
             </div>
             <div style="font-size: 11.5px; color: rgba(255,255,255,0.55);">
                 Replace &lt;coin&gt;.png &amp; &lt;coin&gt;.txt to live-update addresses
             </div>
         </div>
 
-        <!-- CRYPTO ADDRESS CARDS WITH HIGH-CONTRAST QR DISPLAY -->
-        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 18px; width: 100%; max-width: 1080px; margin-bottom: 36px;">
+        <!-- CRYPTO ADDRESS CARDS WITH HIGH-CONTRAST QR DISPLAY (LITECOIN & POLYGON ONLY) -->
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 24px; width: 100%; max-width: 880px; margin-bottom: 36px;">
             
             <!-- LITECOIN (LTC / SLTC) -->
-            <div style="background: rgba(14, 18, 30, 0.85); backdrop-filter: blur(16px); border: 1px solid rgba(255, 45, 85, 0.4); border-radius: 10px; padding: 20px; display: flex; flex-direction: column; gap: 14px; text-align: center;">
+            <div style="background: rgba(14, 18, 30, 0.85); backdrop-filter: blur(16px); border: 1px solid rgba(255, 45, 85, 0.4); border-radius: 10px; padding: 24px; display: flex; flex-direction: column; gap: 14px; text-align: center;">
                 <div style="display: flex; justify-content: space-between; align-items: center;">
-                    <span style="font-family:'Space Grotesk',sans-serif; font-weight: 700; font-size: 14px; color: #fff;">Litecoin (LTC / SLTC)</span>
+                    <span style="font-family:'Space Grotesk',sans-serif; font-weight: 700; font-size: 15px; color: #fff;">Litecoin (LTC / SLTC)</span>
                     <span style="background: rgba(255,45,85,0.15); color: #ff5e7e; padding: 2px 8px; border-radius: 4px; font-size: 10px; font-weight: 700; text-transform: uppercase;">Scrypt // Fast</span>
                 </div>
-                <div style="background: #ffffff; border-radius: 8px; padding: 8px; width: 136px; height: 136px; margin: 0 auto; display: flex; align-items: center; justify-content: center; box-shadow: 0 4px 16px rgba(0,0,0,0.5);">
-                    <img src="/ltc/ltc.png" alt="LTC QR" style="width: 120px; height: 120px; object-fit: contain; image-rendering: pixelated;">
+                <div style="background: #ffffff; border-radius: 8px; padding: 10px; width: 150px; height: 150px; margin: 0 auto; display: flex; align-items: center; justify-content: center; box-shadow: 0 4px 16px rgba(0,0,0,0.5);">
+                    <img src="/ltc/ltc.png" alt="LTC QR" style="width: 130px; height: 130px; object-fit: contain; image-rendering: pixelated;">
                 </div>
-                <div style="background: rgba(0,0,0,0.55); padding: 8px 10px; border-radius: 6px; border: 1px solid rgba(255,255,255,0.08); font-family: monospace; font-size: 11.5px; color: #ff5e7e; word-break: break-all;" id="addrLtc">
+                <div style="background: rgba(0,0,0,0.55); padding: 10px 12px; border-radius: 6px; border: 1px solid rgba(255,255,255,0.08); font-family: monospace; font-size: 12px; color: #ff5e7e; word-break: break-all;" id="addrLtc">
                     LTC_PLACEHOLDER_WALLET_ADDRESS
                 </div>
                 <div style="display: flex; gap: 8px;">
                     <button onclick="copyCryptoAddress('addrLtc', 'Litecoin Address')" 
-                        style="flex: 1; background: rgba(255,45,85,0.18); border: 1px solid #ff2d55; color: #fff; padding: 8px 12px; border-radius: 6px; font-family:'Space Grotesk',sans-serif; font-size: 11.5px; font-weight: 600; cursor: pointer; transition: background 0.2s;">
+                        style="flex: 1; background: rgba(255,45,85,0.18); border: 1px solid #ff2d55; color: #fff; padding: 9px 14px; border-radius: 6px; font-family:'Space Grotesk',sans-serif; font-size: 12px; font-weight: 600; cursor: pointer; transition: background 0.2s;">
                         Copy LTC Address
                     </button>
-                    <a href="/ltc/ltc.txt" target="_blank" style="background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.15); color: rgba(255,255,255,0.7); padding: 8px 10px; border-radius: 6px; font-family:'Space Grotesk',sans-serif; font-size: 11px; text-decoration: none; display: flex; align-items: center;">
+                    <a href="/ltc/ltc.txt" target="_blank" style="background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.15); color: rgba(255,255,255,0.7); padding: 9px 12px; border-radius: 6px; font-family:'Space Grotesk',sans-serif; font-size: 11px; text-decoration: none; display: flex; align-items: center;">
                         [txt]
                     </a>
                 </div>
                 <span style="font-size: 10.5px; color: rgba(255,255,255,0.45); font-family: monospace;">Source: /ltc/ltc.png &amp; /sltc/</span>
             </div>
 
-            <!-- SOLANA -->
-            <div style="background: rgba(14, 18, 30, 0.85); backdrop-filter: blur(16px); border: 1px solid rgba(153, 69, 255, 0.4); border-radius: 10px; padding: 20px; display: flex; flex-direction: column; gap: 14px; text-align: center;">
+            <!-- POLYGON (POL / MATIC) -->
+            <div style="background: rgba(14, 18, 30, 0.85); backdrop-filter: blur(16px); border: 1px solid rgba(153, 69, 255, 0.45); border-radius: 10px; padding: 24px; display: flex; flex-direction: column; gap: 14px; text-align: center;">
                 <div style="display: flex; justify-content: space-between; align-items: center;">
-                    <span style="font-family:'Space Grotesk',sans-serif; font-weight: 700; font-size: 14px; color: #fff;">Solana (SOL)</span>
-                    <span style="background: rgba(153,69,255,0.15); color: #bb7eff; padding: 2px 8px; border-radius: 4px; font-size: 10px; font-weight: 700; text-transform: uppercase;">SPL // Fast</span>
+                    <span style="font-family:'Space Grotesk',sans-serif; font-weight: 700; font-size: 15px; color: #fff;">Polygon (POL / MATIC)</span>
+                    <span style="background: rgba(153,69,255,0.18); color: #bb7eff; padding: 2px 8px; border-radius: 4px; font-size: 10px; font-weight: 700; text-transform: uppercase;">Polygon PoS // EVM</span>
                 </div>
-                <div style="background: #ffffff; border-radius: 8px; padding: 8px; width: 136px; height: 136px; margin: 0 auto; display: flex; align-items: center; justify-content: center; box-shadow: 0 4px 16px rgba(0,0,0,0.5);">
-                    <img src="/sol/sol.png" alt="SOL QR" style="width: 120px; height: 120px; object-fit: contain; image-rendering: pixelated;">
+                <div style="background: #ffffff; border-radius: 8px; padding: 10px; width: 150px; height: 150px; margin: 0 auto; display: flex; align-items: center; justify-content: center; box-shadow: 0 4px 16px rgba(0,0,0,0.5);">
+                    <img src="/pol/pol.png" alt="Polygon QR" style="width: 130px; height: 130px; object-fit: contain; image-rendering: pixelated;">
                 </div>
-                <div style="background: rgba(0,0,0,0.55); padding: 8px 10px; border-radius: 6px; border: 1px solid rgba(255,255,255,0.08); font-family: monospace; font-size: 11.5px; color: #bb7eff; word-break: break-all;" id="addrSol">
-                    7xKXtg2CW87d97TXJSDpbD5jBkheTqA83TZRuJosgAsU
-                </div>
-                <div style="display: flex; gap: 8px;">
-                    <button onclick="copyCryptoAddress('addrSol', 'Solana Address')" 
-                        style="flex: 1; background: rgba(153,69,255,0.2); border: 1px solid #9945ff; color: #fff; padding: 8px 12px; border-radius: 6px; font-family:'Space Grotesk',sans-serif; font-size: 11.5px; font-weight: 600; cursor: pointer; transition: background 0.2s;">
-                        Copy SOL Address
-                    </button>
-                    <a href="/sol/sol.txt" target="_blank" style="background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.15); color: rgba(255,255,255,0.7); padding: 8px 10px; border-radius: 6px; font-family:'Space Grotesk',sans-serif; font-size: 11px; text-decoration: none; display: flex; align-items: center;">
-                        [txt]
-                    </a>
-                </div>
-                <span style="font-size: 10.5px; color: rgba(255,255,255,0.45); font-family: monospace;">Source: /sol/sol.png &amp; sol.txt</span>
-            </div>
-
-            <!-- BITCOIN -->
-            <div style="background: rgba(14, 18, 30, 0.85); backdrop-filter: blur(16px); border: 1px solid rgba(247, 147, 26, 0.4); border-radius: 10px; padding: 20px; display: flex; flex-direction: column; gap: 14px; text-align: center;">
-                <div style="display: flex; justify-content: space-between; align-items: center;">
-                    <span style="font-family:'Space Grotesk',sans-serif; font-weight: 700; font-size: 14px; color: #fff;">Bitcoin (BTC)</span>
-                    <span style="background: rgba(247,147,26,0.15); color: #f7931a; padding: 2px 8px; border-radius: 4px; font-size: 10px; font-weight: 700; text-transform: uppercase;">SegWit Mainnet</span>
-                </div>
-                <div style="background: #ffffff; border-radius: 8px; padding: 8px; width: 136px; height: 136px; margin: 0 auto; display: flex; align-items: center; justify-content: center; box-shadow: 0 4px 16px rgba(0,0,0,0.5);">
-                    <img src="/btc/btc.png" alt="BTC QR" style="width: 120px; height: 120px; object-fit: contain; image-rendering: pixelated;">
-                </div>
-                <div style="background: rgba(0,0,0,0.55); padding: 8px 10px; border-radius: 6px; border: 1px solid rgba(255,255,255,0.08); font-family: monospace; font-size: 11.5px; color: #f7931a; word-break: break-all;" id="addrBtc">
-                    bc1qxy2kgdygjrsqtzq2n0yrf2493p83kkfjhx0wlh
-                </div>
-                <div style="display: flex; gap: 8px;">
-                    <button onclick="copyCryptoAddress('addrBtc', 'Bitcoin Address')" 
-                        style="flex: 1; background: rgba(247,147,26,0.15); border: 1px solid #f7931a; color: #fff; padding: 8px 12px; border-radius: 6px; font-family:'Space Grotesk',sans-serif; font-size: 11.5px; font-weight: 600; cursor: pointer; transition: background 0.2s;">
-                        Copy BTC Address
-                    </button>
-                    <a href="/btc/btc.txt" target="_blank" style="background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.15); color: rgba(255,255,255,0.7); padding: 8px 10px; border-radius: 6px; font-family:'Space Grotesk',sans-serif; font-size: 11px; text-decoration: none; display: flex; align-items: center;">
-                        [txt]
-                    </a>
-                </div>
-                <span style="font-size: 10.5px; color: rgba(255,255,255,0.45); font-family: monospace;">Source: /btc/btc.png &amp; btc.txt</span>
-            </div>
-
-            <!-- ETHEREUM -->
-            <div style="background: rgba(14, 18, 30, 0.85); backdrop-filter: blur(16px); border: 1px solid rgba(10, 255, 228, 0.35); border-radius: 10px; padding: 20px; display: flex; flex-direction: column; gap: 14px; text-align: center;">
-                <div style="display: flex; justify-content: space-between; align-items: center;">
-                    <span style="font-family:'Space Grotesk',sans-serif; font-weight: 700; font-size: 14px; color: #fff;">Ethereum (ETH)</span>
-                    <span style="background: rgba(10,255,228,0.15); color: #0affe4; padding: 2px 8px; border-radius: 4px; font-size: 10px; font-weight: 700; text-transform: uppercase;">EVM / ERC-20</span>
-                </div>
-                <div style="background: #ffffff; border-radius: 8px; padding: 8px; width: 136px; height: 136px; margin: 0 auto; display: flex; align-items: center; justify-content: center; box-shadow: 0 4px 16px rgba(0,0,0,0.5);">
-                    <img src="/eth/eth.png" alt="ETH QR" style="width: 120px; height: 120px; object-fit: contain; image-rendering: pixelated;">
-                </div>
-                <div style="background: rgba(0,0,0,0.55); padding: 8px 10px; border-radius: 6px; border: 1px solid rgba(255,255,255,0.08); font-family: monospace; font-size: 11.5px; color: #0affe4; word-break: break-all;" id="addrEth">
+                <div style="background: rgba(0,0,0,0.55); padding: 10px 12px; border-radius: 6px; border: 1px solid rgba(255,255,255,0.08); font-family: monospace; font-size: 12px; color: #bb7eff; word-break: break-all;" id="addrPol">
                     0x71C83a542b5B5187e59b7Ab486B26A476FCE6b38
                 </div>
                 <div style="display: flex; gap: 8px;">
-                    <button onclick="copyCryptoAddress('addrEth', 'Ethereum Address')" 
-                        style="flex: 1; background: rgba(10,255,228,0.15); border: 1px solid #0affe4; color: #fff; padding: 8px 12px; border-radius: 6px; font-family:'Space Grotesk',sans-serif; font-size: 11.5px; font-weight: 600; cursor: pointer; transition: background 0.2s;">
-                        Copy ETH Address
+                    <button onclick="copyCryptoAddress('addrPol', 'Polygon Address')" 
+                        style="flex: 1; background: rgba(153,69,255,0.22); border: 1px solid #9945ff; color: #fff; padding: 9px 14px; border-radius: 6px; font-family:'Space Grotesk',sans-serif; font-size: 12px; font-weight: 600; cursor: pointer; transition: background 0.2s;">
+                        Copy POL Address
                     </button>
-                    <a href="/eth/eth.txt" target="_blank" style="background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.15); color: rgba(255,255,255,0.7); padding: 8px 10px; border-radius: 6px; font-family:'Space Grotesk',sans-serif; font-size: 11px; text-decoration: none; display: flex; align-items: center;">
+                    <a href="/pol/pol.txt" target="_blank" style="background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.15); color: rgba(255,255,255,0.7); padding: 9px 12px; border-radius: 6px; font-family:'Space Grotesk',sans-serif; font-size: 11px; text-decoration: none; display: flex; align-items: center;">
                         [txt]
                     </a>
                 </div>
-                <span style="font-size: 10.5px; color: rgba(255,255,255,0.45); font-family: monospace;">Source: /eth/eth.png &amp; eth.txt</span>
-            </div>
-
-            <!-- TETHER USD (USDT) -->
-            <div style="background: rgba(14, 18, 30, 0.85); backdrop-filter: blur(16px); border: 1px solid rgba(62, 207, 142, 0.4); border-radius: 10px; padding: 20px; display: flex; flex-direction: column; gap: 14px; text-align: center;">
-                <div style="display: flex; justify-content: space-between; align-items: center;">
-                    <span style="font-family:'Space Grotesk',sans-serif; font-weight: 700; font-size: 14px; color: #fff;">Tether (USDT)</span>
-                    <span style="background: rgba(62,207,142,0.15); color: #3ecf8e; padding: 2px 8px; border-radius: 4px; font-size: 10px; font-weight: 700; text-transform: uppercase;">ERC20 / TRC20</span>
-                </div>
-                <div style="background: #ffffff; border-radius: 8px; padding: 8px; width: 136px; height: 136px; margin: 0 auto; display: flex; align-items: center; justify-content: center; box-shadow: 0 4px 16px rgba(0,0,0,0.5);">
-                    <img src="/usdt/usdt.png" alt="USDT QR" style="width: 120px; height: 120px; object-fit: contain; image-rendering: pixelated;">
-                </div>
-                <div style="background: rgba(0,0,0,0.55); padding: 8px 10px; border-radius: 6px; border: 1px solid rgba(255,255,255,0.08); font-family: monospace; font-size: 11.5px; color: #3ecf8e; word-break: break-all;" id="addrUsdt">
-                    0x71C83a542b5B5187e59b7Ab486B26A476FCE6b38
-                </div>
-                <div style="display: flex; gap: 8px;">
-                    <button onclick="copyCryptoAddress('addrUsdt', 'USDT Address')" 
-                        style="flex: 1; background: rgba(62,207,142,0.18); border: 1px solid #3ecf8e; color: #fff; padding: 8px 12px; border-radius: 6px; font-family:'Space Grotesk',sans-serif; font-size: 11.5px; font-weight: 600; cursor: pointer; transition: background 0.2s;">
-                        Copy USDT Address
-                    </button>
-                    <a href="/usdt/usdt.txt" target="_blank" style="background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.15); color: rgba(255,255,255,0.7); padding: 8px 10px; border-radius: 6px; font-family:'Space Grotesk',sans-serif; font-size: 11px; text-decoration: none; display: flex; align-items: center;">
-                        [txt]
-                    </a>
-                </div>
-                <span style="font-size: 10.5px; color: rgba(255,255,255,0.45); font-family: monospace;">Source: /usdt/usdt.png &amp; usdt.txt</span>
+                <span style="font-size: 10.5px; color: rgba(255,255,255,0.45); font-family: monospace;">Source: /pol/pol.png &amp; /polygon/</span>
             </div>
 
         </div>
@@ -2706,14 +2729,11 @@
             }
         }
 
-        // Live Load Crypto Addresses from Disk Files
+        // Live Load Crypto Addresses from Disk Files (LTC and Polygon Only)
         async function loadCryptoAddresses() {
             const coins = [
                 { id: 'addrLtc', path: '/ltc/ltc.txt' },
-                { id: 'addrSol', path: '/sol/sol.txt' },
-                { id: 'addrBtc', path: '/btc/btc.txt' },
-                { id: 'addrEth', path: '/eth/eth.txt' },
-                { id: 'addrUsdt', path: '/usdt/usdt.txt' }
+                { id: 'addrPol', path: '/pol/pol.txt' }
             ];
             for (const c of coins) {
                 try {
@@ -2729,11 +2749,40 @@
             }
         }
 
+        // Live Load YouTube Channel Data from /yt/info.json
+        async function loadYouTubeData() {
+            try {
+                const res = await fetch('/yt/info.json');
+                if (res.ok) {
+                    const data = await res.json();
+                    if (data.name && document.getElementById('ytChannelName')) {
+                        document.getElementById('ytChannelName').textContent = data.name;
+                    }
+                    if (data.handle && document.getElementById('ytChannelHandle')) {
+                        document.getElementById('ytChannelHandle').textContent = data.handle;
+                    }
+                    if (data.description && document.getElementById('ytChannelDesc')) {
+                        document.getElementById('ytChannelDesc').textContent = data.description;
+                    }
+                    if (data.url && document.getElementById('ytChannelBtn')) {
+                        document.getElementById('ytChannelBtn').href = data.url;
+                    }
+                    if (data.subscribers && document.getElementById('ytSubs')) {
+                        document.getElementById('ytSubs').textContent = data.subscribers;
+                    }
+                    if (data.videos && document.getElementById('ytVideos')) {
+                        document.getElementById('ytVideos').textContent = data.videos;
+                    }
+                }
+            } catch (e) {}
+        }
+
         // Initialize elements on load
         window.addEventListener('DOMContentLoaded', () => {
             fetchShortLinks();
             fetchEmbeddedFeed();
             loadCryptoAddresses();
+            loadYouTubeData();
             setInterval(fetchEmbeddedFeed, 3000);
         });
 
