@@ -1267,6 +1267,130 @@
         </div>
     </section>
 
+<section id="donation" style="padding: 60px 20px; display: flex; flex-direction: column; align-items: center; position: relative; z-index: 10;">
+        <p class="section-label" style="justify-content:center;">// SPONSORSHIP &amp; FUNDING</p>
+        <h2 class="section-h2" style="text-align:center;">Support<br><em>Open Source</em><br>Infrastructure</h2>
+        <p style="font-family:'Space Grotesk',sans-serif; color:rgba(255,255,255,0.6); max-width:620px; text-align:center; font-size:14px; margin: 12px 0 36px 0; line-height: 1.6;">
+            Help fund continuous server nodes, high-speed proxy bandwidth, and GPU compute clusters for @rayzien and @pheonix14.
+        </p>
+
+        <!-- QR CODE STORAGE INFO BANNER -->
+        <div style="background: rgba(10, 14, 24, 0.85); border: 1px solid rgba(10,255,228,0.3); border-radius: 8px; padding: 12px 18px; margin-bottom: 24px; max-width: 880px; width: 100%; font-family:'Space Grotesk',sans-serif; font-size: 12.5px; color: rgba(255,255,255,0.8); display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 8px;">
+            <div>
+                <span style="color:#0affe4; font-weight:700;">[STORAGE STRUCTURE]</span>
+                Folders: <code style="color:#ff8099; background:rgba(255,45,85,0.1); padding:2px 6px; border-radius:3px;">ltc/</code>, <code style="color:#ff8099; background:rgba(255,45,85,0.1); padding:2px 6px; border-radius:3px;">sltc/</code>, <code style="color:#bb7eff; background:rgba(153,69,255,0.15); padding:2px 6px; border-radius:3px;">pol/</code>, <code style="color:#bb7eff; background:rgba(153,69,255,0.15); padding:2px 6px; border-radius:3px;">polygon/</code>
+            </div>
+            <div style="font-size: 11.5px; color: rgba(255,255,255,0.55);">
+                Replace &lt;coin&gt;.png &amp; &lt;coin&gt;.txt to live-update addresses
+            </div>
+        </div>
+
+        <!-- CRYPTO ADDRESS CARDS WITH HIGH-CONTRAST QR DISPLAY (LITECOIN & POLYGON ONLY) -->
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 24px; width: 100%; max-width: 880px; margin-bottom: 36px;">
+            
+            <!-- LITECOIN (LTC / SLTC) -->
+            <div style="background: rgba(14, 18, 30, 0.85); backdrop-filter: blur(16px); border: 1px solid rgba(255, 45, 85, 0.4); border-radius: 10px; padding: 24px; display: flex; flex-direction: column; gap: 14px; text-align: center;">
+                <div style="display: flex; justify-content: space-between; align-items: center;">
+                    <span style="font-family:'Space Grotesk',sans-serif; font-weight: 700; font-size: 15px; color: #fff;">Litecoin (LTC / SLTC)</span>
+                    <span style="background: rgba(255,45,85,0.15); color: #ff5e7e; padding: 2px 8px; border-radius: 4px; font-size: 10px; font-weight: 700; text-transform: uppercase;">Scrypt // Fast</span>
+                </div>
+                <div style="background: #ffffff; border-radius: 8px; padding: 10px; width: 150px; height: 150px; margin: 0 auto; display: flex; align-items: center; justify-content: center; box-shadow: 0 4px 16px rgba(0,0,0,0.5);">
+                    <img src="/ltc/ltc.png" alt="LTC QR" style="width: 130px; height: 130px; object-fit: contain; image-rendering: pixelated;">
+                </div>
+                <div style="background: rgba(0,0,0,0.55); padding: 10px 12px; border-radius: 6px; border: 1px solid rgba(255,255,255,0.08); font-family: monospace; font-size: 12px; color: #ff5e7e; word-break: break-all;" id="addrLtc">
+                    LTC_PLACEHOLDER_WALLET_ADDRESS
+                </div>
+                <div style="display: flex; gap: 8px;">
+                    <button onclick="copyCryptoAddress('addrLtc', 'Litecoin Address')" 
+                        style="flex: 1; background: rgba(255,45,85,0.18); border: 1px solid #ff2d55; color: #fff; padding: 9px 14px; border-radius: 6px; font-family:'Space Grotesk',sans-serif; font-size: 12px; font-weight: 600; cursor: pointer; transition: background 0.2s;">
+                        Copy LTC Address
+                    </button>
+                    <a href="/ltc/ltc.txt" target="_blank" style="background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.15); color: rgba(255,255,255,0.7); padding: 9px 12px; border-radius: 6px; font-family:'Space Grotesk',sans-serif; font-size: 11px; text-decoration: none; display: flex; align-items: center;">
+                        [txt]
+                    </a>
+                </div>
+                <span style="font-size: 10.5px; color: rgba(255,255,255,0.45); font-family: monospace;">Source: /ltc/ltc.png &amp; /sltc/</span>
+            </div>
+
+            <!-- POLYGON (POL / MATIC) -->
+            <div style="background: rgba(14, 18, 30, 0.85); backdrop-filter: blur(16px); border: 1px solid rgba(153, 69, 255, 0.45); border-radius: 10px; padding: 24px; display: flex; flex-direction: column; gap: 14px; text-align: center;">
+                <div style="display: flex; justify-content: space-between; align-items: center;">
+                    <span style="font-family:'Space Grotesk',sans-serif; font-weight: 700; font-size: 15px; color: #fff;">Polygon (POL / MATIC)</span>
+                    <span style="background: rgba(153,69,255,0.18); color: #bb7eff; padding: 2px 8px; border-radius: 4px; font-size: 10px; font-weight: 700; text-transform: uppercase;">Polygon PoS // EVM</span>
+                </div>
+                <div style="background: #ffffff; border-radius: 8px; padding: 10px; width: 150px; height: 150px; margin: 0 auto; display: flex; align-items: center; justify-content: center; box-shadow: 0 4px 16px rgba(0,0,0,0.5);">
+                    <img src="/pol/pol.png" alt="Polygon QR" style="width: 130px; height: 130px; object-fit: contain; image-rendering: pixelated;">
+                </div>
+                <div style="background: rgba(0,0,0,0.55); padding: 10px 12px; border-radius: 6px; border: 1px solid rgba(255,255,255,0.08); font-family: monospace; font-size: 12px; color: #bb7eff; word-break: break-all;" id="addrPol">
+                    0x71C83a542b5B5187e59b7Ab486B26A476FCE6b38
+                </div>
+                <div style="display: flex; gap: 8px;">
+                    <button onclick="copyCryptoAddress('addrPol', 'Polygon Address')" 
+                        style="flex: 1; background: rgba(153,69,255,0.22); border: 1px solid #9945ff; color: #fff; padding: 9px 14px; border-radius: 6px; font-family:'Space Grotesk',sans-serif; font-size: 12px; font-weight: 600; cursor: pointer; transition: background 0.2s;">
+                        Copy POL Address
+                    </button>
+                    <a href="/pol/pol.txt" target="_blank" style="background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.15); color: rgba(255,255,255,0.7); padding: 9px 12px; border-radius: 6px; font-family:'Space Grotesk',sans-serif; font-size: 11px; text-decoration: none; display: flex; align-items: center;">
+                        [txt]
+                    </a>
+                </div>
+                <span style="font-size: 10.5px; color: rgba(255,255,255,0.45); font-family: monospace;">Source: /pol/pol.png &amp; /polygon/</span>
+            </div>
+
+        </div>
+
+        <!-- CONTRIBUTION FORM BOX -->
+        <div style="background: rgba(14, 17, 27, 0.88); backdrop-filter: blur(24px); border: 1px solid rgba(255,45,85,0.3); border-radius: 12px; padding: 28px; width: 100%; max-width: 680px; box-shadow: 0 16px 40px rgba(0,0,0,0.6); display: flex; flex-direction: column; gap: 16px;">
+            <div style="font-family:'Space Grotesk',sans-serif; font-size: 15px; font-weight: 700; color: #fff; border-bottom: 1px solid rgba(255,255,255,0.08); padding-bottom: 10px;">
+                Record Contribution Proof &amp; Shoutout
+            </div>
+
+            <!-- TIER SELECTOR BUTTONS -->
+            <div style="display: flex; gap: 8px; flex-wrap: wrap;">
+                <button onclick="setDonationTier('$5 Coffee', this)" class="tier-btn active"
+                    style="background: rgba(255,45,85,0.2); border: 1px solid #ff2d55; color: #fff; padding: 6px 14px; border-radius: 4px; font-family:'Space Grotesk',sans-serif; font-size: 12px; cursor: pointer;">
+                    $5 Coffee
+                </button>
+                <button onclick="setDonationTier('$20 Server Node', this)" class="tier-btn"
+                    style="background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.15); color: rgba(255,255,255,0.8); padding: 6px 14px; border-radius: 4px; font-family:'Space Grotesk',sans-serif; font-size: 12px; cursor: pointer;">
+                    $20 Server Node
+                </button>
+                <button onclick="setDonationTier('$50 Cluster Power', this)" class="tier-btn"
+                    style="background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.15); color: rgba(255,255,255,0.8); padding: 6px 14px; border-radius: 4px; font-family:'Space Grotesk',sans-serif; font-size: 12px; cursor: pointer;">
+                    $50 Cluster Power
+                </button>
+                <button onclick="setDonationTier('$100 Visionary', this)" class="tier-btn"
+                    style="background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.15); color: rgba(255,255,255,0.8); padding: 6px 14px; border-radius: 4px; font-family:'Space Grotesk',sans-serif; font-size: 12px; cursor: pointer;">
+                    $100 Visionary
+                </button>
+            </div>
+
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 12px;">
+                <input type="text" id="tipName" placeholder="Donor Name / Alias" 
+                    style="background: rgba(0,0,0,0.5); border: 1px solid rgba(255,255,255,0.15); border-radius: 6px; padding: 10px 14px; color: #fff; font-family:'Space Grotesk',sans-serif; font-size: 13px; outline: none;">
+                <input type="text" id="tipAmount" value="$5 Coffee" placeholder="Amount or Tier" 
+                    style="background: rgba(0,0,0,0.5); border: 1px solid rgba(255,255,255,0.15); border-radius: 6px; padding: 10px 14px; color: #fff; font-family:'Space Grotesk',sans-serif; font-size: 13px; outline: none;">
+            </div>
+
+            <input type="text" id="tipTxId" placeholder="Transaction Hash / Proof ID (optional)" 
+                style="background: rgba(0,0,0,0.5); border: 1px solid rgba(255,255,255,0.15); border-radius: 6px; padding: 10px 14px; color: #fff; font-family:'Space Grotesk',sans-serif; font-size: 13px; outline: none;">
+                
+            <div style="display: flex; flex-direction: column; gap: 8px;">
+                <label for="tipProofImage" style="font-family:'Space Grotesk',sans-serif; font-size: 13px; color: rgba(255,255,255,0.7);">Upload Proof Image (Optional)</label>
+                <input type="file" id="tipProofImage" accept="image/*" 
+                    style="background: rgba(0,0,0,0.5); border: 1px solid rgba(255,255,255,0.15); border-radius: 6px; padding: 8px; color: #fff; font-family:'Space Grotesk',sans-serif; font-size: 13px; outline: none; cursor: pointer;">
+            </div>
+
+            <textarea id="tipMsg" rows="2" placeholder="Note or shoutout to the developers..." 
+                style="background: rgba(0,0,0,0.5); border: 1px solid rgba(255,255,255,0.15); border-radius: 6px; padding: 10px 14px; color: #fff; font-family:'Space Grotesk',sans-serif; font-size: 13px; outline: none; resize: vertical;"></textarea>
+
+            <button id="btnSendTip" onclick="submitDonationProof()"
+                style="background: linear-gradient(135deg, #ff2d55, #ff5e7e); border: none; color: #fff; padding: 12px 20px; border-radius: 6px; font-family:'Space Grotesk',sans-serif; font-size: 13px; font-weight: 700; text-transform: uppercase; letter-spacing: 1px; cursor: pointer;">
+                Confirm Contribution Proof
+            </button>
+            <div id="tipStatus" style="display: none; padding: 10px 14px; border-radius: 6px; font-size: 13px;"></div>
+        </div>
+    </section>
+
     <!-- MARQUEE -->
     <div class="marquee-wrap">
         <div class="marquee-track" id="mq">
@@ -1847,123 +1971,7 @@
     <!-- ============================================================== -->
     <!-- SECTION: CRYPTOGRAPHIC DONATION & SPONSORSHIP HUB              -->
     <!-- ============================================================== -->
-    <section id="donation" style="padding: 60px 20px; display: flex; flex-direction: column; align-items: center; position: relative; z-index: 10;">
-        <p class="section-label" style="justify-content:center;">// SPONSORSHIP &amp; FUNDING</p>
-        <h2 class="section-h2" style="text-align:center;">Support<br><em>Open Source</em><br>Infrastructure</h2>
-        <p style="font-family:'Space Grotesk',sans-serif; color:rgba(255,255,255,0.6); max-width:620px; text-align:center; font-size:14px; margin: 12px 0 36px 0; line-height: 1.6;">
-            Help fund continuous server nodes, high-speed proxy bandwidth, and GPU compute clusters for @rayzien and @pheonix14.
-        </p>
-
-        <!-- QR CODE STORAGE INFO BANNER -->
-        <div style="background: rgba(10, 14, 24, 0.85); border: 1px solid rgba(10,255,228,0.3); border-radius: 8px; padding: 12px 18px; margin-bottom: 24px; max-width: 880px; width: 100%; font-family:'Space Grotesk',sans-serif; font-size: 12.5px; color: rgba(255,255,255,0.8); display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 8px;">
-            <div>
-                <span style="color:#0affe4; font-weight:700;">[STORAGE STRUCTURE]</span>
-                Folders: <code style="color:#ff8099; background:rgba(255,45,85,0.1); padding:2px 6px; border-radius:3px;">ltc/</code>, <code style="color:#ff8099; background:rgba(255,45,85,0.1); padding:2px 6px; border-radius:3px;">sltc/</code>, <code style="color:#bb7eff; background:rgba(153,69,255,0.15); padding:2px 6px; border-radius:3px;">pol/</code>, <code style="color:#bb7eff; background:rgba(153,69,255,0.15); padding:2px 6px; border-radius:3px;">polygon/</code>
-            </div>
-            <div style="font-size: 11.5px; color: rgba(255,255,255,0.55);">
-                Replace &lt;coin&gt;.png &amp; &lt;coin&gt;.txt to live-update addresses
-            </div>
-        </div>
-
-        <!-- CRYPTO ADDRESS CARDS WITH HIGH-CONTRAST QR DISPLAY (LITECOIN & POLYGON ONLY) -->
-        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 24px; width: 100%; max-width: 880px; margin-bottom: 36px;">
-            
-            <!-- LITECOIN (LTC / SLTC) -->
-            <div style="background: rgba(14, 18, 30, 0.85); backdrop-filter: blur(16px); border: 1px solid rgba(255, 45, 85, 0.4); border-radius: 10px; padding: 24px; display: flex; flex-direction: column; gap: 14px; text-align: center;">
-                <div style="display: flex; justify-content: space-between; align-items: center;">
-                    <span style="font-family:'Space Grotesk',sans-serif; font-weight: 700; font-size: 15px; color: #fff;">Litecoin (LTC / SLTC)</span>
-                    <span style="background: rgba(255,45,85,0.15); color: #ff5e7e; padding: 2px 8px; border-radius: 4px; font-size: 10px; font-weight: 700; text-transform: uppercase;">Scrypt // Fast</span>
-                </div>
-                <div style="background: #ffffff; border-radius: 8px; padding: 10px; width: 150px; height: 150px; margin: 0 auto; display: flex; align-items: center; justify-content: center; box-shadow: 0 4px 16px rgba(0,0,0,0.5);">
-                    <img src="/ltc/ltc.png" alt="LTC QR" style="width: 130px; height: 130px; object-fit: contain; image-rendering: pixelated;">
-                </div>
-                <div style="background: rgba(0,0,0,0.55); padding: 10px 12px; border-radius: 6px; border: 1px solid rgba(255,255,255,0.08); font-family: monospace; font-size: 12px; color: #ff5e7e; word-break: break-all;" id="addrLtc">
-                    LTC_PLACEHOLDER_WALLET_ADDRESS
-                </div>
-                <div style="display: flex; gap: 8px;">
-                    <button onclick="copyCryptoAddress('addrLtc', 'Litecoin Address')" 
-                        style="flex: 1; background: rgba(255,45,85,0.18); border: 1px solid #ff2d55; color: #fff; padding: 9px 14px; border-radius: 6px; font-family:'Space Grotesk',sans-serif; font-size: 12px; font-weight: 600; cursor: pointer; transition: background 0.2s;">
-                        Copy LTC Address
-                    </button>
-                    <a href="/ltc/ltc.txt" target="_blank" style="background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.15); color: rgba(255,255,255,0.7); padding: 9px 12px; border-radius: 6px; font-family:'Space Grotesk',sans-serif; font-size: 11px; text-decoration: none; display: flex; align-items: center;">
-                        [txt]
-                    </a>
-                </div>
-                <span style="font-size: 10.5px; color: rgba(255,255,255,0.45); font-family: monospace;">Source: /ltc/ltc.png &amp; /sltc/</span>
-            </div>
-
-            <!-- POLYGON (POL / MATIC) -->
-            <div style="background: rgba(14, 18, 30, 0.85); backdrop-filter: blur(16px); border: 1px solid rgba(153, 69, 255, 0.45); border-radius: 10px; padding: 24px; display: flex; flex-direction: column; gap: 14px; text-align: center;">
-                <div style="display: flex; justify-content: space-between; align-items: center;">
-                    <span style="font-family:'Space Grotesk',sans-serif; font-weight: 700; font-size: 15px; color: #fff;">Polygon (POL / MATIC)</span>
-                    <span style="background: rgba(153,69,255,0.18); color: #bb7eff; padding: 2px 8px; border-radius: 4px; font-size: 10px; font-weight: 700; text-transform: uppercase;">Polygon PoS // EVM</span>
-                </div>
-                <div style="background: #ffffff; border-radius: 8px; padding: 10px; width: 150px; height: 150px; margin: 0 auto; display: flex; align-items: center; justify-content: center; box-shadow: 0 4px 16px rgba(0,0,0,0.5);">
-                    <img src="/pol/pol.png" alt="Polygon QR" style="width: 130px; height: 130px; object-fit: contain; image-rendering: pixelated;">
-                </div>
-                <div style="background: rgba(0,0,0,0.55); padding: 10px 12px; border-radius: 6px; border: 1px solid rgba(255,255,255,0.08); font-family: monospace; font-size: 12px; color: #bb7eff; word-break: break-all;" id="addrPol">
-                    0x71C83a542b5B5187e59b7Ab486B26A476FCE6b38
-                </div>
-                <div style="display: flex; gap: 8px;">
-                    <button onclick="copyCryptoAddress('addrPol', 'Polygon Address')" 
-                        style="flex: 1; background: rgba(153,69,255,0.22); border: 1px solid #9945ff; color: #fff; padding: 9px 14px; border-radius: 6px; font-family:'Space Grotesk',sans-serif; font-size: 12px; font-weight: 600; cursor: pointer; transition: background 0.2s;">
-                        Copy POL Address
-                    </button>
-                    <a href="/pol/pol.txt" target="_blank" style="background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.15); color: rgba(255,255,255,0.7); padding: 9px 12px; border-radius: 6px; font-family:'Space Grotesk',sans-serif; font-size: 11px; text-decoration: none; display: flex; align-items: center;">
-                        [txt]
-                    </a>
-                </div>
-                <span style="font-size: 10.5px; color: rgba(255,255,255,0.45); font-family: monospace;">Source: /pol/pol.png &amp; /polygon/</span>
-            </div>
-
-        </div>
-
-        <!-- CONTRIBUTION FORM BOX -->
-        <div style="background: rgba(14, 17, 27, 0.88); backdrop-filter: blur(24px); border: 1px solid rgba(255,45,85,0.3); border-radius: 12px; padding: 28px; width: 100%; max-width: 680px; box-shadow: 0 16px 40px rgba(0,0,0,0.6); display: flex; flex-direction: column; gap: 16px;">
-            <div style="font-family:'Space Grotesk',sans-serif; font-size: 15px; font-weight: 700; color: #fff; border-bottom: 1px solid rgba(255,255,255,0.08); padding-bottom: 10px;">
-                Record Contribution Proof &amp; Shoutout
-            </div>
-
-            <!-- TIER SELECTOR BUTTONS -->
-            <div style="display: flex; gap: 8px; flex-wrap: wrap;">
-                <button onclick="setDonationTier('$5 Coffee', this)" class="tier-btn active"
-                    style="background: rgba(255,45,85,0.2); border: 1px solid #ff2d55; color: #fff; padding: 6px 14px; border-radius: 4px; font-family:'Space Grotesk',sans-serif; font-size: 12px; cursor: pointer;">
-                    $5 Coffee
-                </button>
-                <button onclick="setDonationTier('$20 Server Node', this)" class="tier-btn"
-                    style="background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.15); color: rgba(255,255,255,0.8); padding: 6px 14px; border-radius: 4px; font-family:'Space Grotesk',sans-serif; font-size: 12px; cursor: pointer;">
-                    $20 Server Node
-                </button>
-                <button onclick="setDonationTier('$50 Cluster Power', this)" class="tier-btn"
-                    style="background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.15); color: rgba(255,255,255,0.8); padding: 6px 14px; border-radius: 4px; font-family:'Space Grotesk',sans-serif; font-size: 12px; cursor: pointer;">
-                    $50 Cluster Power
-                </button>
-                <button onclick="setDonationTier('$100 Visionary', this)" class="tier-btn"
-                    style="background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.15); color: rgba(255,255,255,0.8); padding: 6px 14px; border-radius: 4px; font-family:'Space Grotesk',sans-serif; font-size: 12px; cursor: pointer;">
-                    $100 Visionary
-                </button>
-            </div>
-
-            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 12px;">
-                <input type="text" id="tipName" placeholder="Donor Name / Alias" 
-                    style="background: rgba(0,0,0,0.5); border: 1px solid rgba(255,255,255,0.15); border-radius: 6px; padding: 10px 14px; color: #fff; font-family:'Space Grotesk',sans-serif; font-size: 13px; outline: none;">
-                <input type="text" id="tipAmount" value="$5 Coffee" placeholder="Amount or Tier" 
-                    style="background: rgba(0,0,0,0.5); border: 1px solid rgba(255,255,255,0.15); border-radius: 6px; padding: 10px 14px; color: #fff; font-family:'Space Grotesk',sans-serif; font-size: 13px; outline: none;">
-            </div>
-
-            <input type="text" id="tipTxId" placeholder="Transaction Hash / Proof ID (optional)" 
-                style="background: rgba(0,0,0,0.5); border: 1px solid rgba(255,255,255,0.15); border-radius: 6px; padding: 10px 14px; color: #fff; font-family:'Space Grotesk',sans-serif; font-size: 13px; outline: none;">
-
-            <textarea id="tipMsg" rows="2" placeholder="Note or shoutout to the developers..." 
-                style="background: rgba(0,0,0,0.5); border: 1px solid rgba(255,255,255,0.15); border-radius: 6px; padding: 10px 14px; color: #fff; font-family:'Space Grotesk',sans-serif; font-size: 13px; outline: none; resize: vertical;"></textarea>
-
-            <button id="btnSendTip" onclick="submitDonationProof()"
-                style="background: linear-gradient(135deg, #ff2d55, #ff5e7e); border: none; color: #fff; padding: 12px 20px; border-radius: 6px; font-family:'Space Grotesk',sans-serif; font-size: 13px; font-weight: 700; text-transform: uppercase; letter-spacing: 1px; cursor: pointer;">
-                Confirm Contribution Proof
-            </button>
-            <div id="tipStatus" style="display: none; padding: 10px 14px; border-radius: 6px; font-size: 13px;"></div>
-        </div>
-    </section>
+    
 
     <!-- ============================================================== -->
     <!-- SECTION: DIRECT TRANSMISSION BOXES                             -->
@@ -2520,11 +2528,7 @@
                 statusBox.style.background = 'rgba(0,255,102,0.12)';
                 statusBox.style.border = '1px solid #00ff66';
                 statusBox.style.color = '#00ff66';
-                statusBox.innerHTML = `
-                    [SUCCESS] Transmission Delivered.<br>
-                    Message ID #${data.id} saved locally and queued through BLAST Gateway &gt;&gt; Supabase.<br>
-                    <a href="http://127.0.0.1:8001" target="_blank" style="color:#0affe4; font-weight:700; text-decoration:underline;">[View in Receiver Dashboard: 127.0.0.1:8001]</a>
-                `;
+                statusBox.innerHTML = `[SUCCESS] Transmission Delivered. Message queued to BLAST Gateway.`;
 
                 bodyInput.value = '';
                 showToast('// BLAST GATEWAY', `Message #${data.id} synced to Supabase queue.`);
@@ -2597,6 +2601,7 @@
             const amount = document.getElementById('tipAmount').value.trim() || '$5';
             const txId = document.getElementById('tipTxId').value.trim();
             const note = document.getElementById('tipMsg').value.trim();
+            const photoInput = document.getElementById('tipProofImage');
             const statusBox = document.getElementById('tipStatus');
             const btn = document.getElementById('btnSendTip');
 
@@ -2604,20 +2609,21 @@
             btn.textContent = 'Recording Contribution...';
 
             try {
-                const payload = {
-                    name: name,
-                    email: null,
-                    message: note ? `[DONATION ${amount}] ${note}` : `[DONATION ${amount}] Contribution from ${name}`,
-                    request_type: 'tip',
-                    amount: amount,
-                    transaction_id: txId || null,
-                    is_anonymous: false
-                };
+                const formData = new FormData();
+                formData.append('name', name);
+                formData.append('message', note ? `[DONATION ${amount}] ${note}` : `[DONATION ${amount}] Contribution from ${name}`);
+                formData.append('request_type', 'tip');
+                formData.append('amount', amount);
+                if (txId) formData.append('transaction_id', txId);
+                formData.append('is_anonymous', 'false');
+                
+                if (photoInput && photoInput.files.length > 0) {
+                    formData.append('photo', photoInput.files[0]);
+                }
 
-                const res = await fetch('/api/messages', {
+                const res = await fetch('/api/requests', {
                     method: 'POST',
-                    headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify(payload)
+                    body: formData
                 });
 
                 if (!res.ok) throw new Error(`HTTP ${res.status}`);
