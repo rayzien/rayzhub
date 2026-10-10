@@ -349,6 +349,7 @@ async def create_request(
     db.refresh(db_request)
     
     blast_gateway.gateway.sync_request({
+        "id": db_request.id,
         "name": db_request.name,
         "email": db_request.email,
         "message": db_request.message,
