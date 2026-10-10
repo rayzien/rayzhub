@@ -15,6 +15,18 @@ def log_verification_action(db: Session, action: str, user_id: int = None, ip_ad
         db.add(log_entry)
         db.commit()
         db.refresh(log_entry)
+        
+        try:
+            import blast_gateway
+            blast_gateway.gateway.sync_verification_log({
+                "user_id": user_id,
+                "action": action,
+                "ip_address": ip_address,
+                "status": status,
+                "details": details,
+            })
+        except Exception:
+            pass
         return log_entry
     except Exception as e:
         db.rollback()

@@ -1,73 +1,105 @@
-# ⚡ RayzHub — The Ultimate Open Source Alternative to guns.lol & Linktree
+# RAYZHUB -- DISTRIBUTED PLATFORM & ARCHITECTURE
 
-> **Created by [Rayzien](https://github.com/rayzien)**  
-> *100% Free, Self-Hostable, Glassmorphic 2D Drag-and-Drop Bio Link & Portfolio Pinboard Engine.*
-
----
-
-## 🚀 Overview
-
-**RayzHub** is a next-generation, high-performance web platform and dynamic 2D pinboard system built for creators, developers, designers, and web3 builders. Positioned as a **100% free open-source alternative to guns.lol, Linktree, and Beacons**, RayzHub gives you absolute creative freedom with zero subscriptions, paywalls, or privacy tracking.
-
-Whether you want a sleek bio link page, a real-time drag-and-drop interactive portfolio, custom payment QR tip jars, or integrated developer project showcases, RayzHub delivers it all with **real-time live previews, glassmorphism aesthetics, and instant dark mode customization.**
+> **Created by Rayzien & Pheonix14**  
+> *Autonomous Systems, Anti-Detect Engines, and Distributed Infrastructure.*  
+> Complete documentation: See [RAYZIEN.README.md](file:///home/zero/Desktop/rayzhub/RAYZIEN.README.md).
 
 ---
 
-## ✨ Key Features
+## 1. OVERVIEW
 
-- 🎨 **Universal Real-Time Inspector Dock**: Live preview font family, font size, background translucency/opacity, border styles, custom titles, and neon glow effects as you type.
-- 📌 **Dynamic Infinite 2D Pinboard**: Drag, resize, rotate, and position widgets anywhere on an auto-expanding canvas.
-- ⚡ **Auto-Expanding Canvas Length**: Dragging elements down automatically expands page height without cutoffs or barriers.
-- 🐙 **GitHub & GitLab Integrations**: Display top starred repositories, latest projects, contribution stats, and profile follow cards reactively.
-- 💳 **Crypto & Payment QR Tip Jars**: Multi-currency crypto addresses (LTC, POL/MATIC) with screenshot proof upload and direct backend database logging.
-- 💬 **Rayzien Interactive Chat**: Embedded direct live messaging thread for custom request submissions.
-- 🛸 **Premade Glassmorphic Templates**: Hero title cards, Selected Work bento grids, Services overviews, and About cards.
-- 🛠 **Multi-Stage Docker Support**: Ready to deploy with single-command Docker Containerization (`docker-compose up -d`).
+**RayzHub** is an open-source, high-performance distributed web platform and real-time pinboard system architected by **Rayzien** and **Pheonix14**.
+
+Built for speed and simplification of life, RayzHub eliminates third-party platform limitations with zero paywalls, zero tracking, and complete privacy.
 
 ---
 
-## 🛠 Tech Stack
+## 2. ARCHITECTURE PIPELINE
 
-- **Frontend**: Next.js 16 (App Router, Turbopack), React 19, TypeScript, Vanilla CSS3 (Custom Design System).
-- **Backend API**: Python 3.11, FastAPI, Uvicorn, SQLite, Supabase SQL Integration.
-- **Containerization**: Multi-stage Docker & Docker Compose.
+RayzHub decouples backend storage through the **BLAST Gateway** queue:
 
----
-
-## 📦 Quick Start (Local Development)
-
-### 1. Clone Repository & Install Dependencies
-```bash
-git clone https://github.com/rayzien/rayzhub.git
-cd rayzhub/mmeui
-npm install
-npm run dev
+```
+[ RAYZHUB FRONTEND / API ] (127.0.0.1:8000)
+            |
+            | (No Direct Supabase Credentials)
+            v
+ [ BLAST GATEWAY CLUSTER ] (Render / Local Queue)
+   +-- Rate Limiting & Queue Buffer
+   +-- SQL Injection Sanitizer
+   +-- Mesh Routing
+            |
+            v
+ [ SUPABASE PERSISTENT DB ]
 ```
 
-### 2. Start Backend Server
+- **Pipeline Flow**: `RayzHub (Client) >> BLAST Gateway (Render Queue) >> Supabase (Database)`
+- **Zero Exposure**: Direct Supabase credentials are never exposed in client code or frontend bundles.
+
+---
+
+## 3. ARCHITECTS & PROFILES
+
+- **Rayzien**: https://github.com/rayzien
+- **Pheonix14**: https://github.com/pheonix14
+
+---
+
+## 4. CRYPTOGRAPHIC DONATION DIRECTORIES
+
+Public addresses and QR codes are mapped directly to filesystem directories:
+
+- `ltc/` -> `ltc.png` & `ltc.txt` (Litecoin)
+- `sltc/` -> `ltc.png` & `ltc.txt` (SLTC alias)
+- `sol/` -> `sol.png` & `sol.txt` (Solana SPL)
+- `btc/` -> `btc.png` & `btc.txt` (Bitcoin Native SegWit)
+- `eth/` -> `eth.png` & `eth.txt` (Ethereum ERC-20)
+- `usdt/` -> `usdt.png` & `usdt.txt` (Tether USD)
+
+To update any QR or address, drop `<coin>.png` and `<coin>.txt` into the corresponding folder. The web interface updates automatically.
+
+---
+
+## 5. RUNNING THE SERVICES
+
+### Main RayzHub Server (Port 8000)
 ```bash
-cd ..
-pip install -r requirements.txt
 python main.py
 ```
-Open [http://localhost:3000](http://localhost:3000) to view your live pinboard!
-
----
-
-## 🐳 Docker Deployment
-
-Run the complete platform in a production-ready container:
+Or via script:
 ```bash
-docker-compose up -d --build
+./run.sh
 ```
-Access the application at [http://localhost:8000](http://localhost:8000).
+Access the application:
+- Web Application: [http://127.0.0.1:8000](http://127.0.0.1:8000)
+- BLAST Health Status: [http://127.0.0.1:8000/api/blast/status](http://127.0.0.1:8000/api/blast/status)
+
+### Standalone Live Receiver Service (Port 8001)
+```bash
+python receive/main.py
+```
+Access the receiver dashboard:
+- Live Monitor: [http://127.0.0.1:8001](http://127.0.0.1:8001)
+
+> Note: All URLs use the loopback address `127.0.0.1`, not `localhost`.
 
 ---
 
-## 🤝 Authors & Credits
+## 6. HOSTING & DEPLOYMENT
 
-RayzHub is crafted with passion by:
-- **Rayzien** — Lead System Architect & UI/UX Designer
+### GitHub Pages (Static Hosting)
+1. In repository settings, enable **GitHub Pages** from the `main` branch.
+2. The frontend routes all transmissions through BLAST Gateway on Render.
+3. Database security is preserved because credentials reside solely on the BLAST cluster.
 
+### Render Cloud Web Service
+1. Connect repository `https://github.com/rayzien/rayzhub`.
+2. Build Command: `pip install -r requirements.txt`
+3. Start Command: `uvicorn main:app --host 0.0.0.0 --port $PORT`
+4. Set Environment Variables: `BLAST_URL` and `BLAST_KEY`.
 
-Licensed under the MIT License. Contributions and PRs welcome!
+---
+
+## 7. LICENSE & PRIVACY
+
+Maintained as a private repository under `https://github.com/rayzien/rayzhub`.
+All rights reserved by Rayzien and Pheonix14.

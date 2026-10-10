@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>XTREME — New Era</title>
+    <title>PHEONIX14 // RAYZIEN — RayzHub Platform</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link
         href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Dancing+Script:wght@700&family=Playfair+Display:ital,wght@0,900;1,400&family=Space+Grotesk:wght@300;400;700&family=Orbitron:wght@900&family=Abril+Fatface&family=Righteous&family=Permanent+Marker&family=Black+Han+Sans&family=Cinzel+Decorative:wght@900&family=Monoton&display=swap"
@@ -1156,28 +1156,31 @@
     <div class="bg-color-bleed" id="colorBleed"></div>
     <div class="vignette"></div>
 
-    <!-- XTREME WATERMARK -->
-    <div id="wm">XTREME</div>
+    <!-- WATERMARK -->
+    <div id="wm">PHEONIX14 // RAYZIEN</div>
 
     <!-- NOTIFICATION TOAST -->
     <div id="notif-toast">
-        <button class="notif-close" onclick="closeToast()">✕</button>
-        <div class="notif-title" id="nt-title">XTREME</div>
-        <div class="notif-body" id="nt-body">Welcome to the new era.</div>
+        <button class="notif-close" onclick="closeToast()">&times;</button>
+        <div class="notif-title" id="nt-title">RAYZHUB // BLAST</div>
+        <div class="notif-body" id="nt-body">Welcome to the official hub.</div>
     </div>
 
     <!-- NAV -->
     <nav id="navbar">
-        <a href="#" class="logo">XTREME</a>
+        <a href="#" class="logo" style="letter-spacing:2px; font-weight:900;">RAYZHUB</a>
         <ul class="nav-links">
-            <li><a href="#work" data-symbol="◈">Work</a></li>
-            <li><a href="#about" data-symbol="◉">About</a></li>
-            <li><a href="#services" data-symbol="◫">Services</a></li>
-            <li><a href="#contact" data-symbol="◎">Contact</a></li>
+            <li><a href="#hero" data-symbol="[01]">Overview</a></li>
+            <li><a href="#profiles" data-symbol="[02]">Architects</a></li>
+            <li><a href="#stars" data-symbol="[03]">Stars &amp; Repos</a></li>
+            <li><a href="#donation" data-symbol="[04]">Donate</a></li>
+            <li><a href="#messages" data-symbol="[05]">Transmit</a></li>
+            <li><a href="#contact" data-symbol="[06]">Contact &amp; Host</a></li>
+            <li><a href="http://127.0.0.1:8001" target="_blank" data-symbol="[RX]">Receiver</a></li>
         </ul>
         <div class="nav-right">
             <button class="notif-btn" onclick="requestNotif()" title="Enable notifications">
-                ◉
+                [N]
                 <div class="notif-dot"></div>
             </button>
             <button class="ham" id="ham" onclick="toggleMenu()">
@@ -1189,18 +1192,20 @@
     <!-- FULL MENU OVERLAY -->
     <div id="menu-overlay">
         <div class="menu-inner">
-            <p class="menu-tag">◈ Navigation ◈</p>
+            <p class="menu-tag">// Navigation //</p>
             <ul class="menu-nav">
-                <li><a href="#hero" onclick="closeMenu()"><span class="sym">◈</span>Home</a></li>
-                <li><a href="#work" onclick="closeMenu()"><span class="sym">◉</span>Work</a></li>
-                <li><a href="#about" onclick="closeMenu()"><span class="sym">◫</span>About</a></li>
-                <li><a href="#services" onclick="closeMenu()"><span class="sym">◎</span>Services</a></li>
-                <li><a href="#contact" onclick="closeMenu()"><span class="sym">⬡</span>Contact</a></li>
+                <li><a href="#hero" onclick="closeMenu()"><span class="sym">[01]</span>Overview</a></li>
+                <li><a href="#profiles" onclick="closeMenu()"><span class="sym">[02]</span>Architects</a></li>
+                <li><a href="#stars" onclick="closeMenu()"><span class="sym">[03]</span>Stars &amp; Repos</a></li>
+                <li><a href="#donation" onclick="closeMenu()"><span class="sym">[04]</span>Donate</a></li>
+                <li><a href="#messages" onclick="closeMenu()"><span class="sym">[05]</span>Transmit</a></li>
+                <li><a href="#contact" onclick="closeMenu()"><span class="sym">[06]</span>Contact &amp; Host</a></li>
+                <li><a href="http://127.0.0.1:8001" target="_blank" onclick="closeMenu()"><span class="sym">[RX]</span>Live Receiver</a></li>
             </ul>
             <div class="menu-social">
-                <a href="#">⌘ Instagram</a>
-                <a href="#">⊕ Twitter</a>
-                <a href="#">◈ Behance</a>
+                <a href="https://github.com/rayzien" target="_blank">GitHub @rayzien</a>
+                <a href="https://github.com/pheonix14" target="_blank">GitHub @pheonix14</a>
+                <a href="http://127.0.0.1:8000/api/blast/status" target="_blank">BLAST Gateway Health</a>
             </div>
         </div>
     </div>
@@ -1217,13 +1222,41 @@
     <div class="scroll-counter"><span id="scrollPct">00</span>%</div>
 
     <!-- ═══ HERO ═══ -->
-    <section id="hero">
-        <p class="hero-eyebrow">◈ New Era Collection — 2025</p>
-        <h1 class="hero-h1" id="hero-h1">NEW<br><em>ERA</em></h1>
-        <p class="hero-sub">Beyond boundaries. Beyond limits. A visual language for those who refuse to be ordinary.</p>
-        <div class="hero-cta">
-            <button class="btn-primary"><span>◈ Explore Work</span></button>
-            <button class="btn-ghost">Watch Reel</button>
+    <section id="hero" style="min-height: 90vh; display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center; padding: 100px 20px 40px 20px;">
+        <p class="hero-eyebrow" style="font-family:'Space Grotesk',sans-serif; letter-spacing:3px; color:#0affe4; font-weight:700;">
+            // RAYZHUB DISTRIBUTED PLATFORM // POWERED BY BLAST GATEWAY
+        </p>
+        <h1 class="hero-h1" id="hero-h1" style="font-size:clamp(54px, 11vw, 130px); line-height:0.9; margin: 16px 0;">
+            PHEONIX14<br><em style="color:#ff2d55;">RAYZIEN</em>
+        </h1>
+        <p class="hero-sub" style="max-width: 680px; font-size: clamp(15px, 1.8vw, 18px); color: rgba(255,255,255,0.7); margin-bottom: 24px;">
+            Autonomous Systems, Anti-Detect Engines, and Distributed Infrastructure. Built for speed and simplification of life.
+        </p>
+
+        <!-- ═══ PROMINENT ARCHITECTURE PATH ═══ -->
+        <div style="background: rgba(10, 14, 24, 0.85); backdrop-filter: blur(16px); border: 1px solid rgba(10,255,228,0.4); border-radius: 10px; padding: 14px 24px; margin: 0 0 32px 0; display: inline-flex; align-items: center; gap: 12px; flex-wrap: wrap; justify-content: center; box-shadow: 0 8px 30px rgba(0,0,0,0.6);">
+            <span style="font-family:'Space Grotesk',sans-serif; font-size:11px; font-weight:800; color:rgba(255,255,255,0.6); text-transform:uppercase; letter-spacing:1.5px;">
+                Architecture Flow:
+            </span>
+            <span style="background:rgba(255,45,85,0.2); color:#ff5e7e; border:1px solid rgba(255,45,85,0.4); padding:4px 12px; border-radius:4px; font-weight:700; font-size:13px;">
+                RAYZHUB [Client / API]
+            </span>
+            <span style="color:rgba(255,255,255,0.4); font-weight:bold;">&gt;&gt;</span>
+            <span style="background:rgba(10,255,228,0.2); color:#0affe4; border:1px solid rgba(10,255,228,0.4); padding:4px 12px; border-radius:4px; font-weight:700; font-size:13px;">
+                BLAST GATEWAY [Render Cluster Queue]
+            </span>
+            <span style="color:rgba(255,255,255,0.4); font-weight:bold;">&gt;&gt;</span>
+            <span style="background:rgba(62,207,142,0.2); color:#3ecf8e; border:1px solid rgba(62,207,142,0.4); padding:4px 12px; border-radius:4px; font-weight:700; font-size:13px;">
+                SUPABASE [Persistent DB Backend]
+            </span>
+        </div>
+
+        <div class="hero-cta" style="display: flex; gap: 14px; flex-wrap: wrap; justify-content: center;">
+            <a href="#profiles" class="btn-primary" style="text-decoration:none;"><span>View Architects</span></a>
+            <a href="#stars" class="btn-ghost" style="text-decoration:none;">Verified Repositories</a>
+            <a href="#donation" class="btn-ghost" style="text-decoration:none; border-color:#ff2d55; color:#ff8099;">Sponsor / Donate</a>
+            <a href="#messages" class="btn-ghost" style="text-decoration:none; border-color:#0affe4; color:#0affe4;">Transmit Message</a>
+            <a href="#contact" class="btn-ghost" style="text-decoration:none; border-color:#00ff66; color:#00ff66;">Contact &amp; Host</a>
         </div>
     </section>
 
@@ -1237,7 +1270,7 @@
     <!-- ═══ FRAME-BY-FRAME ANIMATION ═══ -->
     <div class="fbf-stage" id="fbf">
         <div class="fbf-canvas" id="fbfCanvas">
-            <div class="fbf-text">XTREME</div>
+            <div class="fbf-text">RAYZHUB</div>
             <div class="fbf-frame f1 visible">
                 <div class="shape"></div>
             </div>
@@ -1266,95 +1299,919 @@
         </div>
     </div>
 
-    <!-- ═══ WORK ═══ -->
+    <!-- ═══ ENGINEERING DISCIPLINES ═══ -->
     <section id="work">
-        <p class="section-label">◈ Selected Work</p>
-        <h2 class="section-h2">Projects<br>That <em>Move</em><br>the World</h2>
+        <p class="section-label">// DISCIPLINES</p>
+        <h2 class="section-h2">Core Systems<br><em>Engineering</em></h2>
         <div class="cards">
             <div class="card">
                 <div class="card-num">01</div>
-                <div class="card-icon">◈</div>
-                <h3>Brand Identity</h3>
-                <p>Complete visual systems built from the ground up. Every pixel with intent.</p>
+                <div class="card-icon">[GTW]</div>
+                <h3>BLAST Gateway &amp; Proxies</h3>
+                <p>Supabase security firewall, token rate limiting, and durable retry queue engine.</p>
             </div>
             <div class="card">
                 <div class="card-num">02</div>
-                <div class="card-icon">⬡</div>
-                <h3>Motion Design</h3>
-                <p>Frame-by-frame animation that tells stories no static image ever could.</p>
+                <div class="card-icon">[SCR]</div>
+                <h3>Anti-Detect Web Scraping</h3>
+                <p>Anakin headless browser proxy rotation and structured markdown extraction.</p>
             </div>
             <div class="card">
                 <div class="card-num">03</div>
-                <div class="card-icon">◎</div>
-                <h3>Digital Experiences</h3>
-                <p>Immersive web experiences at the intersection of art and technology.</p>
+                <div class="card-icon">[DBS]</div>
+                <h3>Distributed Sharded Storage</h3>
+                <p>rayzOSS GitHub backend filesystem and GITBACK mirrored git preservation.</p>
             </div>
             <div class="card">
                 <div class="card-num">04</div>
-                <div class="card-icon">◉</div>
-                <h3>Editorial Design</h3>
-                <p>Typography-first layouts where every character earns its place.</p>
+                <div class="card-icon">[SYS]</div>
+                <h3>Desktop Memory &amp; Privacy</h3>
+                <p>Yimiter PC RAM limiter and LiveDRIVE zero-logging encrypted cloud drive.</p>
             </div>
         </div>
     </section>
 
-    <!-- ═══ SERVICES ═══ -->
+    <!-- ═══ CAPABILITIES & CUSTOM PROJECTS ═══ -->
     <section id="services" style="background:rgba(255,45,85,.03)">
-        <p class="section-label">◉ Services</p>
-        <h2 class="section-h2"><em>What</em> We<br>Create</h2>
+        <p class="section-label">// CAPABILITIES</p>
+        <h2 class="section-h2">What We<br><em>Build</em></h2>
         <div class="cards">
             <div class="card">
                 <div class="card-num">I</div>
-                <h3>⬡ UI / UX Design</h3>
-                <p>Interfaces that feel inevitable. Products people don't want to put down.</p>
+                <h3>Custom Developer Tooling</h3>
+                <p>Taking custom client projects, performance optimizers, and automated workflows.</p>
             </div>
             <div class="card">
                 <div class="card-num">II</div>
-                <h3>◈ Art Direction</h3>
-                <p>A single visual voice across every touchpoint of your brand.</p>
+                <h3>Autonomous Discord Bots</h3>
+                <p>High-concurrency systems, state sync, STORMGOD, and sudo-podark bot infrastructure.</p>
             </div>
             <div class="card">
                 <div class="card-num">III</div>
-                <h3>◎ Development</h3>
-                <p>Production-grade code. Lightning fast. Pixel perfect. Always.</p>
+                <h3>FastAPI &amp; Supabase Pipelines</h3>
+                <p>High throughput, durable queuing, and secure data routing via BLAST Gateway.</p>
             </div>
         </div>
     </section>
 
-    <!-- ═══ ABOUT ═══ -->
+    <!-- ═══ CREATOR PHILOSOPHY ═══ -->
     <section id="about">
-        <p class="section-label">◫ About</p>
-        <h2 class="section-h2">We Don't<br>Follow<br><em>Trends</em></h2>
+        <p class="section-label">// CREATOR PHILOSOPHY</p>
+        <h2 class="section-h2">Engineered For<br><em>Function</em><br>&amp; Speed</h2>
         <p
-            style="font-family:'Space Grotesk';font-weight:300;font-size:clamp(14px,1.5vw,17px);color:rgba(255,255,255,.5);max-width:480px;line-height:1.8;margin-top:8px">
-            XTREME is a design-first studio obsessed with the intersection of art, motion, and technology.
-            We build work that refuses to be ordinary.
+            style="font-family:'Space Grotesk',sans-serif; font-weight:300; font-size:clamp(14px,1.5vw,17px); color:rgba(255,255,255,.65); max-width:540px; line-height:1.8; margin-top:8px">
+            Pheonix14 and Rayzien design open-source automation, privacy tools, and cluster gateways with zero bloat and zero logging. Everything is engineered to simplify life and give users ultimate control.
         </p>
     </section>
 
-    <!-- ═══ CONTACT ═══ -->
-    <section id="contact" style="text-align:center;align-items:center">
-        <p class="section-label" style="justify-content:center">◎ Contact</p>
-        <h2 class="section-h2" style="text-align:center">Let's<br><em>Build</em><br>Something</h2>
-        <button class="btn-primary" style="margin-top:40px;font-size:14px;padding:18px 48px" onclick="requestNotif()">
-            <span>◈ Get In Touch</span>
-        </button>
+    <!-- ============================================================== -->
+    <!-- SECTION: CORE ARCHITECTS SHOWCASE                              -->
+    <!-- ============================================================== -->
+    <section id="profiles" style="padding: 60px 20px; display: flex; flex-direction: column; align-items: center; position: relative; z-index: 10;">
+        <p class="section-label" style="justify-content:center;">// CREATOR SPOTLIGHT</p>
+        <h2 class="section-h2" style="text-align:center;">The<br><em>Architects</em><br>Behind BLAST</h2>
+        <p style="font-family:'Space Grotesk',sans-serif; color:rgba(255,255,255,0.6); max-width:620px; text-align:center; font-size:14px; margin: 12px 0 36px 0; line-height: 1.6;">
+            Autonomous distributed infrastructure, high-throughput security proxies, and desktop performance engines crafted for zero friction.
+        </p>
+
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 24px; width: 100%; max-width: 980px;">
+            <!-- PROFILE 1: RAYZIEN -->
+            <div style="background: rgba(14, 18, 30, 0.85); backdrop-filter: blur(20px); border: 1px solid rgba(10, 255, 228, 0.3); border-radius: 12px; padding: 28px; display: flex; flex-direction: column; gap: 20px; box-shadow: 0 12px 36px rgba(0,0,0,0.5);">
+                <div style="display: flex; gap: 18px; align-items: center;">
+                    <img src="https://avatars.githubusercontent.com/u/328525664?v=4" alt="Rayzien" 
+                        style="width: 72px; height: 72px; border-radius: 50%; border: 2px solid #0affe4; box-shadow: 0 0 16px rgba(10,255,228,0.4); object-fit: cover;">
+                    <div>
+                        <div style="display: inline-block; background: rgba(10,255,228,0.12); color: #0affe4; border: 1px solid rgba(10,255,228,0.3); padding: 2px 8px; border-radius: 4px; font-size: 10px; font-weight: 700; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 4px;">
+                            SYSTEMS ARCHITECT
+                        </div>
+                        <h3 style="font-family:'Bebas Neue',sans-serif; font-size: 28px; letter-spacing: 1px; color: #fff; margin: 0;">Rayzien</h3>
+                        <a href="https://github.com/rayzien" target="_blank" style="color: rgba(255,255,255,0.6); font-size: 13px; text-decoration: none; font-family:'Space Grotesk',sans-serif;">
+                            github.com/rayzien
+                        </a>
+                    </div>
+                </div>
+
+                <p style="font-family:'Space Grotesk',sans-serif; font-size: 13.5px; color: #d0d8e2; line-height: 1.6; margin: 0; background: rgba(0,0,0,0.3); padding: 12px 14px; border-radius: 6px; border: 1px solid rgba(255,255,255,0.06);">
+                    "Automation is peak&gt;&gt;" — Specializing in distributed cluster orchestration, gateway protocols, and RayzHub engine architecture.
+                </p>
+
+                <!-- STATS -->
+                <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; text-align: center;">
+                    <div style="background: rgba(0,0,0,0.4); padding: 10px 6px; border-radius: 6px; border: 1px solid rgba(255,255,255,0.05);">
+                        <div style="font-family:'Bebas Neue',sans-serif; font-size: 22px; color: #0affe4;">169</div>
+                        <div style="font-size: 11px; color: rgba(255,255,255,0.5); text-transform: uppercase;">Followers</div>
+                    </div>
+                    <div style="background: rgba(0,0,0,0.4); padding: 10px 6px; border-radius: 6px; border: 1px solid rgba(255,255,255,0.05);">
+                        <div style="font-family:'Bebas Neue',sans-serif; font-size: 22px; color: #0affe4;">17</div>
+                        <div style="font-size: 11px; color: rgba(255,255,255,0.5); text-transform: uppercase;">Repositories</div>
+                    </div>
+                    <div style="background: rgba(0,0,0,0.4); padding: 10px 6px; border-radius: 6px; border: 1px solid rgba(255,255,255,0.05);">
+                        <div style="font-family:'Bebas Neue',sans-serif; font-size: 22px; color: #0affe4;">317</div>
+                        <div style="font-size: 11px; color: rgba(255,255,255,0.5); text-transform: uppercase;">Following</div>
+                    </div>
+                </div>
+
+                <!-- KEY STACKS -->
+                <div style="display: flex; gap: 6px; flex-wrap: wrap;">
+                    <span style="font-size: 11px; padding: 3px 8px; border-radius: 4px; background: rgba(255,255,255,0.06); color: rgba(255,255,255,0.8);">Python</span>
+                    <span style="font-size: 11px; padding: 3px 8px; border-radius: 4px; background: rgba(255,255,255,0.06); color: rgba(255,255,255,0.8);">FastAPI</span>
+                    <span style="font-size: 11px; padding: 3px 8px; border-radius: 4px; background: rgba(255,255,255,0.06); color: rgba(255,255,255,0.8);">Distributed FS</span>
+                    <span style="font-size: 11px; padding: 3px 8px; border-radius: 4px; background: rgba(255,255,255,0.06); color: rgba(255,255,255,0.8);">Gateway Queues</span>
+                </div>
+
+                <div style="display: flex; gap: 10px; margin-top: auto;">
+                    <a href="https://github.com/rayzien" target="_blank" 
+                        style="flex: 1; text-align: center; background: #0affe4; color: #000; font-family:'Space Grotesk',sans-serif; font-weight: 700; font-size: 13px; padding: 10px; border-radius: 6px; text-decoration: none; transition: opacity 0.2s;">
+                        Follow @rayzien
+                    </a>
+                    <a href="https://github.com/rayzien?tab=repositories" target="_blank" 
+                        style="text-align: center; background: rgba(255,255,255,0.08); border: 1px solid rgba(255,255,255,0.2); color: #fff; font-family:'Space Grotesk',sans-serif; font-size: 13px; padding: 10px 14px; border-radius: 6px; text-decoration: none;">
+                        Repos
+                    </a>
+                </div>
+            </div>
+
+            <!-- PROFILE 2: PHEONIX14 -->
+            <div style="background: rgba(14, 18, 30, 0.85); backdrop-filter: blur(20px); border: 1px solid rgba(255, 45, 85, 0.35); border-radius: 12px; padding: 28px; display: flex; flex-direction: column; gap: 20px; box-shadow: 0 12px 36px rgba(0,0,0,0.5);">
+                <div style="display: flex; gap: 18px; align-items: center;">
+                    <img src="https://avatars.githubusercontent.com/u/252557369?v=4" alt="pheonix14" 
+                        style="width: 72px; height: 72px; border-radius: 50%; border: 2px solid #ff2d55; box-shadow: 0 0 16px rgba(255,45,85,0.4); object-fit: cover;">
+                    <div>
+                        <div style="display: inline-block; background: rgba(255,45,85,0.15); color: #ff5e7e; border: 1px solid rgba(255,45,85,0.3); padding: 2px 8px; border-radius: 4px; font-size: 10px; font-weight: 700; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 4px;">
+                            CUSTOM PROJECTS & PRIVACY
+                        </div>
+                        <h3 style="font-family:'Bebas Neue',sans-serif; font-size: 28px; letter-spacing: 1px; color: #fff; margin: 0;">pheonix 14</h3>
+                        <a href="https://github.com/pheonix14" target="_blank" style="color: rgba(255,255,255,0.6); font-size: 13px; text-decoration: none; font-family:'Space Grotesk',sans-serif;">
+                            github.com/pheonix14
+                        </a>
+                    </div>
+                </div>
+
+                <p style="font-family:'Space Grotesk',sans-serif; font-size: 13.5px; color: #d0d8e2; line-height: 1.6; margin: 0; background: rgba(0,0,0,0.3); padding: 12px 14px; border-radius: 6px; border: 1px solid rgba(255,255,255,0.06);">
+                    "Built for fun and simplification of life. Zero logging, anti-detect engines, high-performance tooling. Taking custom projects."
+                </p>
+
+                <!-- STATS -->
+                <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; text-align: center;">
+                    <div style="background: rgba(0,0,0,0.4); padding: 10px 6px; border-radius: 6px; border: 1px solid rgba(255,255,255,0.05);">
+                        <div style="font-family:'Bebas Neue',sans-serif; font-size: 22px; color: #ff2d55;">1,193</div>
+                        <div style="font-size: 11px; color: rgba(255,255,255,0.5); text-transform: uppercase;">Followers</div>
+                    </div>
+                    <div style="background: rgba(0,0,0,0.4); padding: 10px 6px; border-radius: 6px; border: 1px solid rgba(255,255,255,0.05);">
+                        <div style="font-family:'Bebas Neue',sans-serif; font-size: 22px; color: #ff2d55;">58</div>
+                        <div style="font-size: 11px; color: rgba(255,255,255,0.5); text-transform: uppercase;">Repositories</div>
+                    </div>
+                    <div style="background: rgba(0,0,0,0.4); padding: 10px 6px; border-radius: 6px; border: 1px solid rgba(255,255,255,0.05);">
+                        <div style="font-family:'Bebas Neue',sans-serif; font-size: 22px; color: #ff2d55;">4,259</div>
+                        <div style="font-size: 11px; color: rgba(255,255,255,0.5); text-transform: uppercase;">Following</div>
+                    </div>
+                </div>
+
+                <!-- KEY STACKS -->
+                <div style="display: flex; gap: 6px; flex-wrap: wrap;">
+                    <span style="font-size: 11px; padding: 3px 8px; border-radius: 4px; background: rgba(255,255,255,0.06); color: rgba(255,255,255,0.8);">Web Scraping</span>
+                    <span style="font-size: 11px; padding: 3px 8px; border-radius: 4px; background: rgba(255,255,255,0.06); color: rgba(255,255,255,0.8);">Privacy Tools</span>
+                    <span style="font-size: 11px; padding: 3px 8px; border-radius: 4px; background: rgba(255,255,255,0.06); color: rgba(255,255,255,0.8);">Desktop Optimizers</span>
+                    <span style="font-size: 11px; padding: 3px 8px; border-radius: 4px; background: rgba(255,255,255,0.06); color: rgba(255,255,255,0.8);">RAM Control</span>
+                </div>
+
+                <div style="display: flex; gap: 10px; margin-top: auto;">
+                    <a href="https://github.com/pheonix14" target="_blank" 
+                        style="flex: 1; text-align: center; background: #ff2d55; color: #fff; font-family:'Space Grotesk',sans-serif; font-weight: 700; font-size: 13px; padding: 10px; border-radius: 6px; text-decoration: none; transition: opacity 0.2s;">
+                        Follow @pheonix14
+                    </a>
+                    <a href="https://github.com/pheonix14?tab=repositories" target="_blank" 
+                        style="text-align: center; background: rgba(255,255,255,0.08); border: 1px solid rgba(255,255,255,0.2); color: #fff; font-family:'Space Grotesk',sans-serif; font-size: 13px; padding: 10px 14px; border-radius: 6px; text-decoration: none;">
+                        Repos
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ============================================================== -->
+    <!-- SECTION: RECENT STARS & TOP REPOSITORIES                       -->
+    <!-- ============================================================== -->
+    <section id="stars" style="padding: 60px 20px; display: flex; flex-direction: column; align-items: center; position: relative; z-index: 10;">
+        <p class="section-label" style="justify-content:center;">// OPEN SOURCE ARTIFACTS</p>
+        <h2 class="section-h2" style="text-align:center;">Recent<br><em>Stars &</em><br>Repositories</h2>
+        <p style="font-family:'Space Grotesk',sans-serif; color:rgba(255,255,255,0.6); max-width:640px; text-align:center; font-size:14px; margin: 12px 0 28px 0; line-height: 1.6;">
+            Verified open-source releases from both developer portfolios with live star counts and technical breakdowns.
+        </p>
+
+        <!-- FILTER BUTTONS -->
+        <div style="display: flex; gap: 8px; flex-wrap: wrap; justify-content: center; margin-bottom: 28px;">
+            <button onclick="filterRepoCards('all', this)" class="repo-filter-btn active" 
+                style="background: rgba(10,255,228,0.2); border: 1px solid #0affe4; color: #fff; padding: 6px 16px; border-radius: 4px; font-family:'Space Grotesk',sans-serif; font-size: 12px; font-weight: 600; cursor: pointer;">
+                All Repositories
+            </button>
+            <button onclick="filterRepoCards('pheonix14', this)" class="repo-filter-btn" 
+                style="background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.15); color: rgba(255,255,255,0.7); padding: 6px 16px; border-radius: 4px; font-family:'Space Grotesk',sans-serif; font-size: 12px; font-weight: 600; cursor: pointer;">
+                @pheonix14 Projects
+            </button>
+            <button onclick="filterRepoCards('rayzien', this)" class="repo-filter-btn" 
+                style="background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.15); color: rgba(255,255,255,0.7); padding: 6px 16px; border-radius: 4px; font-family:'Space Grotesk',sans-serif; font-size: 12px; font-weight: 600; cursor: pointer;">
+                @rayzien Projects
+            </button>
+        </div>
+
+        <!-- REPOSITORIES GRID -->
+        <div id="reposGrid" style="display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 16px; width: 100%; max-width: 1040px;">
+
+            <!-- LiveDRIVE -->
+            <div class="repo-card" data-author="pheonix14" style="background: rgba(15, 19, 31, 0.75); border: 1px solid rgba(255,255,255,0.08); border-radius: 8px; padding: 20px; display: flex; flex-direction: column; gap: 12px; transition: transform 0.2s, border-color 0.2s;">
+                <div style="display: flex; justify-content: space-between; align-items: flex-start;">
+                    <div>
+                        <span style="font-size: 10px; color: #ff5e7e; font-weight: 700; text-transform: uppercase;">@pheonix14</span>
+                        <h4 style="font-family:'Space Grotesk',sans-serif; font-size: 17px; font-weight: 700; color: #fff; margin-top: 2px;">
+                            <a href="https://github.com/pheonix14/LiveDRIVE" target="_blank" style="color:#fff; text-decoration:none;">LiveDRIVE</a>
+                        </h4>
+                    </div>
+                    <div style="display: inline-flex; align-items: center; gap: 4px; background: rgba(255,215,0,0.12); color: #ffd700; padding: 3px 8px; border-radius: 4px; font-size: 12px; font-weight: 700;">
+                        <svg width="12" height="12" viewBox="0 0 24 24" fill="#ffd700"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+                        <span>81</span>
+                    </div>
+                </div>
+                <p style="font-family:'Space Grotesk',sans-serif; font-size: 13px; color: rgba(255,255,255,0.65); line-height: 1.5; margin: 0;">
+                    Anonymous storage and drive architecture. Full zero-logging design, cryptographic integrity, and secure privacy channels.
+                </p>
+                <div style="display: flex; justify-content: space-between; align-items: center; margin-top: auto; padding-top: 8px; font-size: 12px; color: rgba(255,255,255,0.5);">
+                    <span>Language: HTML / Web</span>
+                    <a href="https://github.com/pheonix14/LiveDRIVE" target="_blank" style="color: #0affe4; text-decoration: none; font-weight: 600;">View Code &gt;</a>
+                </div>
+            </div>
+
+            <!-- Yimiter -->
+            <div class="repo-card" data-author="pheonix14" style="background: rgba(15, 19, 31, 0.75); border: 1px solid rgba(255,255,255,0.08); border-radius: 8px; padding: 20px; display: flex; flex-direction: column; gap: 12px; transition: transform 0.2s, border-color 0.2s;">
+                <div style="display: flex; justify-content: space-between; align-items: flex-start;">
+                    <div>
+                        <span style="font-size: 10px; color: #ff5e7e; font-weight: 700; text-transform: uppercase;">@pheonix14</span>
+                        <h4 style="font-family:'Space Grotesk',sans-serif; font-size: 17px; font-weight: 700; color: #fff; margin-top: 2px;">
+                            <a href="https://github.com/pheonix14/Yimiter---Ram-Limiter-for-PC" target="_blank" style="color:#fff; text-decoration:none;">Yimiter</a>
+                        </h4>
+                    </div>
+                    <div style="display: inline-flex; align-items: center; gap: 4px; background: rgba(255,215,0,0.12); color: #ffd700; padding: 3px 8px; border-radius: 4px; font-size: 12px; font-weight: 700;">
+                        <svg width="12" height="12" viewBox="0 0 24 24" fill="#ffd700"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+                        <span>81</span>
+                    </div>
+                </div>
+                <p style="font-family:'Space Grotesk',sans-serif; font-size: 13px; color: rgba(255,255,255,0.65); line-height: 1.5; margin: 0;">
+                    Desktop memory control utility. Open-source RAM limiter application for desktop workstations and gaming PCs.
+                </p>
+                <div style="display: flex; justify-content: space-between; align-items: center; margin-top: auto; padding-top: 8px; font-size: 12px; color: rgba(255,255,255,0.5);">
+                    <span>Desktop System Tool</span>
+                    <a href="https://github.com/pheonix14/Yimiter---Ram-Limiter-for-PC" target="_blank" style="color: #0affe4; text-decoration: none; font-weight: 600;">View Code &gt;</a>
+                </div>
+            </div>
+
+            <!-- stoud -->
+            <div class="repo-card" data-author="pheonix14" style="background: rgba(15, 19, 31, 0.75); border: 1px solid rgba(255,255,255,0.08); border-radius: 8px; padding: 20px; display: flex; flex-direction: column; gap: 12px; transition: transform 0.2s, border-color 0.2s;">
+                <div style="display: flex; justify-content: space-between; align-items: flex-start;">
+                    <div>
+                        <span style="font-size: 10px; color: #ff5e7e; font-weight: 700; text-transform: uppercase;">@pheonix14</span>
+                        <h4 style="font-family:'Space Grotesk',sans-serif; font-size: 17px; font-weight: 700; color: #fff; margin-top: 2px;">
+                            <a href="https://github.com/pheonix14/stoud" target="_blank" style="color:#fff; text-decoration:none;">stoud</a>
+                        </h4>
+                    </div>
+                    <div style="display: inline-flex; align-items: center; gap: 4px; background: rgba(255,215,0,0.12); color: #ffd700; padding: 3px 8px; border-radius: 4px; font-size: 12px; font-weight: 700;">
+                        <svg width="12" height="12" viewBox="0 0 24 24" fill="#ffd700"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+                        <span>80</span>
+                    </div>
+                </div>
+                <p style="font-family:'Space Grotesk',sans-serif; font-size: 13px; color: rgba(255,255,255,0.65); line-height: 1.5; margin: 0;">
+                    Stoud Real-Time Broadcast Engine. Ultra-low latency streaming and media relay pipeline built on Python.
+                </p>
+                <div style="display: flex; justify-content: space-between; align-items: center; margin-top: auto; padding-top: 8px; font-size: 12px; color: rgba(255,255,255,0.5);">
+                    <span>Language: Python</span>
+                    <a href="https://github.com/pheonix14/stoud" target="_blank" style="color: #0affe4; text-decoration: none; font-weight: 600;">View Code &gt;</a>
+                </div>
+            </div>
+
+            <!-- Zero-Android-Gaming-Ui-launcher -->
+            <div class="repo-card" data-author="pheonix14" style="background: rgba(15, 19, 31, 0.75); border: 1px solid rgba(255,255,255,0.08); border-radius: 8px; padding: 20px; display: flex; flex-direction: column; gap: 12px; transition: transform 0.2s, border-color 0.2s;">
+                <div style="display: flex; justify-content: space-between; align-items: flex-start;">
+                    <div>
+                        <span style="font-size: 10px; color: #ff5e7e; font-weight: 700; text-transform: uppercase;">@pheonix14</span>
+                        <h4 style="font-family:'Space Grotesk',sans-serif; font-size: 17px; font-weight: 700; color: #fff; margin-top: 2px;">
+                            <a href="https://github.com/pheonix14/Zero-Android-Gaming-Ui-launcher" target="_blank" style="color:#fff; text-decoration:none;">Zero UI Launcher</a>
+                        </h4>
+                    </div>
+                    <div style="display: inline-flex; align-items: center; gap: 4px; background: rgba(255,215,0,0.12); color: #ffd700; padding: 3px 8px; border-radius: 4px; font-size: 12px; font-weight: 700;">
+                        <svg width="12" height="12" viewBox="0 0 24 24" fill="#ffd700"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+                        <span>79</span>
+                    </div>
+                </div>
+                <p style="font-family:'Space Grotesk',sans-serif; font-size: 13px; color: rgba(255,255,255,0.65); line-height: 1.5; margin: 0;">
+                    High-refresh rate mobile gaming environment and controller-optimized UI launcher framework.
+                </p>
+                <div style="display: flex; justify-content: space-between; align-items: center; margin-top: auto; padding-top: 8px; font-size: 12px; color: rgba(255,255,255,0.5);">
+                    <span>Android / Engine</span>
+                    <a href="https://github.com/pheonix14/Zero-Android-Gaming-Ui-launcher" target="_blank" style="color: #0affe4; text-decoration: none; font-weight: 600;">View Code &gt;</a>
+                </div>
+            </div>
+
+            <!-- sudo-podark -->
+            <div class="repo-card" data-author="rayzien" style="background: rgba(15, 19, 31, 0.75); border: 1px solid rgba(255,255,255,0.08); border-radius: 8px; padding: 20px; display: flex; flex-direction: column; gap: 12px; transition: transform 0.2s, border-color 0.2s;">
+                <div style="display: flex; justify-content: space-between; align-items: flex-start;">
+                    <div>
+                        <span style="font-size: 10px; color: #0affe4; font-weight: 700; text-transform: uppercase;">@rayzien</span>
+                        <h4 style="font-family:'Space Grotesk',sans-serif; font-size: 17px; font-weight: 700; color: #fff; margin-top: 2px;">
+                            <a href="https://github.com/rayzien/sudo-podark" target="_blank" style="color:#fff; text-decoration:none;">sudo-podark</a>
+                        </h4>
+                    </div>
+                    <div style="display: inline-flex; align-items: center; gap: 4px; background: rgba(255,215,0,0.12); color: #ffd700; padding: 3px 8px; border-radius: 4px; font-size: 12px; font-weight: 700;">
+                        <svg width="12" height="12" viewBox="0 0 24 24" fill="#ffd700"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+                        <span>11</span>
+                    </div>
+                </div>
+                <p style="font-family:'Space Grotesk',sans-serif; font-size: 13px; color: rgba(255,255,255,0.65); line-height: 1.5; margin: 0;">
+                    Multi-functional Discord orchestration bot with local fallback runner, container templates, and live event monitoring.
+                </p>
+                <div style="display: flex; justify-content: space-between; align-items: center; margin-top: auto; padding-top: 8px; font-size: 12px; color: rgba(255,255,255,0.5);">
+                    <span>Language: Python</span>
+                    <a href="https://github.com/rayzien/sudo-podark" target="_blank" style="color: #0affe4; text-decoration: none; font-weight: 600;">View Code &gt;</a>
+                </div>
+            </div>
+
+            <!-- GITBACK -->
+            <div class="repo-card" data-author="rayzien" style="background: rgba(15, 19, 31, 0.75); border: 1px solid rgba(255,255,255,0.08); border-radius: 8px; padding: 20px; display: flex; flex-direction: column; gap: 12px; transition: transform 0.2s, border-color 0.2s;">
+                <div style="display: flex; justify-content: space-between; align-items: flex-start;">
+                    <div>
+                        <span style="font-size: 10px; color: #0affe4; font-weight: 700; text-transform: uppercase;">@rayzien &amp; @pheonix14</span>
+                        <h4 style="font-family:'Space Grotesk',sans-serif; font-size: 17px; font-weight: 700; color: #fff; margin-top: 2px;">
+                            <a href="https://github.com/rayzien/GITBACK" target="_blank" style="color:#fff; text-decoration:none;">GITBACK</a>
+                        </h4>
+                    </div>
+                    <div style="display: inline-flex; align-items: center; gap: 4px; background: rgba(255,215,0,0.12); color: #ffd700; padding: 3px 8px; border-radius: 4px; font-size: 12px; font-weight: 700;">
+                        <svg width="12" height="12" viewBox="0 0 24 24" fill="#ffd700"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+                        <span>8</span>
+                    </div>
+                </div>
+                <p style="font-family:'Space Grotesk',sans-serif; font-size: 13px; color: rgba(255,255,255,0.65); line-height: 1.5; margin: 0;">
+                    Automated Git preservation and mirrored backup engine protecting developer commits and repositories across networks.
+                </p>
+                <div style="display: flex; justify-content: space-between; align-items: center; margin-top: auto; padding-top: 8px; font-size: 12px; color: rgba(255,255,255,0.5);">
+                    <span>Language: Python</span>
+                    <a href="https://github.com/rayzien/GITBACK" target="_blank" style="color: #0affe4; text-decoration: none; font-weight: 600;">View Code &gt;</a>
+                </div>
+            </div>
+
+            <!-- STORMGOD -->
+            <div class="repo-card" data-author="rayzien" style="background: rgba(15, 19, 31, 0.75); border: 1px solid rgba(255,255,255,0.08); border-radius: 8px; padding: 20px; display: flex; flex-direction: column; gap: 12px; transition: transform 0.2s, border-color 0.2s;">
+                <div style="display: flex; justify-content: space-between; align-items: flex-start;">
+                    <div>
+                        <span style="font-size: 10px; color: #0affe4; font-weight: 700; text-transform: uppercase;">@rayzien</span>
+                        <h4 style="font-family:'Space Grotesk',sans-serif; font-size: 17px; font-weight: 700; color: #fff; margin-top: 2px;">
+                            <a href="https://github.com/rayzien/STORMGOD" target="_blank" style="color:#fff; text-decoration:none;">STORMGOD</a>
+                        </h4>
+                    </div>
+                    <div style="display: inline-flex; align-items: center; gap: 4px; background: rgba(255,215,0,0.12); color: #ffd700; padding: 3px 8px; border-radius: 4px; font-size: 12px; font-weight: 700;">
+                        <svg width="12" height="12" viewBox="0 0 24 24" fill="#ffd700"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+                        <span>7</span>
+                    </div>
+                </div>
+                <p style="font-family:'Space Grotesk',sans-serif; font-size: 13px; color: rgba(255,255,255,0.65); line-height: 1.5; margin: 0;">
+                    Secure and performant open-source Discord automation engine with state synchronization and safety guards.
+                </p>
+                <div style="display: flex; justify-content: space-between; align-items: center; margin-top: auto; padding-top: 8px; font-size: 12px; color: rgba(255,255,255,0.5);">
+                    <span>Language: Python</span>
+                    <a href="https://github.com/rayzien/STORMGOD" target="_blank" style="color: #0affe4; text-decoration: none; font-weight: 600;">View Code &gt;</a>
+                </div>
+            </div>
+
+            <!-- anakin -->
+            <div class="repo-card" data-author="pheonix14" style="background: rgba(15, 19, 31, 0.75); border: 1px solid rgba(255,255,255,0.08); border-radius: 8px; padding: 20px; display: flex; flex-direction: column; gap: 12px; transition: transform 0.2s, border-color 0.2s;">
+                <div style="display: flex; justify-content: space-between; align-items: flex-start;">
+                    <div>
+                        <span style="font-size: 10px; color: #ff5e7e; font-weight: 700; text-transform: uppercase;">@pheonix14</span>
+                        <h4 style="font-family:'Space Grotesk',sans-serif; font-size: 17px; font-weight: 700; color: #fff; margin-top: 2px;">
+                            <a href="https://github.com/pheonix14/anakin" target="_blank" style="color:#fff; text-decoration:none;">anakin</a>
+                        </h4>
+                    </div>
+                    <div style="display: inline-flex; align-items: center; gap: 4px; background: rgba(255,215,0,0.12); color: #ffd700; padding: 3px 8px; border-radius: 4px; font-size: 12px; font-weight: 700;">
+                        <svg width="12" height="12" viewBox="0 0 24 24" fill="#ffd700"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+                        <span>5</span>
+                    </div>
+                </div>
+                <p style="font-family:'Space Grotesk',sans-serif; font-size: 13px; color: rgba(255,255,255,0.65); line-height: 1.5; margin: 0;">
+                    Self-hosted web scraping API. Converts sites into structured JSON or clean Markdown with anti-detect browsing.
+                </p>
+                <div style="display: flex; justify-content: space-between; align-items: center; margin-top: auto; padding-top: 8px; font-size: 12px; color: rgba(255,255,255,0.5);">
+                    <span>API / Proxy Engine</span>
+                    <a href="https://github.com/pheonix14/anakin" target="_blank" style="color: #0affe4; text-decoration: none; font-weight: 600;">View Code &gt;</a>
+                </div>
+            </div>
+
+            <!-- BLAST GATEWAY -->
+            <div class="repo-card" data-author="rayzien" style="background: rgba(15, 19, 31, 0.75); border: 1px solid rgba(10,255,228,0.25); border-radius: 8px; padding: 20px; display: flex; flex-direction: column; gap: 12px; transition: transform 0.2s, border-color 0.2s;">
+                <div style="display: flex; justify-content: space-between; align-items: flex-start;">
+                    <div>
+                        <span style="font-size: 10px; color: #0affe4; font-weight: 700; text-transform: uppercase;">@rayzien &amp; @pheonix14</span>
+                        <h4 style="font-family:'Space Grotesk',sans-serif; font-size: 17px; font-weight: 700; color: #fff; margin-top: 2px;">
+                            <a href="https://github.com/rayzien/BLAST" target="_blank" style="color:#0affe4; text-decoration:none;">BLAST Gateway</a>
+                        </h4>
+                    </div>
+                    <div style="display: inline-flex; align-items: center; gap: 4px; background: rgba(10,255,228,0.15); color: #0affe4; padding: 3px 8px; border-radius: 4px; font-size: 12px; font-weight: 700;">
+                        <span>ACTIVE ENGINE</span>
+                    </div>
+                </div>
+                <p style="font-family:'Space Grotesk',sans-serif; font-size: 13px; color: rgba(255,255,255,0.65); line-height: 1.5; margin: 0;">
+                    High-performance security, durable queue, and cluster gateway routing RayzHub operations to Supabase safely.
+                </p>
+                <div style="display: flex; justify-content: space-between; align-items: center; margin-top: auto; padding-top: 8px; font-size: 12px; color: rgba(255,255,255,0.5);">
+                    <span>Language: Python / FastProxy</span>
+                    <a href="https://github.com/rayzien/BLAST" target="_blank" style="color: #0affe4; text-decoration: none; font-weight: 600;">View Code &gt;</a>
+                </div>
+            </div>
+
+            <!-- rayzOSS -->
+            <div class="repo-card" data-author="rayzien" style="background: rgba(15, 19, 31, 0.75); border: 1px solid rgba(255,255,255,0.08); border-radius: 8px; padding: 20px; display: flex; flex-direction: column; gap: 12px; transition: transform 0.2s, border-color 0.2s;">
+                <div style="display: flex; justify-content: space-between; align-items: flex-start;">
+                    <div>
+                        <span style="font-size: 10px; color: #0affe4; font-weight: 700; text-transform: uppercase;">@rayzien &amp; @pheonix14</span>
+                        <h4 style="font-family:'Space Grotesk',sans-serif; font-size: 17px; font-weight: 700; color: #fff; margin-top: 2px;">
+                            <a href="https://github.com/rayzien/rayzOSS" target="_blank" style="color:#fff; text-decoration:none;">rayzOSS</a>
+                        </h4>
+                    </div>
+                    <div style="display: inline-flex; align-items: center; gap: 4px; background: rgba(255,215,0,0.12); color: #ffd700; padding: 3px 8px; border-radius: 4px; font-size: 12px; font-weight: 700;">
+                        <svg width="12" height="12" viewBox="0 0 24 24" fill="#ffd700"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+                        <span>1</span>
+                    </div>
+                </div>
+                <p style="font-family:'Space Grotesk',sans-serif; font-size: 13px; color: rgba(255,255,255,0.65); line-height: 1.5; margin: 0;">
+                    Distributed sharded filesystem, database architecture, and auto-sync engine using GitHub as a high-durability backend.
+                </p>
+                <div style="display: flex; justify-content: space-between; align-items: center; margin-top: auto; padding-top: 8px; font-size: 12px; color: rgba(255,255,255,0.5);">
+                    <span>Language: Python / Storage</span>
+                    <a href="https://github.com/rayzien/rayzOSS" target="_blank" style="color: #0affe4; text-decoration: none; font-weight: 600;">View Code &gt;</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ============================================================== -->
+    <!-- SECTION: CRYPTOGRAPHIC DONATION & SPONSORSHIP HUB              -->
+    <!-- ============================================================== -->
+    <section id="donation" style="padding: 60px 20px; display: flex; flex-direction: column; align-items: center; position: relative; z-index: 10;">
+        <p class="section-label" style="justify-content:center;">// SPONSORSHIP &amp; FUNDING</p>
+        <h2 class="section-h2" style="text-align:center;">Support<br><em>Open Source</em><br>Infrastructure</h2>
+        <p style="font-family:'Space Grotesk',sans-serif; color:rgba(255,255,255,0.6); max-width:620px; text-align:center; font-size:14px; margin: 12px 0 36px 0; line-height: 1.6;">
+            Help fund continuous server nodes, high-speed proxy bandwidth, and GPU compute clusters for @rayzien and @pheonix14.
+        </p>
+
+        <!-- QR CODE STORAGE INFO BANNER -->
+        <div style="background: rgba(10, 14, 24, 0.85); border: 1px solid rgba(10,255,228,0.3); border-radius: 8px; padding: 12px 18px; margin-bottom: 24px; max-width: 960px; width: 100%; font-family:'Space Grotesk',sans-serif; font-size: 12.5px; color: rgba(255,255,255,0.8); display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 8px;">
+            <div>
+                <span style="color:#0affe4; font-weight:700;">[STORAGE STRUCTURE]</span>
+                Folders: <code style="color:#ff8099; background:rgba(255,45,85,0.1); padding:2px 6px; border-radius:3px;">ltc/</code>, <code style="color:#ff8099; background:rgba(255,45,85,0.1); padding:2px 6px; border-radius:3px;">sltc/</code>, <code style="color:#0affe4; background:rgba(10,255,228,0.1); padding:2px 6px; border-radius:3px;">sol/</code>, <code style="color:#f7931a; background:rgba(247,147,26,0.1); padding:2px 6px; border-radius:3px;">btc/</code>, <code style="color:#0affe4; background:rgba(10,255,228,0.1); padding:2px 6px; border-radius:3px;">eth/</code>, <code style="color:#3ecf8e; background:rgba(62,207,142,0.1); padding:2px 6px; border-radius:3px;">usdt/</code>
+            </div>
+            <div style="font-size: 11.5px; color: rgba(255,255,255,0.55);">
+                Replace &lt;coin&gt;.png &amp; &lt;coin&gt;.txt to live-update addresses
+            </div>
+        </div>
+
+        <!-- CRYPTO ADDRESS CARDS WITH HIGH-CONTRAST QR DISPLAY -->
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 18px; width: 100%; max-width: 1080px; margin-bottom: 36px;">
+            
+            <!-- LITECOIN (LTC / SLTC) -->
+            <div style="background: rgba(14, 18, 30, 0.85); backdrop-filter: blur(16px); border: 1px solid rgba(255, 45, 85, 0.4); border-radius: 10px; padding: 20px; display: flex; flex-direction: column; gap: 14px; text-align: center;">
+                <div style="display: flex; justify-content: space-between; align-items: center;">
+                    <span style="font-family:'Space Grotesk',sans-serif; font-weight: 700; font-size: 14px; color: #fff;">Litecoin (LTC / SLTC)</span>
+                    <span style="background: rgba(255,45,85,0.15); color: #ff5e7e; padding: 2px 8px; border-radius: 4px; font-size: 10px; font-weight: 700; text-transform: uppercase;">Scrypt // Fast</span>
+                </div>
+                <div style="background: #ffffff; border-radius: 8px; padding: 8px; width: 136px; height: 136px; margin: 0 auto; display: flex; align-items: center; justify-content: center; box-shadow: 0 4px 16px rgba(0,0,0,0.5);">
+                    <img src="/ltc/ltc.png" alt="LTC QR" style="width: 120px; height: 120px; object-fit: contain; image-rendering: pixelated;">
+                </div>
+                <div style="background: rgba(0,0,0,0.55); padding: 8px 10px; border-radius: 6px; border: 1px solid rgba(255,255,255,0.08); font-family: monospace; font-size: 11.5px; color: #ff5e7e; word-break: break-all;" id="addrLtc">
+                    LTC_PLACEHOLDER_WALLET_ADDRESS
+                </div>
+                <div style="display: flex; gap: 8px;">
+                    <button onclick="copyCryptoAddress('addrLtc', 'Litecoin Address')" 
+                        style="flex: 1; background: rgba(255,45,85,0.18); border: 1px solid #ff2d55; color: #fff; padding: 8px 12px; border-radius: 6px; font-family:'Space Grotesk',sans-serif; font-size: 11.5px; font-weight: 600; cursor: pointer; transition: background 0.2s;">
+                        Copy LTC Address
+                    </button>
+                    <a href="/ltc/ltc.txt" target="_blank" style="background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.15); color: rgba(255,255,255,0.7); padding: 8px 10px; border-radius: 6px; font-family:'Space Grotesk',sans-serif; font-size: 11px; text-decoration: none; display: flex; align-items: center;">
+                        [txt]
+                    </a>
+                </div>
+                <span style="font-size: 10.5px; color: rgba(255,255,255,0.45); font-family: monospace;">Source: /ltc/ltc.png &amp; /sltc/</span>
+            </div>
+
+            <!-- SOLANA -->
+            <div style="background: rgba(14, 18, 30, 0.85); backdrop-filter: blur(16px); border: 1px solid rgba(153, 69, 255, 0.4); border-radius: 10px; padding: 20px; display: flex; flex-direction: column; gap: 14px; text-align: center;">
+                <div style="display: flex; justify-content: space-between; align-items: center;">
+                    <span style="font-family:'Space Grotesk',sans-serif; font-weight: 700; font-size: 14px; color: #fff;">Solana (SOL)</span>
+                    <span style="background: rgba(153,69,255,0.15); color: #bb7eff; padding: 2px 8px; border-radius: 4px; font-size: 10px; font-weight: 700; text-transform: uppercase;">SPL // Fast</span>
+                </div>
+                <div style="background: #ffffff; border-radius: 8px; padding: 8px; width: 136px; height: 136px; margin: 0 auto; display: flex; align-items: center; justify-content: center; box-shadow: 0 4px 16px rgba(0,0,0,0.5);">
+                    <img src="/sol/sol.png" alt="SOL QR" style="width: 120px; height: 120px; object-fit: contain; image-rendering: pixelated;">
+                </div>
+                <div style="background: rgba(0,0,0,0.55); padding: 8px 10px; border-radius: 6px; border: 1px solid rgba(255,255,255,0.08); font-family: monospace; font-size: 11.5px; color: #bb7eff; word-break: break-all;" id="addrSol">
+                    7xKXtg2CW87d97TXJSDpbD5jBkheTqA83TZRuJosgAsU
+                </div>
+                <div style="display: flex; gap: 8px;">
+                    <button onclick="copyCryptoAddress('addrSol', 'Solana Address')" 
+                        style="flex: 1; background: rgba(153,69,255,0.2); border: 1px solid #9945ff; color: #fff; padding: 8px 12px; border-radius: 6px; font-family:'Space Grotesk',sans-serif; font-size: 11.5px; font-weight: 600; cursor: pointer; transition: background 0.2s;">
+                        Copy SOL Address
+                    </button>
+                    <a href="/sol/sol.txt" target="_blank" style="background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.15); color: rgba(255,255,255,0.7); padding: 8px 10px; border-radius: 6px; font-family:'Space Grotesk',sans-serif; font-size: 11px; text-decoration: none; display: flex; align-items: center;">
+                        [txt]
+                    </a>
+                </div>
+                <span style="font-size: 10.5px; color: rgba(255,255,255,0.45); font-family: monospace;">Source: /sol/sol.png &amp; sol.txt</span>
+            </div>
+
+            <!-- BITCOIN -->
+            <div style="background: rgba(14, 18, 30, 0.85); backdrop-filter: blur(16px); border: 1px solid rgba(247, 147, 26, 0.4); border-radius: 10px; padding: 20px; display: flex; flex-direction: column; gap: 14px; text-align: center;">
+                <div style="display: flex; justify-content: space-between; align-items: center;">
+                    <span style="font-family:'Space Grotesk',sans-serif; font-weight: 700; font-size: 14px; color: #fff;">Bitcoin (BTC)</span>
+                    <span style="background: rgba(247,147,26,0.15); color: #f7931a; padding: 2px 8px; border-radius: 4px; font-size: 10px; font-weight: 700; text-transform: uppercase;">SegWit Mainnet</span>
+                </div>
+                <div style="background: #ffffff; border-radius: 8px; padding: 8px; width: 136px; height: 136px; margin: 0 auto; display: flex; align-items: center; justify-content: center; box-shadow: 0 4px 16px rgba(0,0,0,0.5);">
+                    <img src="/btc/btc.png" alt="BTC QR" style="width: 120px; height: 120px; object-fit: contain; image-rendering: pixelated;">
+                </div>
+                <div style="background: rgba(0,0,0,0.55); padding: 8px 10px; border-radius: 6px; border: 1px solid rgba(255,255,255,0.08); font-family: monospace; font-size: 11.5px; color: #f7931a; word-break: break-all;" id="addrBtc">
+                    bc1qxy2kgdygjrsqtzq2n0yrf2493p83kkfjhx0wlh
+                </div>
+                <div style="display: flex; gap: 8px;">
+                    <button onclick="copyCryptoAddress('addrBtc', 'Bitcoin Address')" 
+                        style="flex: 1; background: rgba(247,147,26,0.15); border: 1px solid #f7931a; color: #fff; padding: 8px 12px; border-radius: 6px; font-family:'Space Grotesk',sans-serif; font-size: 11.5px; font-weight: 600; cursor: pointer; transition: background 0.2s;">
+                        Copy BTC Address
+                    </button>
+                    <a href="/btc/btc.txt" target="_blank" style="background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.15); color: rgba(255,255,255,0.7); padding: 8px 10px; border-radius: 6px; font-family:'Space Grotesk',sans-serif; font-size: 11px; text-decoration: none; display: flex; align-items: center;">
+                        [txt]
+                    </a>
+                </div>
+                <span style="font-size: 10.5px; color: rgba(255,255,255,0.45); font-family: monospace;">Source: /btc/btc.png &amp; btc.txt</span>
+            </div>
+
+            <!-- ETHEREUM -->
+            <div style="background: rgba(14, 18, 30, 0.85); backdrop-filter: blur(16px); border: 1px solid rgba(10, 255, 228, 0.35); border-radius: 10px; padding: 20px; display: flex; flex-direction: column; gap: 14px; text-align: center;">
+                <div style="display: flex; justify-content: space-between; align-items: center;">
+                    <span style="font-family:'Space Grotesk',sans-serif; font-weight: 700; font-size: 14px; color: #fff;">Ethereum (ETH)</span>
+                    <span style="background: rgba(10,255,228,0.15); color: #0affe4; padding: 2px 8px; border-radius: 4px; font-size: 10px; font-weight: 700; text-transform: uppercase;">EVM / ERC-20</span>
+                </div>
+                <div style="background: #ffffff; border-radius: 8px; padding: 8px; width: 136px; height: 136px; margin: 0 auto; display: flex; align-items: center; justify-content: center; box-shadow: 0 4px 16px rgba(0,0,0,0.5);">
+                    <img src="/eth/eth.png" alt="ETH QR" style="width: 120px; height: 120px; object-fit: contain; image-rendering: pixelated;">
+                </div>
+                <div style="background: rgba(0,0,0,0.55); padding: 8px 10px; border-radius: 6px; border: 1px solid rgba(255,255,255,0.08); font-family: monospace; font-size: 11.5px; color: #0affe4; word-break: break-all;" id="addrEth">
+                    0x71C83a542b5B5187e59b7Ab486B26A476FCE6b38
+                </div>
+                <div style="display: flex; gap: 8px;">
+                    <button onclick="copyCryptoAddress('addrEth', 'Ethereum Address')" 
+                        style="flex: 1; background: rgba(10,255,228,0.15); border: 1px solid #0affe4; color: #fff; padding: 8px 12px; border-radius: 6px; font-family:'Space Grotesk',sans-serif; font-size: 11.5px; font-weight: 600; cursor: pointer; transition: background 0.2s;">
+                        Copy ETH Address
+                    </button>
+                    <a href="/eth/eth.txt" target="_blank" style="background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.15); color: rgba(255,255,255,0.7); padding: 8px 10px; border-radius: 6px; font-family:'Space Grotesk',sans-serif; font-size: 11px; text-decoration: none; display: flex; align-items: center;">
+                        [txt]
+                    </a>
+                </div>
+                <span style="font-size: 10.5px; color: rgba(255,255,255,0.45); font-family: monospace;">Source: /eth/eth.png &amp; eth.txt</span>
+            </div>
+
+            <!-- TETHER USD (USDT) -->
+            <div style="background: rgba(14, 18, 30, 0.85); backdrop-filter: blur(16px); border: 1px solid rgba(62, 207, 142, 0.4); border-radius: 10px; padding: 20px; display: flex; flex-direction: column; gap: 14px; text-align: center;">
+                <div style="display: flex; justify-content: space-between; align-items: center;">
+                    <span style="font-family:'Space Grotesk',sans-serif; font-weight: 700; font-size: 14px; color: #fff;">Tether (USDT)</span>
+                    <span style="background: rgba(62,207,142,0.15); color: #3ecf8e; padding: 2px 8px; border-radius: 4px; font-size: 10px; font-weight: 700; text-transform: uppercase;">ERC20 / TRC20</span>
+                </div>
+                <div style="background: #ffffff; border-radius: 8px; padding: 8px; width: 136px; height: 136px; margin: 0 auto; display: flex; align-items: center; justify-content: center; box-shadow: 0 4px 16px rgba(0,0,0,0.5);">
+                    <img src="/usdt/usdt.png" alt="USDT QR" style="width: 120px; height: 120px; object-fit: contain; image-rendering: pixelated;">
+                </div>
+                <div style="background: rgba(0,0,0,0.55); padding: 8px 10px; border-radius: 6px; border: 1px solid rgba(255,255,255,0.08); font-family: monospace; font-size: 11.5px; color: #3ecf8e; word-break: break-all;" id="addrUsdt">
+                    0x71C83a542b5B5187e59b7Ab486B26A476FCE6b38
+                </div>
+                <div style="display: flex; gap: 8px;">
+                    <button onclick="copyCryptoAddress('addrUsdt', 'USDT Address')" 
+                        style="flex: 1; background: rgba(62,207,142,0.18); border: 1px solid #3ecf8e; color: #fff; padding: 8px 12px; border-radius: 6px; font-family:'Space Grotesk',sans-serif; font-size: 11.5px; font-weight: 600; cursor: pointer; transition: background 0.2s;">
+                        Copy USDT Address
+                    </button>
+                    <a href="/usdt/usdt.txt" target="_blank" style="background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.15); color: rgba(255,255,255,0.7); padding: 8px 10px; border-radius: 6px; font-family:'Space Grotesk',sans-serif; font-size: 11px; text-decoration: none; display: flex; align-items: center;">
+                        [txt]
+                    </a>
+                </div>
+                <span style="font-size: 10.5px; color: rgba(255,255,255,0.45); font-family: monospace;">Source: /usdt/usdt.png &amp; usdt.txt</span>
+            </div>
+
+        </div>
+
+        <!-- CONTRIBUTION FORM BOX -->
+        <div style="background: rgba(14, 17, 27, 0.88); backdrop-filter: blur(24px); border: 1px solid rgba(255,45,85,0.3); border-radius: 12px; padding: 28px; width: 100%; max-width: 680px; box-shadow: 0 16px 40px rgba(0,0,0,0.6); display: flex; flex-direction: column; gap: 16px;">
+            <div style="font-family:'Space Grotesk',sans-serif; font-size: 15px; font-weight: 700; color: #fff; border-bottom: 1px solid rgba(255,255,255,0.08); padding-bottom: 10px;">
+                Record Contribution Proof &amp; Shoutout
+            </div>
+
+            <!-- TIER SELECTOR BUTTONS -->
+            <div style="display: flex; gap: 8px; flex-wrap: wrap;">
+                <button onclick="setDonationTier('$5 Coffee', this)" class="tier-btn active"
+                    style="background: rgba(255,45,85,0.2); border: 1px solid #ff2d55; color: #fff; padding: 6px 14px; border-radius: 4px; font-family:'Space Grotesk',sans-serif; font-size: 12px; cursor: pointer;">
+                    $5 Coffee
+                </button>
+                <button onclick="setDonationTier('$20 Server Node', this)" class="tier-btn"
+                    style="background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.15); color: rgba(255,255,255,0.8); padding: 6px 14px; border-radius: 4px; font-family:'Space Grotesk',sans-serif; font-size: 12px; cursor: pointer;">
+                    $20 Server Node
+                </button>
+                <button onclick="setDonationTier('$50 Cluster Power', this)" class="tier-btn"
+                    style="background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.15); color: rgba(255,255,255,0.8); padding: 6px 14px; border-radius: 4px; font-family:'Space Grotesk',sans-serif; font-size: 12px; cursor: pointer;">
+                    $50 Cluster Power
+                </button>
+                <button onclick="setDonationTier('$100 Visionary', this)" class="tier-btn"
+                    style="background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.15); color: rgba(255,255,255,0.8); padding: 6px 14px; border-radius: 4px; font-family:'Space Grotesk',sans-serif; font-size: 12px; cursor: pointer;">
+                    $100 Visionary
+                </button>
+            </div>
+
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 12px;">
+                <input type="text" id="tipName" placeholder="Donor Name / Alias" 
+                    style="background: rgba(0,0,0,0.5); border: 1px solid rgba(255,255,255,0.15); border-radius: 6px; padding: 10px 14px; color: #fff; font-family:'Space Grotesk',sans-serif; font-size: 13px; outline: none;">
+                <input type="text" id="tipAmount" value="$5 Coffee" placeholder="Amount or Tier" 
+                    style="background: rgba(0,0,0,0.5); border: 1px solid rgba(255,255,255,0.15); border-radius: 6px; padding: 10px 14px; color: #fff; font-family:'Space Grotesk',sans-serif; font-size: 13px; outline: none;">
+            </div>
+
+            <input type="text" id="tipTxId" placeholder="Transaction Hash / Proof ID (optional)" 
+                style="background: rgba(0,0,0,0.5); border: 1px solid rgba(255,255,255,0.15); border-radius: 6px; padding: 10px 14px; color: #fff; font-family:'Space Grotesk',sans-serif; font-size: 13px; outline: none;">
+
+            <textarea id="tipMsg" rows="2" placeholder="Note or shoutout to the developers..." 
+                style="background: rgba(0,0,0,0.5); border: 1px solid rgba(255,255,255,0.15); border-radius: 6px; padding: 10px 14px; color: #fff; font-family:'Space Grotesk',sans-serif; font-size: 13px; outline: none; resize: vertical;"></textarea>
+
+            <button id="btnSendTip" onclick="submitDonationProof()"
+                style="background: linear-gradient(135deg, #ff2d55, #ff5e7e); border: none; color: #fff; padding: 12px 20px; border-radius: 6px; font-family:'Space Grotesk',sans-serif; font-size: 13px; font-weight: 700; text-transform: uppercase; letter-spacing: 1px; cursor: pointer;">
+                Confirm Contribution Proof
+            </button>
+            <div id="tipStatus" style="display: none; padding: 10px 14px; border-radius: 6px; font-size: 13px;"></div>
+        </div>
+    </section>
+
+    <!-- ============================================================== -->
+    <!-- SECTION: DIRECT TRANSMISSION BOXES                             -->
+    <!-- ============================================================== -->
+    <section id="messages" style="text-align:center; align-items:center; padding: 40px 20px 80px 20px; position: relative; z-index: 10;">
+        <p class="section-label" style="justify-content:center;">// DIRECT TRANSMISSION</p>
+        <h2 class="section-h2" style="text-align:center;">Send<br><em>Messages</em><br>Direct</h2>
+
+        <!-- Pipeline badge -->
+        <div style="background: rgba(0,0,0,0.65); border: 1px solid rgba(10,255,228,0.25); border-radius: 20px; padding: 8px 20px; margin: 16px 0 32px 0; font-family:'Space Grotesk',sans-serif; font-size: 13px; color: rgba(255,255,255,0.85); display: inline-flex; align-items: center; gap: 10px; flex-wrap: wrap; justify-content: center;">
+            <span style="color:#0affe4; font-weight:700;">Architecture Pipeline:</span>
+            <span style="background:rgba(255,45,85,0.2); color:#ff5e7e; padding:2px 8px; border-radius:4px; font-weight:600;">rays</span>
+            <span style="color:rgba(255,255,255,0.4);">&gt;&gt;</span>
+            <span style="background:rgba(10,255,228,0.2); color:#0affe4; padding:2px 8px; border-radius:4px; font-weight:600;">blast</span>
+            <span style="color:rgba(255,255,255,0.4);">&gt;&gt;</span>
+            <span style="background:rgba(62,207,142,0.2); color:#3ecf8e; padding:2px 8px; border-radius:4px; font-weight:600;">supabase</span>
+        </div>
+
+        <!-- Form Container -->
+        <div style="background: rgba(14, 17, 27, 0.88); backdrop-filter: blur(24px); border: 1px solid rgba(10,255,228,0.25); border-radius: 14px; padding: 32px 28px; width: 100%; max-width: 650px; text-align: left; box-shadow: 0 16px 48px rgba(0,0,0,0.7); display: flex; flex-direction: column; gap: 18px;">
+            
+            <!-- Sender Name Box -->
+            <div style="display: flex; flex-direction: column; gap: 6px;">
+                <label style="font-family:'Space Grotesk',sans-serif; font-size: 12px; font-weight: 700; text-transform: uppercase; letter-spacing: 1px; color: #0affe4;">
+                    Sender Name / Handle
+                </label>
+                <input type="text" id="msgName" placeholder="e.g. Phoenix, Tester14, or RayzFan" 
+                    style="background: rgba(0,0,0,0.55); border: 1px solid rgba(255,255,255,0.18); border-radius: 6px; padding: 12px 16px; color: #fff; font-family:'Space Grotesk',sans-serif; font-size: 14px; outline: none; transition: border-color 0.2s;"
+                    onfocus="this.style.borderColor='#0affe4'" onblur="this.style.borderColor='rgba(255,255,255,0.18)'">
+            </div>
+
+            <!-- Email Box -->
+            <div style="display: flex; flex-direction: column; gap: 6px;">
+                <label style="font-family:'Space Grotesk',sans-serif; font-size: 12px; font-weight: 700; text-transform: uppercase; letter-spacing: 1px; color: rgba(255,255,255,0.7);">
+                    Email Address (Optional)
+                </label>
+                <input type="email" id="msgEmail" placeholder="your.email@domain.com" 
+                    style="background: rgba(0,0,0,0.55); border: 1px solid rgba(255,255,255,0.18); border-radius: 6px; padding: 12px 16px; color: #fff; font-family:'Space Grotesk',sans-serif; font-size: 14px; outline: none; transition: border-color 0.2s;"
+                    onfocus="this.style.borderColor='#0affe4'" onblur="this.style.borderColor='rgba(255,255,255,0.18)'">
+            </div>
+
+            <!-- Message Type Selector -->
+            <div style="display: flex; flex-direction: column; gap: 6px;">
+                <label style="font-family:'Space Grotesk',sans-serif; font-size: 12px; font-weight: 700; text-transform: uppercase; letter-spacing: 1px; color: rgba(255,255,255,0.7);">
+                    Transmission Type
+                </label>
+                <select id="msgType" style="background: rgba(0,0,0,0.75); border: 1px solid rgba(255,255,255,0.18); border-radius: 6px; padding: 12px 16px; color: #fff; font-family:'Space Grotesk',sans-serif; font-size: 14px; outline: none; cursor: pointer;">
+                    <option value="message" selected>[Direct Message]</option>
+                    <option value="feedback">[Platform Feedback]</option>
+                    <option value="request">[Feature Request]</option>
+                    <option value="collab">[Collaboration / Ping]</option>
+                </select>
+            </div>
+
+            <!-- Message Content Box -->
+            <div style="display: flex; flex-direction: column; gap: 6px;">
+                <label style="font-family:'Space Grotesk',sans-serif; font-size: 12px; font-weight: 700; text-transform: uppercase; letter-spacing: 1px; color: #ff2d55;">
+                    Message Content *
+                </label>
+                <textarea id="msgBody" rows="4" placeholder="Write your message here to send to others..." 
+                    style="background: rgba(0,0,0,0.55); border: 1px solid rgba(255,255,255,0.18); border-radius: 6px; padding: 12px 16px; color: #fff; font-family:'Space Grotesk',sans-serif; font-size: 14px; outline: none; resize: vertical; transition: border-color 0.2s;"
+                    onfocus="this.style.borderColor='#ff2d55'" onblur="this.style.borderColor='rgba(255,255,255,0.18)'"></textarea>
+            </div>
+
+            <!-- Options Row -->
+            <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 10px;">
+                <label style="display: flex; align-items: center; gap: 8px; font-size: 13px; color: rgba(255,255,255,0.75); cursor: pointer; user-select: none;">
+                    <input type="checkbox" id="msgAnon" style="accent-color: #ff2d55; width: 16px; height: 16px;">
+                    Send as Anonymous
+                </label>
+                <a href="http://127.0.0.1:8001" target="_blank" style="color: #0affe4; font-size: 12.5px; text-decoration: none; display: inline-flex; align-items: center; gap: 4px;">
+                    [Open Receiver: 127.0.0.1:8001]
+                </a>
+            </div>
+
+            <!-- Send Button -->
+            <button id="btnSendMsg" onclick="sendDirectMessage()" style="background: linear-gradient(135deg, #ff2d55, #ff5e7e); border: none; color: #fff; padding: 15px 24px; border-radius: 6px; font-family:'Space Grotesk',sans-serif; font-size: 14px; font-weight: 700; letter-spacing: 1px; text-transform: uppercase; cursor: pointer; transition: all 0.2s; box-shadow: 0 4px 20px rgba(255,45,85,0.4);">
+                Transmit Message via BLAST Gateway
+            </button>
+
+            <!-- Status Box -->
+            <div id="msgStatus" style="display: none; padding: 12px 16px; border-radius: 6px; font-size: 13px; line-height: 1.5;"></div>
+        </div>
+    </section>
+
+    <!-- ============================================================== -->
+    <!-- SECTION: SHORT LINKS & PROTOCOL ROUTING                         -->
+    <!-- ============================================================== -->
+    <section id="links" style="padding: 40px 20px 60px 20px; display: flex; flex-direction: column; align-items: center; position: relative; z-index: 10;">
+        <p class="section-label" style="justify-content:center;">// SHORT LINKS &amp; PROTOCOLS</p>
+        <h2 class="section-h2" style="text-align:center;">Network<br><em>Short Links</em></h2>
+        <p style="font-family:'Space Grotesk',sans-serif; color:rgba(255,255,255,0.6); max-width:580px; text-align:center; font-size:13.5px; margin: 8px 0 24px 0;">
+            Fast redirected access points logged with telemetry through BLAST Gateway.
+        </p>
+
+        <div id="linksList" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 14px; width: 100%; max-width: 900px;">
+            <!-- Populated dynamically via /api/links -->
+        </div>
+    </section>
+
+    <!-- ============================================================== -->
+    <!-- SECTION: LIVE EMBEDDED RECEIVER FEED                            -->
+    <!-- ============================================================== -->
+    <section id="inbox" style="padding: 20px 20px 80px 20px; display: flex; flex-direction: column; align-items: center; position: relative; z-index: 10;">
+        <p class="section-label" style="justify-content:center;">// REAL-TIME INBOX MONITOR</p>
+        <h2 class="section-h2" style="text-align:center;">Live<br><em>Transmissions</em><br>Feed</h2>
+        <div style="background: rgba(0,0,0,0.6); border: 1px solid rgba(10,255,228,0.25); border-radius: 20px; padding: 6px 16px; margin: 12px 0 24px 0; font-family:'Space Grotesk',sans-serif; font-size: 12px; color: rgba(255,255,255,0.8); display: inline-flex; align-items: center; gap: 8px;">
+            <span style="width:8px; height:8px; border-radius:50%; background:#00ff66; box-shadow:0 0 8px #00ff66;"></span>
+            <span>Live Stream Polling Every 3s // Receiver Host: 127.0.0.1:8001</span>
+        </div>
+
+        <div id="embeddedFeed" style="display: flex; flex-direction: column; gap: 12px; width: 100%; max-width: 720px;">
+            <!-- Real-time feed populated by JS -->
+        </div>
+    </section>
+
+    <!-- ============================================================== -->
+    <!-- SECTION: CONTACT & CLOUD HOSTING ARCHITECTURE                  -->
+    <!-- ============================================================== -->
+    <section id="contact" style="padding: 60px 20px 80px 20px; display: flex; flex-direction: column; align-items: center; position: relative; z-index: 10;">
+        <p class="section-label" style="justify-content:center;">// CONTACT &amp; HOSTING TECHNOLOGY</p>
+        <h2 class="section-h2" style="text-align:center;">Contact &amp; Host<br><em>Distributed</em><br>Architecture</h2>
+        <p style="font-family:'Space Grotesk',sans-serif; color:rgba(255,255,255,0.6); max-width:680px; text-align:center; font-size:14px; margin: 12px 0 36px 0; line-height: 1.6;">
+            Connect with Rayzien and Pheonix14, or host this web application using GitHub Pages, Render, or self-hosted edge nodes powered by BLAST Gateway.
+        </p>
+
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 24px; width: 100%; max-width: 1080px; margin-bottom: 36px;">
+            
+            <!-- DIRECT CONTACT CHANNELS -->
+            <div style="background: rgba(14, 18, 30, 0.85); backdrop-filter: blur(16px); border: 1px solid rgba(10, 255, 228, 0.35); border-radius: 12px; padding: 28px; display: flex; flex-direction: column; gap: 18px;">
+                <div style="font-family:'Space Grotesk',sans-serif; font-weight: 700; font-size: 16px; color: #fff; border-bottom: 1px solid rgba(255,255,255,0.08); padding-bottom: 12px; display: flex; justify-content: space-between; align-items: center;">
+                    <span>Direct Contact Points</span>
+                    <span style="font-size: 10.5px; color: #0affe4; font-family: monospace;">[PHEONIX14 // RAYZIEN]</span>
+                </div>
+
+                <div style="display: flex; flex-direction: column; gap: 12px;">
+                    <a href="https://github.com/rayzien" target="_blank" 
+                        style="background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.12); border-radius: 8px; padding: 12px 16px; text-decoration: none; display: flex; justify-content: space-between; align-items: center; transition: border-color 0.2s;">
+                        <span style="font-family:'Space Grotesk',sans-serif; font-size: 13.5px; font-weight: 600; color: #fff;">Rayzien on GitHub</span>
+                        <span style="color: #ff5e7e; font-family: monospace; font-size: 12px;">github.com/rayzien &gt;</span>
+                    </a>
+
+                    <a href="https://github.com/pheonix14" target="_blank" 
+                        style="background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.12); border-radius: 8px; padding: 12px 16px; text-decoration: none; display: flex; justify-content: space-between; align-items: center; transition: border-color 0.2s;">
+                        <span style="font-family:'Space Grotesk',sans-serif; font-size: 13.5px; font-weight: 600; color: #fff;">Pheonix14 on GitHub</span>
+                        <span style="color: #0affe4; font-family: monospace; font-size: 12px;">github.com/pheonix14 &gt;</span>
+                    </a>
+
+                    <a href="#messages" 
+                        style="background: rgba(255,45,85,0.12); border: 1px solid rgba(255,45,85,0.3); border-radius: 8px; padding: 12px 16px; text-decoration: none; display: flex; justify-content: space-between; align-items: center; transition: border-color 0.2s;">
+                        <span style="font-family:'Space Grotesk',sans-serif; font-size: 13.5px; font-weight: 600; color: #fff;">Instant Direct Message</span>
+                        <span style="color: #ff8099; font-family: monospace; font-size: 12px;">[Transmit Form] &gt;</span>
+                    </a>
+
+                    <a href="http://127.0.0.1:8001" target="_blank" 
+                        style="background: rgba(10,255,228,0.08); border: 1px solid rgba(10,255,228,0.25); border-radius: 8px; padding: 12px 16px; text-decoration: none; display: flex; justify-content: space-between; align-items: center; transition: border-color 0.2s;">
+                        <span style="font-family:'Space Grotesk',sans-serif; font-size: 13.5px; font-weight: 600; color: #fff;">Live Receiver Dashboard</span>
+                        <span style="color: #0affe4; font-family: monospace; font-size: 12px;">127.0.0.1:8001 &gt;</span>
+                    </a>
+                </div>
+
+                <!-- BLAST DIAGNOSTIC PING -->
+                <div style="background: rgba(0,0,0,0.5); border: 1px solid rgba(255,255,255,0.08); border-radius: 8px; padding: 14px; margin-top: 6px; display: flex; flex-direction: column; gap: 8px;">
+                    <div style="display: flex; justify-content: space-between; align-items: center;">
+                        <span style="font-size: 11.5px; color: rgba(255,255,255,0.7); font-family: monospace;">BLAST Cluster Telemetry:</span>
+                        <button onclick="pingBlastGateway()" style="background: rgba(10,255,228,0.15); border: 1px solid #0affe4; color: #0affe4; padding: 3px 8px; border-radius: 4px; font-size: 10.5px; font-family: monospace; cursor: pointer;">
+                            [Ping Gateway]
+                        </button>
+                    </div>
+                    <div id="blastPingOutput" style="font-family: monospace; font-size: 11px; color: #0affe4; background: rgba(0,0,0,0.4); padding: 8px; border-radius: 4px; word-break: break-all;">
+                        Status: Ready // Click [Ping Gateway] to test route
+                    </div>
+                </div>
+            </div>
+
+            <!-- HOSTING GUIDE & TECHNOLOGY TABS -->
+            <div style="background: rgba(14, 18, 30, 0.85); backdrop-filter: blur(16px); border: 1px solid rgba(255, 45, 85, 0.35); border-radius: 12px; padding: 28px; display: flex; flex-direction: column; gap: 18px;">
+                <div style="font-family:'Space Grotesk',sans-serif; font-weight: 700; font-size: 16px; color: #fff; border-bottom: 1px solid rgba(255,255,255,0.08); padding-bottom: 12px; display: flex; justify-content: space-between; align-items: center;">
+                    <span>Hosting Technologies &amp; Deployment</span>
+                    <span style="font-size: 10.5px; color: #ff5e7e; font-family: monospace;">[POWERED BY BLAST]</span>
+                </div>
+
+                <!-- HOSTING TABS -->
+                <div style="display: flex; gap: 6px; flex-wrap: wrap;">
+                    <button onclick="switchHostingTab('ghpages', this)" class="host-tab-btn" 
+                        style="background: rgba(10,255,228,0.2); border: 1px solid #0affe4; color: #fff; padding: 6px 12px; border-radius: 4px; font-family:'Space Grotesk',sans-serif; font-size: 11.5px; font-weight: 600; cursor: pointer;">
+                        GitHub Pages
+                    </button>
+                    <button onclick="switchHostingTab('render', this)" class="host-tab-btn" 
+                        style="background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.15); color: rgba(255,255,255,0.7); padding: 6px 12px; border-radius: 4px; font-family:'Space Grotesk',sans-serif; font-size: 11.5px; font-weight: 600; cursor: pointer;">
+                        Render / Cloud
+                    </button>
+                    <button onclick="switchHostingTab('edge', this)" class="host-tab-btn" 
+                        style="background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.15); color: rgba(255,255,255,0.7); padding: 6px 12px; border-radius: 4px; font-family:'Space Grotesk',sans-serif; font-size: 11.5px; font-weight: 600; cursor: pointer;">
+                        Self-Hosted Node
+                    </button>
+                </div>
+
+                <!-- TAB CONTENT: GITHUB PAGES -->
+                <div id="hostTabGhpages" class="host-tab-content" style="display: flex; flex-direction: column; gap: 10px; font-size: 12.5px; color: rgba(255,255,255,0.8); line-height: 1.6;">
+                    <div style="font-weight: 700; color: #0affe4; font-family:'Space Grotesk',sans-serif;">
+                        [TECHNOLOGY] Static GitHub Pages + Dynamic BLAST Gateway Proxy
+                    </div>
+                    <p style="margin: 0; color: rgba(255,255,255,0.7);">
+                        Deploy the frontend onto GitHub Pages for zero-cost static hosting. All interactive form actions, messages, and crypto proofs dynamically communicate with the secure BLAST Gateway on Render:
+                    </p>
+                    <div style="background: rgba(0,0,0,0.55); border: 1px solid rgba(255,255,255,0.1); border-radius: 6px; padding: 10px 12px; font-family: monospace; font-size: 11px; color: #a0aec0;">
+                        # Architecture pipeline:<br>
+                        GitHub Pages (Frontend) &gt;&gt; BLAST Gateway (Render Queue) &gt;&gt; Supabase DB<br><br>
+                        # In GitHub Repo Settings:<br>
+                        Settings &gt; Pages &gt; Build and deployment: Deploy from a branch (main / root)
+                    </div>
+                    <div style="font-size: 11.5px; color: #00ff66;">
+                        [SECURITY VERIFIED] Direct Supabase credentials are never exposed in GitHub Pages frontend code.
+                    </div>
+                </div>
+
+                <!-- TAB CONTENT: RENDER / CLOUD -->
+                <div id="hostTabRender" class="host-tab-content" style="display: none; flex-direction: column; gap: 10px; font-size: 12.5px; color: rgba(255,255,255,0.8); line-height: 1.6;">
+                    <div style="font-weight: 700; color: #ff5e7e; font-family:'Space Grotesk',sans-serif;">
+                        [DEPLOYMENT] Automated Cloud Web Service on Render
+                    </div>
+                    <p style="margin: 0; color: rgba(255,255,255,0.7);">
+                        Deploy RayzHub and BLAST Gateway with continuous deployment directly from your private GitHub repository:
+                    </p>
+                    <div style="background: rgba(0,0,0,0.55); border: 1px solid rgba(255,255,255,0.1); border-radius: 6px; padding: 10px 12px; font-family: monospace; font-size: 11px; color: #a0aec0;">
+                        Build Command: pip install -r requirements.txt<br>
+                        Start Command: uvicorn main:app --host 0.0.0.0 --port $PORT<br><br>
+                        Environment Variables:<br>
+                        BLAST_URL=https://your-blast-gateway.onrender.com<br>
+                        BLAST_KEY=your_cluster_security_token
+                    </div>
+                </div>
+
+                <!-- TAB CONTENT: SELF-HOSTED NODE -->
+                <div id="hostTabEdge" class="host-tab-content" style="display: none; flex-direction: column; gap: 10px; font-size: 12.5px; color: rgba(255,255,255,0.8); line-height: 1.6;">
+                    <div style="font-weight: 700; color: #0affe4; font-family:'Space Grotesk',sans-serif;">
+                        [LOCAL NODE] Independent Standalone Daemon
+                    </div>
+                    <p style="margin: 0; color: rgba(255,255,255,0.7);">
+                        Execute locally with loopback auto-discovery on <code style="color:#0affe4;">127.0.0.1</code>:
+                    </p>
+                    <div style="background: rgba(0,0,0,0.55); border: 1px solid rgba(255,255,255,0.1); border-radius: 6px; padding: 10px 12px; font-family: monospace; font-size: 11px; color: #a0aec0;">
+                        # RayzHub Main Service (Port 8000):<br>
+                        python main.py<br><br>
+                        # Standalone Receiver Service (Port 8001):<br>
+                        python receive/main.py
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
     </section>
 
     <!-- FOOTER -->
     <footer>
         <div class="footer-top">
-            <div class="footer-logo">XTREME</div>
+            <div class="footer-logo">RAYZHUB // BLAST GATEWAY</div>
             <ul class="footer-links">
-                <li><a href="#">◈ Instagram</a></li>
-                <li><a href="#">⬡ Twitter</a></li>
-                <li><a href="#">◉ Behance</a></li>
-                <li><a href="#">◎ LinkedIn</a></li>
+                <li><a href="https://github.com/rayzien" target="_blank">GitHub @rayzien</a></li>
+                <li><a href="https://github.com/pheonix14" target="_blank">GitHub @pheonix14</a></li>
+                <li><a href="#donation">Support / Donate</a></li>
+                <li><a href="#contact">Contact &amp; Host</a></li>
+                <li><a href="http://127.0.0.1:8001" target="_blank">Receiver (8001)</a></li>
+                <li><a href="http://127.0.0.1:8000/api/blast/status" target="_blank">BLAST Health</a></li>
             </ul>
         </div>
         <div class="footer-bottom">
-            <p class="footer-copy">© 2025 XTREME STUDIO — ALL RIGHTS RESERVED</p>
-            <p class="footer-copy" id="bgCredit">Background: Artwork Collection</p>
+            <p class="footer-copy">(C) 2026 RAYZHUB &amp; BLAST RENDER CLUSTER -- ARCHITECTED BY RAYZIEN &amp; PHEONIX14</p>
+            <p class="footer-copy" id="bgCredit">Pipeline: RayzHub &gt;&gt; BLAST Gateway &gt;&gt; Supabase</p>
         </div>
     </footer>
 
@@ -1590,6 +2447,294 @@
             setInterval(() => {
                 if (Notification.permission === 'granted') sendBrowserNotif();
             }, 30000);
+        });
+
+        // ═══ DIRECT MESSAGING HANDLER (RayzHub -> BLAST -> Supabase) ═══
+        async function sendDirectMessage() {
+            const nameInput = document.getElementById('msgName');
+            const emailInput = document.getElementById('msgEmail');
+            const typeInput = document.getElementById('msgType');
+            const bodyInput = document.getElementById('msgBody');
+            const anonInput = document.getElementById('msgAnon');
+            const statusBox = document.getElementById('msgStatus');
+            const btn = document.getElementById('btnSendMsg');
+
+            const body = bodyInput.value.trim();
+            if (!body) {
+                statusBox.style.display = 'block';
+                statusBox.style.background = 'rgba(255,45,85,0.15)';
+                statusBox.style.border = '1px solid #ff2d55';
+                statusBox.style.color = '#ff8099';
+                statusBox.textContent = '[-] Please write a message before sending.';
+                return;
+            }
+
+            btn.disabled = true;
+            btn.textContent = 'Dispatching via BLAST Gateway...';
+
+            try {
+                const isAnon = anonInput.checked;
+                const payload = {
+                    name: isAnon ? 'Anonymous' : (nameInput.value.trim() || 'Guest'),
+                    email: emailInput.value.trim() || null,
+                    message: body,
+                    request_type: typeInput.value,
+                    is_anonymous: isAnon
+                };
+
+                const res = await fetch('/api/messages', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify(payload)
+                });
+
+                if (!res.ok) {
+                    throw new Error(`HTTP ${res.status}: Failed to transmit message`);
+                }
+
+                const data = await res.json();
+                statusBox.style.display = 'block';
+                statusBox.style.background = 'rgba(0,255,102,0.12)';
+                statusBox.style.border = '1px solid #00ff66';
+                statusBox.style.color = '#00ff66';
+                statusBox.innerHTML = `
+                    [SUCCESS] Transmission Delivered.<br>
+                    Message ID #${data.id} saved locally and queued through BLAST Gateway &gt;&gt; Supabase.<br>
+                    <a href="http://127.0.0.1:8001" target="_blank" style="color:#0affe4; font-weight:700; text-decoration:underline;">[View in Receiver Dashboard: 127.0.0.1:8001]</a>
+                `;
+
+                bodyInput.value = '';
+                showToast('// BLAST GATEWAY', `Message #${data.id} synced to Supabase queue.`);
+            } catch (err) {
+                statusBox.style.display = 'block';
+                statusBox.style.background = 'rgba(255,45,85,0.15)';
+                statusBox.style.border = '1px solid #ff2d55';
+                statusBox.style.color = '#ff8099';
+                statusBox.textContent = `[-] Transmission error: ${err.message}`;
+            } finally {
+                btn.disabled = false;
+                btn.textContent = 'Transmit Message via BLAST Gateway';
+            }
+        }
+
+        // Copy Crypto Address
+        function copyCryptoAddress(elemId, label) {
+            const el = document.getElementById(elemId);
+            if (!el) return;
+            const text = el.textContent.trim();
+            if (navigator.clipboard && navigator.clipboard.writeText) {
+                navigator.clipboard.writeText(text).then(() => {
+                    showToast('// ADDRESS COPIED', `${label} copied to clipboard.`);
+                }).catch(() => {
+                    prompt(`Copy ${label}:`, text);
+                });
+            } else {
+                prompt(`Copy ${label}:`, text);
+            }
+        }
+
+        // Filter Repositories Grid
+        function filterRepoCards(author, btn) {
+            document.querySelectorAll('.repo-filter-btn').forEach(b => {
+                b.style.background = 'rgba(255,255,255,0.05)';
+                b.style.borderColor = 'rgba(255,255,255,0.15)';
+                b.style.color = 'rgba(255,255,255,0.7)';
+            });
+            btn.style.background = 'rgba(10,255,228,0.2)';
+            btn.style.borderColor = '#0affe4';
+            btn.style.color = '#fff';
+
+            const cards = document.querySelectorAll('.repo-card');
+            cards.forEach(card => {
+                const cardAuthor = card.getAttribute('data-author');
+                if (author === 'all' || cardAuthor === author) {
+                    card.style.display = 'flex';
+                } else {
+                    card.style.display = 'none';
+                }
+            });
+        }
+
+        // Set Donation Tier
+        function setDonationTier(tier, btn) {
+            document.querySelectorAll('.tier-btn').forEach(b => {
+                b.style.background = 'rgba(255,255,255,0.05)';
+                b.style.borderColor = 'rgba(255,255,255,0.15)';
+                b.style.color = 'rgba(255,255,255,0.8)';
+            });
+            btn.style.background = 'rgba(255,45,85,0.2)';
+            btn.style.borderColor = '#ff2d55';
+            btn.style.color = '#fff';
+            document.getElementById('tipAmount').value = tier;
+        }
+
+        // Submit Donation Proof
+        async function submitDonationProof() {
+            const name = document.getElementById('tipName').value.trim() || 'Generous Supporter';
+            const amount = document.getElementById('tipAmount').value.trim() || '$5';
+            const txId = document.getElementById('tipTxId').value.trim();
+            const note = document.getElementById('tipMsg').value.trim();
+            const statusBox = document.getElementById('tipStatus');
+            const btn = document.getElementById('btnSendTip');
+
+            btn.disabled = true;
+            btn.textContent = 'Recording Contribution...';
+
+            try {
+                const payload = {
+                    name: name,
+                    email: null,
+                    message: note ? `[DONATION ${amount}] ${note}` : `[DONATION ${amount}] Contribution from ${name}`,
+                    request_type: 'tip',
+                    amount: amount,
+                    transaction_id: txId || null,
+                    is_anonymous: false
+                };
+
+                const res = await fetch('/api/messages', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify(payload)
+                });
+
+                if (!res.ok) throw new Error(`HTTP ${res.status}`);
+                const data = await res.json();
+
+                statusBox.style.display = 'block';
+                statusBox.style.background = 'rgba(0,255,102,0.12)';
+                statusBox.style.border = '1px solid #00ff66';
+                statusBox.style.color = '#00ff66';
+                statusBox.innerHTML = `[CONFIRMED] Contribution logged (#${data.id}) and queued via BLAST Gateway &gt;&gt; Supabase. Thank you for supporting!`;
+                showToast('// SPONSORSHIP RECORDED', `Thank you ${name} for ${amount}!`);
+            } catch (err) {
+                statusBox.style.display = 'block';
+                statusBox.style.background = 'rgba(255,45,85,0.15)';
+                statusBox.style.border = '1px solid #ff2d55';
+                statusBox.style.color = '#ff8099';
+                statusBox.textContent = `[-] Submission failed: ${err.message}`;
+            } finally {
+                btn.disabled = false;
+                btn.textContent = 'Confirm Contribution Proof';
+            }
+        }
+
+        // Fetch and Render Network Short Links
+        async function fetchShortLinks() {
+            try {
+                const res = await fetch('/api/links');
+                if (!res.ok) return;
+                const links = await res.json();
+                const container = document.getElementById('linksList');
+                if (!container) return;
+                if (links.length === 0) {
+                    container.innerHTML = '<div style="color:rgba(255,255,255,0.5); font-size:13px; text-align:center; grid-column:1/-1;">No short links configured yet.</div>';
+                    return;
+                }
+                container.innerHTML = links.map(l => `
+                    <a href="/r/${l.short_code}" target="_blank" style="background: rgba(14,18,30,0.85); border: 1px solid rgba(255,255,255,0.1); border-radius: 8px; padding: 14px 18px; text-decoration: none; display: flex; flex-direction: column; gap: 4px; transition: border-color 0.2s;">
+                        <div style="font-family:'Space Grotesk',sans-serif; font-weight:700; font-size:14px; color:#fff;">${escapeHtml(l.title)}</div>
+                        <div style="font-size:12px; color:#0affe4; font-family:monospace;">/r/${l.short_code}</div>
+                        <div style="font-size:11px; color:rgba(255,255,255,0.4); margin-top:4px;">Clicks: ${l.clicks}</div>
+                    </a>
+                `).join('');
+            } catch (e) {}
+        }
+
+        // Fetch and Render Embedded Real-Time Feed
+        async function fetchEmbeddedFeed() {
+            try {
+                const res = await fetch('/api/messages');
+                if (!res.ok) return;
+                const messages = await res.json();
+                const container = document.getElementById('embeddedFeed');
+                if (!container) return;
+                if (messages.length === 0) {
+                    container.innerHTML = '<div style="background:rgba(14,18,30,0.7); border:1px dashed rgba(255,255,255,0.1); padding:24px; border-radius:8px; text-align:center; color:rgba(255,255,255,0.5); font-size:13px;">No transmissions recorded yet. Send one above!</div>';
+                    return;
+                }
+                container.innerHTML = messages.slice(0, 5).map(m => `
+                    <div style="background: rgba(14,18,30,0.85); border: 1px solid rgba(255,255,255,0.08); border-left: 3px solid #0affe4; border-radius: 8px; padding: 14px 18px; display: flex; flex-direction: column; gap: 6px;">
+                        <div style="display: flex; justify-content: space-between; align-items: center; font-size: 12px;">
+                            <span style="font-weight:700; color:#fff;">${escapeHtml(m.name || 'Anonymous')}</span>
+                            <span style="color:rgba(255,255,255,0.5); font-size:11px;">#${m.id} // [${escapeHtml(m.request_type || 'message')}]</span>
+                        </div>
+                        <div style="font-size: 13.5px; color: #d0d8e2; line-height: 1.5; background:rgba(0,0,0,0.25); padding:8px 12px; border-radius:4px;">${escapeHtml(m.message || '')}</div>
+                        <div style="display: flex; justify-content: space-between; align-items: center; font-size: 11px; color: #0affe4; padding-top: 2px;">
+                            <span>Pipeline Verified: RayzHub &gt;&gt; BLAST Gateway &gt;&gt; Supabase</span>
+                            <span style="color:rgba(255,255,255,0.4);">${(m.created_at || '').substring(0, 16)}</span>
+                        </div>
+                    </div>
+                `).join('');
+            } catch (e) {}
+        }
+
+        // Switch Hosting Technology Tab
+        function switchHostingTab(tabId, btn) {
+            document.querySelectorAll('.host-tab-btn').forEach(b => {
+                b.style.background = 'rgba(255,255,255,0.05)';
+                b.style.borderColor = 'rgba(255,255,255,0.15)';
+                b.style.color = 'rgba(255,255,255,0.7)';
+            });
+            btn.style.background = 'rgba(10,255,228,0.2)';
+            btn.style.borderColor = '#0affe4';
+            btn.style.color = '#fff';
+
+            document.querySelectorAll('.host-tab-content').forEach(c => {
+                c.style.display = 'none';
+            });
+            const activeContent = document.getElementById(tabId === 'ghpages' ? 'hostTabGhpages' : (tabId === 'render' ? 'hostTabRender' : 'hostTabEdge'));
+            if (activeContent) activeContent.style.display = 'flex';
+        }
+
+        // Ping BLAST Gateway
+        async function pingBlastGateway() {
+            const out = document.getElementById('blastPingOutput');
+            if (!out) return;
+            out.textContent = 'Pinging BLAST Gateway cluster...';
+            const t0 = performance.now();
+            try {
+                const res = await fetch('/api/blast/status');
+                const t1 = performance.now();
+                const latency = Math.round(t1 - t0);
+                if (!res.ok) throw new Error(`HTTP ${res.status}`);
+                const data = await res.json();
+                out.textContent = `[ONLINE] Cluster: ${data.cluster || 'BLAST'} // Status: ${data.status} // Ping: ${latency}ms // Queue: ${data.queue_depth || 0} // Route: RayzHub >> BLAST >> Supabase`;
+                out.style.color = '#00ff66';
+            } catch (err) {
+                out.textContent = `[-] Ping check failed: ${err.message}`;
+                out.style.color = '#ff8099';
+            }
+        }
+
+        // Live Load Crypto Addresses from Disk Files
+        async function loadCryptoAddresses() {
+            const coins = [
+                { id: 'addrLtc', path: '/ltc/ltc.txt' },
+                { id: 'addrSol', path: '/sol/sol.txt' },
+                { id: 'addrBtc', path: '/btc/btc.txt' },
+                { id: 'addrEth', path: '/eth/eth.txt' },
+                { id: 'addrUsdt', path: '/usdt/usdt.txt' }
+            ];
+            for (const c of coins) {
+                try {
+                    const res = await fetch(c.path);
+                    if (res.ok) {
+                        const txt = (await res.text()).trim();
+                        if (txt) {
+                            const el = document.getElementById(c.id);
+                            if (el) el.textContent = txt;
+                        }
+                    }
+                } catch (e) {}
+            }
+        }
+
+        // Initialize elements on load
+        window.addEventListener('DOMContentLoaded', () => {
+            fetchShortLinks();
+            fetchEmbeddedFeed();
+            loadCryptoAddresses();
+            setInterval(fetchEmbeddedFeed, 3000);
         });
 
         // Check on load

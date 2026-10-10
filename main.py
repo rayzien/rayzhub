@@ -11,18 +11,29 @@ import asyncio
 import urllib.request
 import logging
 
-import models, schemas, database, auth, verification, links_manager
+import models, schemas, database, auth, verification, links_manager, blast_gateway
 
 # Create tables & migrate missing columns
 models.Base.metadata.create_all(bind=database.engine)
 database.auto_migrate()
 
-app = FastAPI(title="RayzHub Complete Platform API & Backend Engine", version="2.0")
+app = FastAPI(title="RayzHub Complete Platform API & Backend Engine (via BLAST Gateway)", version="2.0")
 
 # Setup uploads directory
 UPLOAD_DIR = "uploads"
 os.makedirs(UPLOAD_DIR, exist_ok=True)
 app.mount("/uploads", StaticFiles(directory=UPLOAD_DIR), name="uploads")
+
+@app.get("/api/blast/status")
+def get_blast_status():
+    """Diagnostic endpoint verifying BLAST gateway and Supabase queue health."""
+    health = blast_gateway.gateway.check_health()
+    stats = blast_gateway.gateway.get_stats() if health.get("healthy") else {}
+    return {
+        "gateway": "BLAST Render Cluster",
+        "health": health,
+        "stats": stats,
+    }
 
 CONFIG_FILE = "configuration.json"
 
@@ -56,6 +67,14 @@ def register_user(user_in: schemas.UserRegister, db: Session = Depends(get_db)):
     db.add(new_user)
     db.commit()
     db.refresh(new_user)
+    
+    blast_gateway.gateway.sync_user({
+        "email": new_user.email,
+        "hashed_password": new_user.hashed_password,
+        "full_name": new_user.full_name,
+        "role": new_user.role,
+        "is_verified": new_user.is_verified,
+    })
     
     verification.log_verification_action(db, "user_register", user_id=new_user.id, details=f"Registered {new_user.email}")
     return new_user
@@ -100,6 +119,8 @@ def save_config(config_data: dict, db: Session = Depends(get_db)):
         else:
             db_config.config_json = json.dumps(config_data)
         db.commit()
+        
+        blast_gateway.gateway.sync_widget_config("main_layout", config_data)
         
         verification.log_verification_action(db, "save_configuration", details="Updated layout configuration")
         return {"status": "success", "message": "configuration.json saved successfully", "config": config_data}
@@ -327,6 +348,18 @@ async def create_request(
     db.commit()
     db.refresh(db_request)
     
+    blast_gateway.gateway.sync_request({
+        "name": db_request.name,
+        "email": db_request.email,
+        "message": db_request.message,
+        "photo_path": db_request.photo_path,
+        "request_type": db_request.request_type,
+        "amount": db_request.amount,
+        "transaction_id": db_request.transaction_id,
+        "is_anonymous": db_request.is_anonymous,
+        "status": db_request.status,
+    })
+    
     verification.log_verification_action(
         db, 
         f"create_{request_type}", 
@@ -336,6 +369,48 @@ async def create_request(
 
 @app.get("/api/requests", response_model=list[schemas.RequestOut])
 def get_requests(skip: int = 0, limit: int = 100, db: Session = Depends(get_db)):
+    return db.query(models.RequestItem).order_by(models.RequestItem.created_at.desc()).offset(skip).limit(limit).all()
+
+# ─── MESSAGE ENDPOINTS (RayzHub -> BLAST Gateway -> Supabase) ───
+@app.post("/api/messages", response_model=schemas.RequestOut)
+def send_message(msg_in: schemas.RequestCreate, db: Session = Depends(get_db)):
+    db_request = models.RequestItem(
+        name="Anonymous" if msg_in.is_anonymous else (msg_in.name or "Anonymous"),
+        email=msg_in.email,
+        message=msg_in.message,
+        request_type=msg_in.request_type or "message",
+        amount=msg_in.amount,
+        transaction_id=msg_in.transaction_id,
+        is_anonymous=msg_in.is_anonymous,
+        status="delivered"
+    )
+    db.add(db_request)
+    db.commit()
+    db.refresh(db_request)
+
+    # Route through BLAST Gateway: RayzHub -> BLAST Gateway -> Supabase
+    blast_gateway.gateway.sync_request({
+        "id": db_request.id,
+        "name": db_request.name,
+        "email": db_request.email,
+        "message": db_request.message,
+        "photo_path": db_request.photo_path,
+        "request_type": db_request.request_type,
+        "amount": db_request.amount,
+        "transaction_id": db_request.transaction_id,
+        "is_anonymous": db_request.is_anonymous,
+        "status": db_request.status,
+    })
+
+    verification.log_verification_action(
+        db,
+        "send_message",
+        details=f"Message #{db_request.id} dispatched via BLAST -> Supabase"
+    )
+    return db_request
+
+@app.get("/api/messages", response_model=list[schemas.RequestOut])
+def get_messages(skip: int = 0, limit: int = 100, db: Session = Depends(get_db)):
     return db.query(models.RequestItem).order_by(models.RequestItem.created_at.desc()).offset(skip).limit(limit).all()
 
 # ─── LINK MANAGEMENT ENDPOINTS ───
@@ -368,12 +443,17 @@ def get_verification_logs(limit: int = 50, db: Session = Depends(get_db)):
 # ─── FRONTEND STATIC & PAGE ROUTER ───
 @app.api_route("/{full_path:path}", methods=["GET", "HEAD"])
 async def serve_frontend(full_path: str):
+    clean_path = full_path.lstrip("/")
+
+    # Check for direct local files (e.g., ltc/ltc.png, sol/sol.txt, crypto QRs)
+    if clean_path and os.path.isfile(clean_path):
+        return FileResponse(clean_path)
+
     out_dir = "mmeui/out"
     if not os.path.exists(out_dir):
+        if os.path.exists("ref.html"):
+            return FileResponse("ref.html")
         raise HTTPException(status_code=404, detail="Frontend build not found")
-    
-    # Clean leading slash if any
-    clean_path = full_path.lstrip("/")
     
     # 1. Exact file match (e.g., _next/..., favicon.ico)
     exact_file = os.path.join(out_dir, clean_path)
@@ -403,6 +483,60 @@ async def serve_frontend(full_path: str):
 
     raise HTTPException(status_code=404, detail="Resource not found")
 
+def open_browser(url: str = "http://127.0.0.1:8000"):
+    """Opens the specified URL in the default browser using 127.0.0.1."""
+    import webbrowser
+    import subprocess
+    import shutil
+    try:
+        webbrowser.open(url)
+    except Exception:
+        pass
+    if shutil.which("xdg-open"):
+        try:
+            subprocess.Popen(["xdg-open", url], stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL)
+        except Exception:
+            pass
+
+def is_port_in_use(port: int = 8000, host: str = "127.0.0.1") -> bool:
+    """Checks whether the specified TCP port is already bound."""
+    import socket
+    with socket.socket(socket.AF_INET, socket.SOCK_STREAM) as s:
+        s.settimeout(0.5)
+        return s.connect_ex((host, port)) == 0
+
 if __name__ == "__main__":
     import uvicorn
-    uvicorn.run("main:app", host="0.0.0.0", port=8000, reload=True)
+    import sys
+    import threading
+    import time
+
+    port = int(os.getenv("PORT", "8000"))
+    url = f"http://127.0.0.1:{port}"
+
+    if is_port_in_use(port):
+        print(f"[!] Address already in use on port {port}.")
+        print(f"[*] Opening webpage at {url} (no localhost)...")
+        open_browser(url)
+        print(f"[+] Webpage opened: {url}")
+        sys.exit(0)
+
+    # Launch browser shortly after starting
+    def _delayed_open():
+        time.sleep(1.0)
+        open_browser(url)
+
+    threading.Thread(target=_delayed_open, daemon=True).start()
+
+    print(f"[*] Starting RayzHub API & Web Server on {url} ...")
+    try:
+        uvicorn.run("main:app", host="0.0.0.0", port=port, reload=True)
+    except Exception as e:
+        if "Address already in use" in str(e) or (isinstance(e, OSError) and getattr(e, "errno", None) == 98):
+            print(f"[!] Address already in use: {e}")
+            print(f"[*] Opening webpage at {url} (no localhost)...")
+            open_browser(url)
+            print(f"[+] Webpage opened: {url}")
+            sys.exit(0)
+        raise
+

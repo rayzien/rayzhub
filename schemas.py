@@ -30,8 +30,14 @@ class UserOut(BaseModel):
 class RequestBase(BaseModel):
     message: str
 
-class RequestCreate(RequestBase):
-    pass
+class RequestCreate(BaseModel):
+    message: str
+    name: Optional[str] = "Anonymous"
+    email: Optional[str] = None
+    request_type: Optional[str] = "message"
+    amount: Optional[str] = None
+    transaction_id: Optional[str] = None
+    is_anonymous: Optional[bool] = False
 
 class RequestOut(RequestBase):
     id: int

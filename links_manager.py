@@ -22,6 +22,16 @@ def create_short_link(db: Session, title: str, target_url: str) -> models.LinkIt
     db.add(link_item)
     db.commit()
     db.refresh(link_item)
+    try:
+        import blast_gateway
+        blast_gateway.gateway.sync_link({
+            "title": link_item.title,
+            "target_url": link_item.target_url,
+            "short_code": link_item.short_code,
+            "clicks": link_item.clicks,
+        })
+    except Exception:
+        pass
     return link_item
 
 def record_link_click(db: Session, short_code: str) -> models.LinkItem:
@@ -30,4 +40,9 @@ def record_link_click(db: Session, short_code: str) -> models.LinkItem:
         link.clicks += 1
         db.commit()
         db.refresh(link)
+        try:
+            import blast_gateway
+            blast_gateway.gateway.sync_click(link.short_code, link.clicks)
+        except Exception:
+            pass
     return link

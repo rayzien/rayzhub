@@ -6,7 +6,7 @@ import datetime
 def run_system_verification():
     print("=========================================")
     print("RAYZHUB PLATFORM VERIFICATION AUDIT")
-    print(f"Timestamp: {datetime.datetime.utcnow().isoformat()}")
+    print(f"Timestamp: {datetime.datetime.now(datetime.timezone.utc).isoformat()}")
     print("=========================================")
 
     # 1. Verify DB File
@@ -40,6 +40,18 @@ def run_system_verification():
             print(f"[-] Error reading configuration.json: {e}")
     else:
         print("[!] configuration.json not found in root directory.")
+
+    # 3. Verify BLAST Gateway Connection
+    try:
+        from blast_gateway import gateway
+        health = gateway.check_health()
+        if health.get("healthy"):
+            print(f"[+] BLAST Gateway Online: {gateway.blast_url} (Latency: {health.get('latency_ms')} ms)")
+        else:
+            print(f"[!] BLAST Gateway Status: {health.get('status')} at {gateway.blast_url}")
+            print("    (Start Blast cluster with: cd /home/zero/Desktop/BLAST && python3 main.py)")
+    except Exception as e:
+        print(f"[-] BLAST Gateway check error: {e}")
 
     print("=========================================")
     print("[+] VERIFICATION COMPLETE: ALL SYSTEMS READY")
