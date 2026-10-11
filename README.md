@@ -71,7 +71,11 @@ Access the application:
 
 ### Standalone Live Receiver Service (Port 8001)
 ```bash
-python receive/main.py
+python receiver/main.py
+```
+Or via script:
+```bash
+cd receiver && ./run_receiver.sh
 ```
 Access the receiver dashboard:
 - Live Monitor: [http://127.0.0.1:8001](http://127.0.0.1:8001)
