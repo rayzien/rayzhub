@@ -1,0 +1,1490 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>RayzHub — Dedicated Message Receiving Outlet (BLAST Pipeline)</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Orbitron:wght@600;800;900&family=Space+Grotesk:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+    <style>
+        *, *::before, *::after {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --c-pink: #ff2d55;
+            --c-cyan: #0affe4;
+            --c-purple: #7928ca;
+            --c-green: #00ff66;
+            --c-amber: #ffb703;
+            --c-blue: #3b82f6;
+            --bg-dark: #07090e;
+            --bg-card: rgba(14, 18, 28, 0.75);
+            --bg-card-hover: rgba(20, 26, 42, 0.85);
+            --border: rgba(10, 255, 228, 0.22);
+            --border-hover: rgba(255, 45, 85, 0.55);
+            --text-main: #f1f5f9;
+            --text-dim: #94a3b8;
+            --font-display: 'Bebas Neue', sans-serif;
+            --font-mono: 'JetBrains Mono', monospace;
+            --font-tech: 'Orbitron', sans-serif;
+            --font-body: 'Space Grotesk', sans-serif;
+        }
+
+        body {
+            background-color: var(--bg-dark);
+            background-image: 
+                radial-gradient(ellipse at 12% 8%, rgba(255, 45, 85, 0.14) 0%, transparent 45%),
+                radial-gradient(ellipse at 88% 88%, rgba(10, 255, 228, 0.14) 0%, transparent 45%),
+                radial-gradient(circle at 50% 45%, rgba(121, 40, 202, 0.09) 0%, transparent 65%);
+            background-attachment: fixed;
+            color: var(--text-main);
+            font-family: var(--font-body);
+            min-height: 100vh;
+            padding: 24px 20px 60px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 1240px;
+        }
+
+        /* HEADER */
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 18px;
+            padding-bottom: 22px;
+            border-bottom: 1px solid var(--border);
+            margin-bottom: 22px;
+        }
+
+        .brand-section {
+            display: flex;
+            align-items: center;
+            gap: 14px;
+            flex-wrap: wrap;
+        }
+
+        .brand-logo {
+            font-family: var(--font-display);
+            font-size: 42px;
+            letter-spacing: 2.5px;
+            line-height: 1;
+            background: linear-gradient(135deg, var(--c-pink), var(--c-cyan));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            text-shadow: 0 0 25px rgba(10, 255, 228, 0.35);
+        }
+
+        .badge-outlet {
+            background: rgba(10, 255, 228, 0.1);
+            color: var(--c-cyan);
+            border: 1px solid rgba(10, 255, 228, 0.35);
+            padding: 5px 12px;
+            font-size: 11.5px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            border-radius: 4px;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .pulse-dot {
+            width: 8px;
+            height: 8px;
+            background: var(--c-green);
+            border-radius: 50%;
+            box-shadow: 0 0 10px var(--c-green);
+            animation: livePulse 1.6s infinite ease-in-out;
+        }
+
+        @keyframes livePulse {
+            0% { transform: scale(0.9); opacity: 0.7; }
+            50% { transform: scale(1.35); opacity: 1; }
+            100% { transform: scale(0.9); opacity: 0.7; }
+        }
+
+        .header-actions {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid var(--border);
+            color: var(--text-main);
+            padding: 9px 16px;
+            border-radius: 6px;
+            font-family: var(--font-body);
+            font-size: 13px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.22s ease;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            user-select: none;
+        }
+
+        .btn:hover {
+            border-color: var(--c-cyan);
+            background: rgba(10, 255, 228, 0.12);
+            color: #fff;
+            transform: translateY(-1.5px);
+            box-shadow: 0 4px 15px rgba(10, 255, 228, 0.15);
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, rgba(255, 45, 85, 0.2), rgba(10, 255, 228, 0.2));
+            border-color: var(--c-cyan);
+            color: #fff;
+        }
+
+        .btn-primary:hover {
+            background: linear-gradient(135deg, var(--c-pink), var(--c-cyan));
+            color: #05070a;
+            font-weight: 700;
+            box-shadow: 0 0 20px rgba(10, 255, 228, 0.4);
+        }
+
+        /* PIPELINE / BLAST TELEMETRY BANNER */
+        .telemetry-banner {
+            background: linear-gradient(90deg, rgba(255, 45, 85, 0.09), rgba(10, 255, 228, 0.09));
+            border: 1px solid rgba(255, 255, 255, 0.12);
+            border-radius: 8px;
+            padding: 14px 20px;
+            margin-bottom: 22px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 14px;
+            font-size: 13px;
+        }
+
+        .pipeline-flow {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            flex-wrap: wrap;
+            font-weight: 600;
+        }
+
+        .pipe-tag {
+            padding: 4px 10px;
+            border-radius: 4px;
+            background: rgba(0, 0, 0, 0.5);
+            font-family: var(--font-mono);
+            font-size: 12px;
+        }
+
+        .pipe-tag.blast {
+            color: var(--c-cyan);
+            border: 1px solid rgba(10, 255, 228, 0.45);
+        }
+
+        .pipe-tag.source {
+            color: var(--c-green);
+            border: 1px solid rgba(0, 255, 102, 0.45);
+        }
+
+        .pipe-arrow {
+            color: var(--text-dim);
+            font-size: 13px;
+        }
+
+        .blast-telemetry {
+            display: flex;
+            align-items: center;
+            gap: 14px;
+            font-family: var(--font-mono);
+            font-size: 12px;
+            color: var(--text-dim);
+        }
+
+        .latency-badge {
+            background: rgba(0, 255, 102, 0.12);
+            color: var(--c-green);
+            border: 1px solid rgba(0, 255, 102, 0.35);
+            padding: 3px 8px;
+            border-radius: 4px;
+            font-weight: 600;
+        }
+
+        /* STATS GRID */
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
+            gap: 16px;
+            margin-bottom: 24px;
+        }
+
+        .stat-card {
+            background: var(--bg-card);
+            backdrop-filter: blur(14px);
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            padding: 18px 20px;
+            display: flex;
+            flex-direction: column;
+            gap: 6px;
+            transition: all 0.25s ease;
+        }
+
+        .stat-card:hover {
+            border-color: var(--c-cyan);
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.4);
+        }
+
+        .stat-num {
+            font-family: var(--font-tech);
+            font-size: 30px;
+            font-weight: 900;
+            color: var(--c-cyan);
+            line-height: 1.1;
+        }
+
+        .stat-label {
+            font-size: 11.5px;
+            color: var(--text-dim);
+            text-transform: uppercase;
+            letter-spacing: 1.2px;
+            font-weight: 600;
+        }
+
+        /* CONTROLS / TOOLBAR */
+        .toolbar {
+            background: var(--bg-card);
+            backdrop-filter: blur(12px);
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            padding: 14px 18px;
+            margin-bottom: 22px;
+            display: flex;
+            flex-direction: column;
+            gap: 14px;
+        }
+
+        .toolbar-top {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 14px;
+        }
+
+        .search-box {
+            position: relative;
+            flex: 1;
+            min-width: 280px;
+        }
+
+        .search-input {
+            width: 100%;
+            background: rgba(0, 0, 0, 0.5);
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            color: #fff;
+            padding: 10px 16px 10px 38px;
+            border-radius: 6px;
+            font-family: var(--font-body);
+            font-size: 13.5px;
+            outline: none;
+            transition: all 0.2s;
+        }
+
+        .search-input:focus {
+            border-color: var(--c-cyan);
+            box-shadow: 0 0 14px rgba(10, 255, 228, 0.25);
+        }
+
+        .search-icon {
+            position: absolute;
+            left: 12px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: var(--text-dim);
+            font-size: 15px;
+            pointer-events: none;
+        }
+
+        .toolbar-actions {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            flex-wrap: wrap;
+        }
+
+        .select-input {
+            background: rgba(0, 0, 0, 0.5);
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            color: var(--text-main);
+            padding: 9px 12px;
+            border-radius: 6px;
+            font-family: var(--font-body);
+            font-size: 12.5px;
+            outline: none;
+            cursor: pointer;
+        }
+
+        .select-input:focus {
+            border-color: var(--c-cyan);
+        }
+
+        .filter-tags {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            flex-wrap: wrap;
+        }
+
+        .filter-btn {
+            background: rgba(255, 255, 255, 0.04);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            color: var(--text-dim);
+            padding: 7px 14px;
+            border-radius: 5px;
+            font-size: 12.5px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.2s;
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .filter-btn:hover {
+            border-color: var(--c-cyan);
+            color: #fff;
+            background: rgba(10, 255, 228, 0.08);
+        }
+
+        .filter-btn.active {
+            background: rgba(10, 255, 228, 0.18);
+            border-color: var(--c-cyan);
+            color: var(--c-cyan);
+            font-weight: 700;
+            box-shadow: 0 0 12px rgba(10, 255, 228, 0.2);
+        }
+
+        .filter-count {
+            background: rgba(0, 0, 0, 0.4);
+            padding: 1px 6px;
+            border-radius: 10px;
+            font-size: 10.5px;
+            font-family: var(--font-mono);
+        }
+
+        /* AUTO REFRESH INDICATOR */
+        .refresh-progress-bar {
+            height: 2px;
+            background: rgba(255, 255, 255, 0.08);
+            width: 100%;
+            border-radius: 1px;
+            overflow: hidden;
+            margin-top: 4px;
+        }
+
+        .refresh-progress-fill {
+            height: 100%;
+            background: linear-gradient(90deg, var(--c-pink), var(--c-cyan));
+            width: 100%;
+            transition: width 0.1s linear;
+        }
+
+        /* MESSAGES CONTAINER */
+        .messages-container {
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+        }
+
+        .messages-container.table-mode {
+            display: block;
+            overflow-x: auto;
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 8px;
+        }
+
+        /* CARD VIEW */
+        .msg-card {
+            background: var(--bg-card);
+            backdrop-filter: blur(14px);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-left: 4px solid var(--c-cyan);
+            border-radius: 8px;
+            padding: 22px;
+            display: flex;
+            flex-direction: column;
+            gap: 14px;
+            transition: all 0.25s ease;
+            position: relative;
+        }
+
+        .msg-card:hover {
+            background: var(--bg-card-hover);
+            border-color: var(--border-hover);
+            border-left-color: var(--c-pink);
+            transform: translateX(3px);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.45);
+        }
+
+        .msg-card.is-new {
+            animation: highlightEntry 1.8s ease-out;
+        }
+
+        @keyframes highlightEntry {
+            0% { background: rgba(10, 255, 228, 0.25); transform: scale(1.015); }
+            100% { background: var(--bg-card); transform: scale(1); }
+        }
+
+        .msg-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+
+        .sender-info {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .avatar {
+            width: 38px;
+            height: 38px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, var(--c-pink), var(--c-purple));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            font-size: 15px;
+            color: #fff;
+            box-shadow: 0 0 12px rgba(255, 45, 85, 0.35);
+            flex-shrink: 0;
+        }
+
+        .sender-details {
+            display: flex;
+            flex-direction: column;
+            gap: 2px;
+        }
+
+        .sender-name {
+            font-size: 15.5px;
+            font-weight: 700;
+            color: #fff;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .anonymous-pill {
+            background: rgba(148, 163, 184, 0.15);
+            color: #cbd5e1;
+            font-size: 10.5px;
+            padding: 2px 7px;
+            border-radius: 3px;
+            font-weight: 600;
+            text-transform: uppercase;
+        }
+
+        .sender-email {
+            font-size: 12px;
+            color: var(--text-dim);
+            font-family: var(--font-mono);
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 4px;
+        }
+
+        .sender-email:hover {
+            color: var(--c-cyan);
+            text-decoration: underline;
+        }
+
+        .msg-meta {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            flex-wrap: wrap;
+        }
+
+        .tag-pill {
+            padding: 4px 10px;
+            border-radius: 4px;
+            font-size: 11px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.8px;
+            font-family: var(--font-mono);
+        }
+
+        .tag-message { background: rgba(10, 255, 228, 0.14); color: var(--c-cyan); border: 1px solid rgba(10, 255, 228, 0.35); }
+        .tag-request { background: rgba(255, 45, 85, 0.14); color: var(--c-pink); border: 1px solid rgba(255, 45, 85, 0.35); }
+        .tag-feedback { background: rgba(255, 183, 3, 0.14); color: var(--c-amber); border: 1px solid rgba(255, 183, 3, 0.35); }
+        .tag-tip { background: rgba(0, 255, 102, 0.14); color: var(--c-green); border: 1px solid rgba(0, 255, 102, 0.35); }
+
+        .status-pill {
+            padding: 3px 8px;
+            border-radius: 4px;
+            font-size: 11px;
+            font-weight: 600;
+            background: rgba(255, 255, 255, 0.05);
+            color: var(--text-dim);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .timestamp {
+            font-size: 12px;
+            color: var(--text-dim);
+            font-family: var(--font-mono);
+        }
+
+        .msg-body {
+            font-size: 14.5px;
+            line-height: 1.65;
+            color: #e2e8f0;
+            white-space: pre-wrap;
+            background: rgba(0, 0, 0, 0.3);
+            padding: 14px 16px;
+            border-radius: 6px;
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            word-break: break-word;
+        }
+
+        /* TIP / PAYMENT HIGHLIGHT BOX */
+        .tip-box {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 12px;
+            background: linear-gradient(90deg, rgba(0, 255, 102, 0.08), rgba(10, 255, 228, 0.05));
+            border: 1px solid rgba(0, 255, 102, 0.3);
+            border-radius: 6px;
+            padding: 10px 14px;
+            font-size: 13px;
+        }
+
+        .tip-amount {
+            font-family: var(--font-tech);
+            font-weight: 800;
+            font-size: 18px;
+            color: var(--c-green);
+        }
+
+        .tx-id {
+            font-family: var(--font-mono);
+            font-size: 12px;
+            color: var(--text-dim);
+            background: rgba(0, 0, 0, 0.4);
+            padding: 3px 8px;
+            border-radius: 4px;
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        /* PHOTO / ATTACHMENT BOX */
+        .attachment-box {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-top: 2px;
+        }
+
+        .thumb-preview {
+            width: 100px;
+            height: 70px;
+            object-fit: cover;
+            border-radius: 6px;
+            border: 1px solid var(--border);
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+
+        .thumb-preview:hover {
+            transform: scale(1.05);
+            border-color: var(--c-cyan);
+            box-shadow: 0 0 15px rgba(10, 255, 228, 0.3);
+        }
+
+        .msg-footer {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 12px;
+            color: var(--text-dim);
+            padding-top: 4px;
+            border-top: 1px solid rgba(255, 255, 255, 0.04);
+            flex-wrap: wrap;
+            gap: 8px;
+        }
+
+        .blast-stamp {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            color: var(--c-cyan);
+            font-family: var(--font-mono);
+            font-size: 11.5px;
+        }
+
+        .btn-inspect {
+            background: transparent;
+            border: none;
+            color: var(--text-dim);
+            font-family: var(--font-mono);
+            font-size: 11.5px;
+            cursor: pointer;
+            text-decoration: underline;
+        }
+
+        .btn-inspect:hover {
+            color: var(--c-cyan);
+        }
+
+        /* TABLE VIEW */
+        table.receiver-table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 13px;
+        }
+
+        table.receiver-table th {
+            background: rgba(0, 0, 0, 0.6);
+            color: var(--text-dim);
+            font-family: var(--font-mono);
+            text-align: left;
+            padding: 12px 14px;
+            font-size: 11.5px;
+            text-transform: uppercase;
+            border-bottom: 1px solid var(--border);
+        }
+
+        table.receiver-table td {
+            padding: 12px 14px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+            vertical-align: middle;
+        }
+
+        table.receiver-table tr:hover td {
+            background: rgba(10, 255, 228, 0.04);
+        }
+
+        /* EMPTY STATE */
+        .empty-state {
+            background: var(--bg-card);
+            border: 1px dashed var(--border);
+            border-radius: 8px;
+            padding: 60px 20px;
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 16px;
+        }
+
+        .empty-icon {
+            font-family: var(--font-tech);
+            font-size: 36px;
+            color: var(--c-cyan);
+            opacity: 0.8;
+        }
+
+        .empty-title {
+            font-size: 19px;
+            font-weight: 700;
+            color: #fff;
+        }
+
+        .empty-desc {
+            font-size: 14px;
+            color: var(--text-dim);
+            max-width: 460px;
+            line-height: 1.6;
+        }
+
+        /* MODAL */
+        .modal-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.85);
+            backdrop-filter: blur(8px);
+            display: none;
+            align-items: center;
+            justify-content: center;
+            z-index: 1000;
+            padding: 20px;
+        }
+
+        .modal-content {
+            background: #0d111a;
+            border: 1px solid var(--c-cyan);
+            box-shadow: 0 0 35px rgba(10, 255, 228, 0.25);
+            border-radius: 10px;
+            width: 100%;
+            max-width: 680px;
+            max-height: 85vh;
+            overflow-y: auto;
+            padding: 24px;
+            display: flex;
+            flex-direction: column;
+            gap: 18px;
+            position: relative;
+        }
+
+        .modal-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            padding-bottom: 12px;
+        }
+
+        .modal-title {
+            font-family: var(--font-tech);
+            font-size: 18px;
+            color: var(--c-cyan);
+        }
+
+        .modal-close {
+            background: transparent;
+            border: none;
+            color: var(--text-dim);
+            font-size: 22px;
+            cursor: pointer;
+        }
+
+        .modal-close:hover {
+            color: var(--c-pink);
+        }
+
+        pre.code-viewer {
+            background: #05070a;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 6px;
+            padding: 14px;
+            color: #38bdf8;
+            font-family: var(--font-mono);
+            font-size: 12.5px;
+            overflow-x: auto;
+            white-space: pre-wrap;
+            max-height: 380px;
+        }
+
+        /* FORM INPUTS IN MODAL */
+        .form-group {
+            display: flex;
+            flex-direction: column;
+            gap: 6px;
+        }
+
+        .form-label {
+            font-size: 12.5px;
+            color: var(--text-dim);
+            text-transform: uppercase;
+            font-weight: 600;
+        }
+
+        .form-control {
+            background: rgba(0, 0, 0, 0.6);
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            color: #fff;
+            padding: 10px 14px;
+            border-radius: 6px;
+            font-family: var(--font-body);
+            font-size: 14px;
+            outline: none;
+        }
+
+        .form-control:focus {
+            border-color: var(--c-cyan);
+        }
+
+        /* FOOTER */
+        footer {
+            margin-top: 45px;
+            padding-top: 22px;
+            border-top: 1px solid rgba(255, 255, 255, 0.08);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 16px;
+            font-size: 12.5px;
+            color: var(--text-dim);
+            width: 100%;
+        }
+
+        footer a {
+            color: var(--c-cyan);
+            text-decoration: none;
+        }
+
+        footer a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- HEADER -->
+        <header>
+            <div class="brand-section">
+                <div class="brand-logo">RAYZHUB</div>
+                <div class="badge-outlet">
+                    <span class="pulse-dot" id="pulseDot"></span>
+                    <span>Dedicated Receiver Outlet</span>
+                </div>
+            </div>
+            <div class="header-actions">
+                <a href="http://127.0.0.1:8000" target="_blank" class="btn">
+                    <span>RayzHub App (127.0.0.1:8000)</span>
+                </a>
+                <button class="btn btn-primary" onclick="openTestModal()">
+                    <span>+ Transmit Test</span>
+                </button>
+                <button class="btn" onclick="exportData('json')">
+                    <span>Export JSON</span>
+                </button>
+                <button class="btn" onclick="exportData('csv')">
+                    <span>Export CSV</span>
+                </button>
+                <button class="btn" id="refreshBtn" onclick="fetchMessages(true)">
+                    <span>Refresh</span>
+                </button>
+            </div>
+        </header>
+
+        <!-- PIPELINE / BLAST TELEMETRY BANNER -->
+        <div class="telemetry-banner">
+            <div class="pipeline-flow">
+                <span>Fetch Pipeline:</span>
+                <span class="pipe-tag blast" id="blastUrlDisplay">BLAST URL: Loading...</span>
+                <span class="pipe-arrow">&gt;&gt;</span>
+                <span class="pipe-tag source">Proxy /rest/v1/requests</span>
+                <span class="pipe-arrow">&gt;&gt;</span>
+                <span class="pipe-tag">Supabase DB</span>
+            </div>
+            <div class="blast-telemetry">
+                <span id="blastStatusText">● BLAST ONLINE</span>
+                <span class="latency-badge" id="latencyBadge">⚡ -- ms</span>
+                <span>Loopback: <strong>127.0.0.1:8001</strong></span>
+            </div>
+        </div>
+
+        <!-- STATS DASHBOARD -->
+        <div class="stats-grid">
+            <div class="stat-card">
+                <div class="stat-num" id="statCount">0</div>
+                <div class="stat-label">Total Received</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-num" style="color:var(--c-green);" id="statTips">0</div>
+                <div class="stat-label">Crypto Tips / Proofs</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-num" style="color:var(--c-pink);" id="statRequests">0</div>
+                <div class="stat-label">Feature Requests</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-num" style="color:var(--c-amber);" id="statFeedback">0</div>
+                <div class="stat-label">Feedback / Reviews</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-num" style="color:#a78bfa; font-size:20px; padding-top:6px;" id="statLatest">-</div>
+                <div class="stat-label">Latest Activity</div>
+            </div>
+        </div>
+
+        <!-- TOOLBAR & CONTROLS -->
+        <div class="toolbar">
+            <div class="toolbar-top">
+                <div class="search-box">
+                    <span class="search-icon">🔍</span>
+                    <input type="text" id="searchInput" class="search-input" placeholder="Search by name, email, message, transaction ID..." oninput="filterMessages()">
+                </div>
+                <div class="toolbar-actions">
+                    <select id="sortSelect" class="select-input" onchange="filterMessages()">
+                        <option value="newest">Sort: Newest First</option>
+                        <option value="oldest">Sort: Oldest First</option>
+                        <option value="highest_tip">Sort: Highest Tip</option>
+                    </select>
+
+                    <select id="autoRefreshSelect" class="select-input" onchange="updateRefreshInterval()">
+                        <option value="3000">Auto-refresh: 3s</option>
+                        <option value="5000">Auto-refresh: 5s</option>
+                        <option value="10000">Auto-refresh: 10s</option>
+                        <option value="0">Auto-refresh: Off</option>
+                    </select>
+
+                    <button class="btn" id="viewModeBtn" onclick="toggleViewMode()">
+                        <span>Table View</span>
+                    </button>
+
+                    <button class="btn" id="soundBtn" onclick="toggleSound()" title="Toggle audio alert on incoming message">
+                        <span>🔔 Sound: ON</span>
+                    </button>
+                </div>
+            </div>
+
+            <div class="filter-tags">
+                <button class="filter-btn active" onclick="setFilter('all', this)">
+                    <span>All</span>
+                    <span class="filter-count" id="countAll">0</span>
+                </button>
+                <button class="filter-btn" onclick="setFilter('message', this)">
+                    <span>Messages</span>
+                    <span class="filter-count" id="countMsg">0</span>
+                </button>
+                <button class="filter-btn" onclick="setFilter('tip', this)">
+                    <span>Tips &amp; Crypto</span>
+                    <span class="filter-count" id="countTip">0</span>
+                </button>
+                <button class="filter-btn" onclick="setFilter('request', this)">
+                    <span>Requests</span>
+                    <span class="filter-count" id="countReq">0</span>
+                </button>
+                <button class="filter-btn" onclick="setFilter('feedback', this)">
+                    <span>Feedback</span>
+                    <span class="filter-count" id="countFeed">0</span>
+                </button>
+            </div>
+
+            <div class="refresh-progress-bar">
+                <div class="refresh-progress-fill" id="refreshProgressFill"></div>
+            </div>
+        </div>
+
+        <!-- MESSAGES FEED -->
+        <div class="messages-container" id="messagesList">
+            <!-- Dynamically populated -->
+        </div>
+
+        <!-- FOOTER -->
+        <footer>
+            <div>
+                RayzHub Dedicated Message Receiving Outlet // Strictly powered by <strong>BLAST Gateway</strong>
+            </div>
+            <div>
+                Created by <a href="https://github.com/rayzien" target="_blank"><strong>Rayzien</strong></a>
+            </div>
+        </footer>
+    </div>
+
+    <!-- MODAL: INSPECT RAW PAYLOAD -->
+    <div class="modal-overlay" id="inspectModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <div class="modal-title">Raw Transmission Payload (BLAST Proxy)</div>
+                <button class="modal-close" onclick="closeModal('inspectModal')">&times;</button>
+            </div>
+            <pre class="code-viewer" id="rawJsonViewer"></pre>
+            <div style="display:flex; justify-content:flex-end;">
+                <button class="btn" onclick="copyRawJson()">Copy JSON</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- MODAL: IMAGE LIGHTBOX -->
+    <div class="modal-overlay" id="imageModal" onclick="closeModal('imageModal')">
+        <div class="modal-content" style="max-width:800px; text-align:center; background:transparent; border:none; box-shadow:none;">
+            <img id="lightboxImg" src="" style="max-width:100%; max-height:80vh; border-radius:8px; border:2px solid var(--c-cyan); box-shadow:0 0 30px rgba(10,255,228,0.4);">
+        </div>
+    </div>
+
+    <!-- MODAL: TRANSMIT TEST -->
+    <div class="modal-overlay" id="testModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <div class="modal-title">Transmit Test Submission via BLAST Gateway</div>
+                <button class="modal-close" onclick="closeModal('testModal')">&times;</button>
+            </div>
+            <div class="form-group">
+                <label class="form-label">Sender Name</label>
+                <input type="text" id="testName" class="form-control" placeholder="Tester Name or Handle">
+            </div>
+            <div class="form-group">
+                <label class="form-label">Sender Email</label>
+                <input type="email" id="testEmail" class="form-control" placeholder="tester@rayzhub-blast.test">
+            </div>
+            <div class="form-group">
+                <label class="form-label">Category</label>
+                <select id="testType" class="form-control">
+                    <option value="message">General Message</option>
+                    <option value="tip">Crypto Tip / Donation</option>
+                    <option value="request">Project / Custom Request</option>
+                    <option value="feedback">Feedback / Review</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label class="form-label">Amount (Optional for Tips)</label>
+                <input type="text" id="testAmount" class="form-control" placeholder="e.g. $25 or 0.05 SOL">
+            </div>
+            <div class="form-group">
+                <label class="form-label">Transaction ID (Optional)</label>
+                <input type="text" id="testTxId" class="form-control" placeholder="e.g. 0x8a92f...">
+            </div>
+            <div class="form-group">
+                <label class="form-label">Message Content</label>
+                <textarea id="testMsg" class="form-control" rows="3" placeholder="Enter transmission message payload..."></textarea>
+            </div>
+            <div style="display:flex; justify-content:flex-end; gap:10px;">
+                <button class="btn" onclick="closeModal('testModal')">Cancel</button>
+                <button class="btn btn-primary" onclick="submitTestTransmission()">Dispatch via BLAST</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        let allMessages = [];
+        let currentFilter = 'all';
+        let previousCount = 0;
+        let viewMode = 'card';
+        let soundEnabled = true;
+        let pollTimer = null;
+        let pollInterval = 3000;
+        let countdownTimer = null;
+        let lastRawJson = '';
+
+        function formatTimeAgo(isoString) {
+            if (!isoString) return 'Just now';
+            const date = new Date(isoString);
+            if (isNaN(date.getTime())) return isoString;
+            const diff = Math.floor((new Date() - date) / 1000);
+            if (diff < 5) return 'Just now';
+            if (diff < 60) return `${diff}s ago`;
+            if (diff < 3600) return `${Math.floor(diff / 60)}m ago`;
+            if (diff < 86400) return `${Math.floor(diff / 3600)}h ago`;
+            return date.toLocaleDateString() + ' ' + date.toLocaleTimeString([], {hour: '2-digit', minute:'2-digit'});
+        }
+
+        function getTagClass(type) {
+            const t = (type || '').toLowerCase();
+            if (t.includes('request')) return 'tag-request';
+            if (t.includes('feedback')) return 'tag-feedback';
+            if (t.includes('tip')) return 'tag-tip';
+            return 'tag-message';
+        }
+
+        async function fetchMessages(manual = false) {
+            const refreshBtn = document.getElementById('refreshBtn');
+            if (manual && refreshBtn) refreshBtn.textContent = 'Fetching...';
+
+            try {
+                const res = await fetch('/api/received');
+                if (!res.ok) throw new Error('HTTP ' + res.status);
+                const json = await res.json();
+                
+                const items = json.items || [];
+                const latency = json.latency_ms || 0;
+                const blastUrl = json.blast_url || 'BLAST Gateway';
+
+                document.getElementById('blastUrlDisplay').textContent = `BLAST URL: ${blastUrl}`;
+                document.getElementById('latencyBadge').textContent = `⚡ ${latency} ms RTT`;
+                document.getElementById('blastStatusText').textContent = '● BLAST ONLINE';
+                document.getElementById('pulseDot').style.background = 'var(--c-green)';
+
+                if (items.length > previousCount && previousCount > 0) {
+                    if (soundEnabled) playChime();
+                }
+                previousCount = items.length;
+                allMessages = items;
+
+                updateStats(items);
+                renderMessages();
+            } catch (err) {
+                console.warn('Fetch via BLAST error:', err);
+                document.getElementById('blastStatusText').textContent = '⚠ BLAST RETRYING';
+                document.getElementById('pulseDot').style.background = 'var(--c-pink)';
+            } finally {
+                if (manual && refreshBtn) refreshBtn.textContent = 'Refresh';
+                resetProgressBar();
+            }
+        }
+
+        function updateStats(items) {
+            document.getElementById('statCount').textContent = items.length;
+            document.getElementById('countAll').textContent = items.length;
+
+            let tips = 0, reqs = 0, feeds = 0, msgs = 0;
+            items.forEach(m => {
+                const t = (m.request_type || 'message').toLowerCase();
+                if (t.includes('tip') || m.amount) tips++;
+                else if (t.includes('request')) reqs++;
+                else if (t.includes('feedback')) feeds++;
+                else msgs++;
+            });
+
+            document.getElementById('statTips').textContent = tips;
+            document.getElementById('countTip').textContent = tips;
+            document.getElementById('statRequests').textContent = reqs;
+            document.getElementById('countReq').textContent = reqs;
+            document.getElementById('statFeedback').textContent = feeds;
+            document.getElementById('countFeed').textContent = feeds;
+            document.getElementById('countMsg').textContent = msgs;
+
+            if (items.length > 0 && items[0].created_at) {
+                document.getElementById('statLatest').textContent = formatTimeAgo(items[0].created_at);
+            } else {
+                document.getElementById('statLatest').textContent = 'None yet';
+            }
+        }
+
+        function setFilter(type, btn) {
+            currentFilter = type;
+            document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+            btn.classList.add('active');
+            renderMessages();
+        }
+
+        function filterMessages() {
+            renderMessages();
+        }
+
+        function renderMessages() {
+            const container = document.getElementById('messagesList');
+            const search = document.getElementById('searchInput').value.toLowerCase().trim();
+            const sortMode = document.getElementById('sortSelect').value;
+
+            let filtered = allMessages.filter(m => {
+                const type = (m.request_type || 'message').toLowerCase();
+                const name = (m.name || '').toLowerCase();
+                const msg = (m.message || '').toLowerCase();
+                const email = (m.email || '').toLowerCase();
+                const tx = (m.transaction_id || '').toLowerCase();
+                const amt = (m.amount || '').toLowerCase();
+
+                let matchesFilter = false;
+                if (currentFilter === 'all') matchesFilter = true;
+                else if (currentFilter === 'tip') matchesFilter = type.includes('tip') || !!m.amount;
+                else matchesFilter = type.includes(currentFilter);
+
+                const matchesSearch = !search || 
+                    name.includes(search) || 
+                    msg.includes(search) || 
+                    email.includes(search) || 
+                    tx.includes(search) ||
+                    amt.includes(search);
+
+                return matchesFilter && matchesSearch;
+            });
+
+            filtered.sort((a, b) => {
+                if (sortMode === 'oldest') {
+                    return (a.id || 0) - (b.id || 0);
+                } else if (sortMode === 'highest_tip') {
+                    const numA = parseFloat((a.amount || '').replace(/[^0-9.]/g, '')) || 0;
+                    const numB = parseFloat((b.amount || '').replace(/[^0-9.]/g, '')) || 0;
+                    return numB - numA;
+                }
+                return (b.id || 0) - (a.id || 0);
+            });
+
+            if (filtered.length === 0) {
+                container.className = 'messages-container';
+                container.innerHTML = `
+                    <div class="empty-state">
+                        <div class="empty-icon">[NO TRANSMISSIONS]</div>
+                        <div class="empty-title">Inbox Zero in Current Filter</div>
+                        <div class="empty-desc">
+                            All incoming transmissions from RayzHub (http://127.0.0.1:8000) are securely routed through the BLAST Gateway pipeline and loaded dynamically here.
+                        </div>
+                        <button class="btn btn-primary" onclick="openTestModal()">Transmit a Test Message</button>
+                    </div>
+                `;
+                return;
+            }
+
+            if (viewMode === 'table') {
+                container.className = 'messages-container table-mode';
+                container.innerHTML = `
+                    <table class="receiver-table">
+                        <thead>
+                            <tr>
+                                <th>ID</th>
+                                <th>Sender</th>
+                                <th>Type</th>
+                                <th>Message</th>
+                                <th>Tip / Amount</th>
+                                <th>Proof</th>
+                                <th>Timestamp</th>
+                                <th>Action</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            ${filtered.map(m => {
+                                const initial = (m.name || 'A').charAt(0).toUpperCase();
+                                const isAnonymous = m.is_anonymous || m.name === 'Anonymous';
+                                const senderDisplay = isAnonymous ? 'Anonymous' : (m.name || 'Guest');
+                                const tagClass = getTagClass(m.request_type);
+                                const timeAgo = formatTimeAgo(m.created_at);
+                                return `
+                                    <tr>
+                                        <td><code style="color:var(--c-cyan);">#${m.id}</code></td>
+                                        <td>
+                                            <div style="font-weight:700;">${escapeHtml(senderDisplay)}</div>
+                                            <div style="font-size:11px; color:var(--text-dim);">${escapeHtml(m.email || '')}</div>
+                                        </td>
+                                        <td><span class="tag-pill ${tagClass}">${escapeHtml(m.request_type || 'msg')}</span></td>
+                                        <td style="max-width:320px; overflow:hidden; text-overflow:ellipsis; white-space:nowrap;">${escapeHtml(m.message || '')}</td>
+                                        <td>${m.amount ? `<strong style="color:var(--c-green);">${escapeHtml(m.amount)}</strong>` : '-'}</td>
+                                        <td>${m.photo_path ? `<a href="${m.photo_path}" target="_blank" style="color:var(--c-cyan);">View</a>` : '-'}</td>
+                                        <td><span class="timestamp">${timeAgo}</span></td>
+                                        <td><button class="btn-inspect" onclick="inspectItem(${m.id})">Inspect</button></td>
+                                    </tr>
+                                `;
+                            }).join('')}
+                        </tbody>
+                    </table>
+                `;
+            } else {
+                container.className = 'messages-container';
+                container.innerHTML = filtered.map((m, index) => {
+                    const initial = (m.name || 'A').charAt(0).toUpperCase();
+                    const isAnonymous = m.is_anonymous || m.name === 'Anonymous';
+                    const senderDisplay = isAnonymous ? 'Anonymous Tester' : (m.name || 'Guest User');
+                    const tagClass = getTagClass(m.request_type);
+                    const timeAgo = formatTimeAgo(m.created_at);
+
+                    return `
+                        <div class="msg-card ${index === 0 ? 'is-new' : ''}">
+                            <div class="msg-header">
+                                <div class="sender-info">
+                                    <div class="avatar">${initial}</div>
+                                    <div class="sender-details">
+                                        <div class="sender-name">
+                                            <span>${escapeHtml(senderDisplay)}</span>
+                                            ${isAnonymous ? '<span class="anonymous-pill">Anonymous</span>' : ''}
+                                        </div>
+                                        ${m.email ? `<a href="mailto:${escapeHtml(m.email)}" class="sender-email">✉ ${escapeHtml(m.email)}</a>` : ''}
+                                    </div>
+                                </div>
+                                <div class="msg-meta">
+                                    <span class="tag-pill ${tagClass}">// ${escapeHtml(m.request_type || 'message')}</span>
+                                    <span class="status-pill">${escapeHtml(m.status || 'delivered')}</span>
+                                    <span class="timestamp" title="${m.created_at || ''}">${timeAgo}</span>
+                                </div>
+                            </div>
+
+                            <div class="msg-body">${escapeHtml(m.message || '')}</div>
+
+                            ${(m.amount || m.transaction_id) ? `
+                                <div class="tip-box">
+                                    <div style="display:flex; align-items:center; gap:8px;">
+                                        <span>💰 Verified Tip Amount:</span>
+                                        <span class="tip-amount">${escapeHtml(m.amount || 'Unspecified')}</span>
+                                    </div>
+                                    ${m.transaction_id ? `
+                                        <div class="tx-id">
+                                            <span>TXID:</span>
+                                            <span>${escapeHtml(m.transaction_id)}</span>
+                                            <button style="background:none; border:none; color:var(--c-cyan); cursor:pointer;" onclick="copyText('${m.transaction_id}')">📋</button>
+                                        </div>
+                                    ` : ''}
+                                </div>
+                            ` : ''}
+
+                            ${m.photo_path ? `
+                                <div class="attachment-box">
+                                    <span style="font-size:12px; color:var(--text-dim);">Proof Attachment:</span>
+                                    <img src="${m.photo_path}" class="thumb-preview" alt="Proof" onclick="openLightbox('${m.photo_path}')">
+                                </div>
+                            ` : ''}
+
+                            <div class="msg-footer">
+                                <div class="blast-stamp">
+                                    <span>[FETCHED VIA BLAST PROXY]</span>
+                                    <span>&gt;&gt; Supabase Synced</span>
+                                </div>
+                                <div style="display:flex; align-items:center; gap:12px;">
+                                    <span>Transmission #${m.id}</span>
+                                    <button class="btn-inspect" onclick="inspectItem(${m.id})">Inspect Payload</button>
+                                </div>
+                            </div>
+                        </div>
+                    `;
+                }).join('');
+            }
+        }
+
+        function toggleViewMode() {
+            viewMode = (viewMode === 'card') ? 'table' : 'card';
+            document.getElementById('viewModeBtn').textContent = (viewMode === 'card') ? 'Table View' : 'Card View';
+            renderMessages();
+        }
+
+        function toggleSound() {
+            soundEnabled = !soundEnabled;
+            document.getElementById('soundBtn').textContent = soundEnabled ? '🔔 Sound: ON' : '🔕 Sound: OFF';
+        }
+
+        function inspectItem(id) {
+            const item = allMessages.find(m => m.id === id);
+            if (!item) return;
+            lastRawJson = JSON.stringify(item, null, 2);
+            document.getElementById('rawJsonViewer').textContent = lastRawJson;
+            document.getElementById('inspectModal').style.display = 'flex';
+        }
+
+        function copyRawJson() {
+            copyText(lastRawJson);
+            alert('Payload copied to clipboard!');
+        }
+
+        function openLightbox(url) {
+            document.getElementById('lightboxImg').src = url;
+            document.getElementById('imageModal').style.display = 'flex';
+        }
+
+        function openTestModal() {
+            document.getElementById('testModal').style.display = 'flex';
+        }
+
+        function closeModal(id) {
+            document.getElementById(id).style.display = 'none';
+        }
+
+        async function submitTestTransmission() {
+            const name = document.getElementById('testName').value.trim() || 'Tester Pro';
+            const email = document.getElementById('testEmail').value.trim() || 'tester@rayzhub.internal';
+            const reqType = document.getElementById('testType').value;
+            const amount = document.getElementById('testAmount').value.trim() || null;
+            const txId = document.getElementById('testTxId').value.trim() || null;
+            const msg = document.getElementById('testMsg').value.trim() || 'Verified BLAST Pipeline Transmission Test!';
+
+            const payload = {
+                name: name,
+                email: email,
+                message: msg,
+                request_type: reqType,
+                amount: amount,
+                transaction_id: txId,
+                is_anonymous: false,
+                status: 'delivered'
+            };
+
+            try {
+                const res = await fetch('/api/transmit', {
+                    method: 'POST',
+                    headers: {'Content-Type': 'application/json'},
+                    body: JSON.stringify(payload)
+                });
+                if (res.ok) {
+                    closeModal('testModal');
+                    setTimeout(() => fetchMessages(true), 600);
+                } else {
+                    alert('Submission failed via BLAST');
+                }
+            } catch(e) {
+                alert('Transmission error: ' + e);
+            }
+        }
+
+        function exportData(format) {
+            if (format === 'json') {
+                const dataStr = "data:text/json;charset=utf-8," + encodeURIComponent(JSON.stringify(allMessages, null, 2));
+                const dl = document.createElement('a');
+                dl.setAttribute("href", dataStr);
+                dl.setAttribute("download", `rayzhub_blast_transmissions_${Date.now()}.json`);
+                dl.click();
+            } else if (format === 'csv') {
+                if (allMessages.length === 0) return;
+                const headers = ["id", "name", "email", "request_type", "amount", "transaction_id", "status", "created_at", "message"];
+                const rows = allMessages.map(m => headers.map(h => `"${String(m[h] || '').replace(/"/g, '""')}"`).join(','));
+                const csvContent = "data:text/csv;charset=utf-8," + encodeURIComponent([headers.join(','), ...rows].join('\n'));
+                const dl = document.createElement('a');
+                dl.setAttribute("href", csvContent);
+                dl.setAttribute("download", `rayzhub_blast_transmissions_${Date.now()}.csv`);
+                dl.click();
+            }
+        }
+
+        function copyText(str) {
+            navigator.clipboard.writeText(str || '');
+        }
+
+        function escapeHtml(text) {
+            const div = document.createElement('div');
+            div.textContent = text;
+            return div.innerHTML;
+        }
+
+        function playChime() {
+            try {
+                const ctx = new (window.AudioContext || window.webkitAudioContext)();
+                const osc = ctx.createOscillator();
+                const gain = ctx.createGain();
+                osc.type = 'sine';
+                osc.frequency.setValueAtTime(587.33, ctx.currentTime);
+                osc.frequency.exponentialRampToValueAtTime(880, ctx.currentTime + 0.15);
+                gain.gain.setValueAtTime(0.15, ctx.currentTime);
+                gain.gain.exponentialRampToValueAtTime(0.01, ctx.currentTime + 0.35);
+                osc.connect(gain);
+                gain.connect(ctx.destination);
+                osc.start();
+                osc.stop(ctx.currentTime + 0.35);
+            } catch(e) {}
+        }
+
+        function updateRefreshInterval() {
+            pollInterval = parseInt(document.getElementById('autoRefreshSelect').value, 10);
+            if (pollTimer) clearInterval(pollTimer);
+            if (countdownTimer) clearInterval(countdownTimer);
+
+            if (pollInterval > 0) {
+                pollTimer = setInterval(() => fetchMessages(), pollInterval);
+                startProgressBar();
+            } else {
+                document.getElementById('refreshProgressFill').style.width = '0%';
+            }
+        }
+
+        function startProgressBar() {
+            if (countdownTimer) clearInterval(countdownTimer);
+            let startTime = Date.now();
+            countdownTimer = setInterval(() => {
+                if (pollInterval <= 0) return;
+                const elapsed = Date.now() - startTime;
+                const pct = Math.max(0, 100 - (elapsed / pollInterval * 100));
+                document.getElementById('refreshProgressFill').style.width = `${pct}%`;
+                if (elapsed >= pollInterval) {
+                    startTime = Date.now();
+                }
+            }, 50);
+        }
+
+        function resetProgressBar() {
+            if (pollInterval > 0) {
+                startProgressBar();
+            }
+        }
+
+        fetchMessages();
+        updateRefreshInterval();
+    </script>
+</body>
+</html>
