@@ -1195,12 +1195,18 @@
 
             filtered.sort((a, b) => {
                 if (sortMode === 'oldest') {
+                    const timeA = a.created_at ? new Date(a.created_at).getTime() : 0;
+                    const timeB = b.created_at ? new Date(b.created_at).getTime() : 0;
+                    if (timeA !== timeB) return timeA - timeB;
                     return (a.id || 0) - (b.id || 0);
                 } else if (sortMode === 'highest_tip') {
                     const numA = parseFloat((a.amount || '').replace(/[^0-9.]/g, '')) || 0;
                     const numB = parseFloat((b.amount || '').replace(/[^0-9.]/g, '')) || 0;
                     return numB - numA;
                 }
+                const timeA = a.created_at ? new Date(a.created_at).getTime() : 0;
+                const timeB = b.created_at ? new Date(b.created_at).getTime() : 0;
+                if (timeB !== timeA) return timeB - timeA;
                 return (b.id || 0) - (a.id || 0);
             });
 
