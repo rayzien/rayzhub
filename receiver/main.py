@@ -104,7 +104,7 @@ def check_blast_status() -> dict:
         }
 
 
-def fetch_from_blast_url(order: str = "id.desc", limit: int = 500, request_type: str = None) -> dict:
+def fetch_from_blast_url(order: str = "created_at.desc", limit: int = 500, request_type: str = None) -> dict:
     """Fetch messages strictly and only via the BLAST URL Proxy.
 
     Routes:
@@ -112,7 +112,7 @@ def fetch_from_blast_url(order: str = "id.desc", limit: int = 500, request_type:
     """
     params = {
         "select": "*",
-        "order": order or "id.desc",
+        "order": order or "created_at.desc",
     }
     if limit and limit > 0:
         params["limit"] = str(limit)
@@ -237,7 +237,7 @@ class ReceiverOutletHandler(SimpleHTTPRequestHandler):
 
         # 2. API Endpoint: Fetch received messages strictly via BLAST URL
         if parsed.path == "/api/received":
-            order = query.get("order", ["id.desc"])[0]
+            order = query.get("order", ["created_at.desc"])[0]
             limit = int(query.get("limit", [500])[0])
             req_type = query.get("type", ["all"])[0]
 

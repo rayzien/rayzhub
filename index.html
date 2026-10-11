@@ -2335,26 +2335,64 @@
                 }
 
                 if (!delivered) {
-                    const blastUrl = 'https://sas-the-treasure-grape-xr-prototype.onrender.com/v1/queue/rest/v1/requests?blast_key=blast-secret-key-1';
-                    
-                    // Attempt 1: Standard application/json fetch
+                    const blastKey = 'blast-secret-key-1';
+                    const proxyUrl = 'https://sas-the-treasure-grape-xr-prototype.onrender.com/v1/proxy/rest/v1/requests';
+                    const proxyUrlWithKey = `${proxyUrl}?blast_key=${encodeURIComponent(blastKey)}`;
+                    const queueUrl = `https://sas-the-treasure-grape-xr-prototype.onrender.com/v1/queue/rest/v1/requests?blast_key=${encodeURIComponent(blastKey)}`;
+
+                    // Tier 1: Direct Synchronous Proxy with custom headers
                     try {
-                        const bRes = await fetch(blastUrl, {
+                        const pRes = await fetch(proxyUrl, {
                             method: 'POST',
-                            headers: { 'Content-Type': 'application/json' },
+                            headers: {
+                                'Content-Type': 'application/json',
+                                'X-Blast-Key': blastKey,
+                                'Prefer': 'return=representation'
+                            },
                             body: JSON.stringify(payload)
                         });
-                        if (bRes.ok) {
-                            const bData = await bRes.json();
+                        if (pRes.ok) {
+                            const pData = await pRes.json();
                             delivered = true;
-                            jobId = bData.job_id || bData.id || jobId;
+                            jobId = (Array.isArray(pData) && pData[0] && pData[0].id) ? `SYNC-${pData[0].id}` : jobId;
                         }
-                    } catch (corsErr) {}
+                    } catch (e1) {}
 
-                    // Attempt 2: Resilient text/plain fallback (bypasses preflight check)
+                    // Tier 2: Direct Synchronous Proxy via query parameter with text/plain (bypasses CORS preflight)
                     if (!delivered) {
                         try {
-                            const bRes2 = await fetch(blastUrl, {
+                            const pRes2 = await fetch(proxyUrlWithKey, {
+                                method: 'POST',
+                                headers: { 'Content-Type': 'text/plain' },
+                                body: JSON.stringify(payload)
+                            });
+                            if (pRes2.ok) {
+                                delivered = true;
+                                jobId = 'SYNC-' + Date.now().toString().slice(-4);
+                            }
+                        } catch (e2) {}
+                    }
+
+                    // Tier 3: Asynchronous Queue with application/json
+                    if (!delivered) {
+                        try {
+                            const bRes = await fetch(queueUrl, {
+                                method: 'POST',
+                                headers: { 'Content-Type': 'application/json', 'X-Blast-Key': blastKey },
+                                body: JSON.stringify(payload)
+                            });
+                            if (bRes.ok) {
+                                const bData = await bRes.json();
+                                delivered = true;
+                                jobId = bData.job_id || bData.id || jobId;
+                            }
+                        } catch (e3) {}
+                    }
+
+                    // Tier 4: Asynchronous Queue with text/plain
+                    if (!delivered) {
+                        try {
+                            const bRes2 = await fetch(queueUrl, {
                                 method: 'POST',
                                 headers: { 'Content-Type': 'text/plain' },
                                 body: JSON.stringify(payload)
@@ -2364,18 +2402,20 @@
                                 delivered = true;
                                 jobId = bData2.job_id || jobId;
                             }
-                        } catch (fErr) {}
+                        } catch (e4) {}
                     }
 
-                    // Attempt 3: no-cors mode fire-and-forget submission
+                    // Tier 5: no-cors fire-and-forget fallback
                     if (!delivered) {
-                        await fetch(blastUrl, {
-                            method: 'POST',
-                            mode: 'no-cors',
-                            headers: { 'Content-Type': 'text/plain' },
-                            body: JSON.stringify(payload)
-                        });
-                        delivered = true;
+                        try {
+                            await fetch(proxyUrlWithKey, {
+                                method: 'POST',
+                                mode: 'no-cors',
+                                headers: { 'Content-Type': 'text/plain' },
+                                body: JSON.stringify(payload)
+                            });
+                            delivered = true;
+                        } catch (e5) {}
                     }
                 }
 
