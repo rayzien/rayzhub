@@ -1,0 +1,2827 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PHEONIX14 // RAYZIEN — RayzHub Platform</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Dancing+Script:wght@700&family=Playfair+Display:ital,wght@0,900;1,400&family=Space+Grotesk:wght@300;400;700&family=Orbitron:wght@900&family=Abril+Fatface&family=Righteous&family=Permanent+Marker&family=Black+Han+Sans&family=Cinzel+Decorative:wght@900&family=Monoton&display=swap"
+        rel="stylesheet">
+    <style>
+        /* ─── RESET ─── */
+        *,
+        *::before,
+        *::after {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box
+        }
+
+        :root {
+            --c1: #ff2d55;
+            --c2: #0affe4;
+            --c3: #fff;
+            --accent: #ff2d55;
+            --bg-trans: rgba(0, 0, 0, 0.55);
+            --font-display: 'Bebas Neue', sans-serif;
+            --nav-h: 72px;
+        }
+
+        html {
+            scroll-behavior: smooth
+        }
+
+        body {
+            background: #000;
+            color: #fff;
+            min-height: 100vh;
+            overflow-x: hidden;
+        }
+
+        /* ─── CUSTOM CURSOR ─── */
+
+
+        /* ─── BG CANVAS ─── */
+        #bg-wrap {
+            position: fixed;
+            inset: 0;
+            z-index: 0;
+            overflow: hidden;
+        }
+
+        #bg-img {
+            position: absolute;
+            inset: -10%;
+            width: 120%;
+            height: 120%;
+            object-fit: cover;
+            transition: opacity 1.2s ease;
+            filter: brightness(.45) saturate(1.3);
+        }
+
+        #bg-img.fade-out {
+            opacity: 0
+        }
+
+        #bg-img.fade-in {
+            opacity: 1
+        }
+
+        .bg-grain {
+            position: fixed;
+            inset: 0;
+            z-index: 1;
+            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='.06'/%3E%3C/svg%3E");
+            pointer-events: none;
+            opacity: .4;
+        }
+
+        .vignette {
+            position: fixed;
+            inset: 0;
+            z-index: 2;
+            background: radial-gradient(ellipse at center, transparent 30%, rgba(0, 0, 0, .7) 100%);
+            pointer-events: none;
+        }
+
+        /* ─── XTREME WATERMARK ─── */
+        #wm {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            z-index: 3;
+            white-space: nowrap;
+            pointer-events: none;
+            opacity: .06;
+            line-height: 1;
+            letter-spacing: .05em;
+            color: #fff;
+            user-select: none;
+            transition: font-family .5s;
+            animation: wmPulse 8s ease-in-out infinite;
+        }
+
+        @keyframes wmPulse {
+
+            0%,
+            100% {
+                opacity: .05;
+                transform: translate(-50%, -50%) scale(1)
+            }
+
+            50% {
+                opacity: .1;
+                transform: translate(-50%, -50%) scale(1.02)
+            }
+        }
+
+        /* ─── NAV ─── */
+        nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: var(--nav-h);
+            z-index: 100;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 40px;
+            background: linear-gradient(to bottom, rgba(0, 0, 0, .6), transparent);
+            backdrop-filter: blur(0px);
+            transition: background .4s;
+        }
+
+        nav.scrolled {
+            background: rgba(0, 0, 0, .85);
+            backdrop-filter: blur(20px);
+        }
+
+        .logo {
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: clamp(24px, 3vw, 32px);
+            letter-spacing: .12em;
+            color: #fff;
+            text-decoration: none;
+            position: relative;
+        }
+
+        .logo::after {
+            content: '';
+            position: absolute;
+            bottom: -2px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--c1);
+            transition: width .4s;
+        }
+
+        .logo:hover::after {
+            width: 100%
+        }
+
+        .nav-links {
+            display: flex;
+            align-items: center;
+            gap: 36px;
+            list-style: none;
+        }
+
+        .nav-links a {
+            color: rgba(255, 255, 255, .75);
+            text-decoration: none;
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 13px;
+            letter-spacing: .12em;
+            text-transform: uppercase;
+            transition: color .2s;
+            position: relative;
+        }
+
+        .nav-links a::before {
+            content: attr(data-symbol);
+            margin-right: 6px;
+            opacity: .5;
+            font-size: 11px;
+        }
+
+        .nav-links a:hover {
+            color: #fff
+        }
+
+        .nav-right {
+            display: flex;
+            align-items: center;
+            gap: 20px
+        }
+
+        /* notif bell */
+        .notif-btn {
+            background: none;
+            border: 1.5px solid rgba(255, 255, 255, .25);
+            color: #fff;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 18px;
+            transition: border-color .2s, background .2s;
+            position: relative;
+        }
+
+        .notif-btn:hover {
+            border-color: var(--c1);
+            background: rgba(255, 45, 85, .15)
+        }
+
+        .notif-dot {
+            position: absolute;
+            top: 7px;
+            right: 8px;
+            width: 7px;
+            height: 7px;
+            border-radius: 50%;
+            background: var(--c1);
+            box-shadow: 0 0 8px var(--c1);
+            animation: dotPulse 2s infinite;
+        }
+
+        @keyframes dotPulse {
+
+            0%,
+            100% {
+                transform: scale(1)
+            }
+
+            50% {
+                transform: scale(1.4)
+            }
+        }
+
+        /* hamburger */
+        .ham {
+            width: 44px;
+            height: 44px;
+            background: none;
+            border: 1.5px solid rgba(255, 255, 255, .25);
+            border-radius: 4px;
+            cursor: pointer;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 5px;
+            transition: border-color .2s;
+            position: relative;
+            z-index: 200;
+        }
+
+        .ham:hover {
+            border-color: var(--c1)
+        }
+
+        .ham span {
+            display: block;
+            width: 20px;
+            height: 1.5px;
+            background: #fff;
+            transition: all .35s cubic-bezier(.23, 1, .32, 1);
+            transform-origin: center;
+        }
+
+        .ham.open span:nth-child(1) {
+            transform: translateY(6.5px) rotate(45deg)
+        }
+
+        .ham.open span:nth-child(2) {
+            opacity: 0;
+            transform: scaleX(0)
+        }
+
+        .ham.open span:nth-child(3) {
+            transform: translateY(-6.5px) rotate(-45deg)
+        }
+
+        /* ─── FULLSCREEN MENU ─── */
+        #menu-overlay {
+            position: fixed;
+            inset: 0;
+            z-index: 150;
+            background: rgba(0, 0, 0, .96);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity .45s cubic-bezier(.23, 1, .32, 1);
+            backdrop-filter: blur(24px);
+        }
+
+        #menu-overlay.open {
+            opacity: 1;
+            pointer-events: all
+        }
+
+        .menu-inner {
+            text-align: center
+        }
+
+        .menu-tag {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 11px;
+            letter-spacing: .3em;
+            color: var(--c1);
+            text-transform: uppercase;
+            margin-bottom: 48px;
+            animation: fadeSlideUp .4s .1s both;
+        }
+
+        .menu-nav {
+            list-style: none
+        }
+
+        .menu-nav li {
+            overflow: hidden;
+            animation: fadeSlideUp .5s both;
+        }
+
+        .menu-nav li:nth-child(1) {
+            animation-delay: .15s
+        }
+
+        .menu-nav li:nth-child(2) {
+            animation-delay: .2s
+        }
+
+        .menu-nav li:nth-child(3) {
+            animation-delay: .25s
+        }
+
+        .menu-nav li:nth-child(4) {
+            animation-delay: .3s
+        }
+
+        .menu-nav li:nth-child(5) {
+            animation-delay: .35s
+        }
+
+        .menu-nav a {
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: clamp(48px, 9vw, 100px);
+            color: rgba(255, 255, 255, .15);
+            text-decoration: none;
+            letter-spacing: .06em;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 16px;
+            line-height: 1.1;
+            transition: color .3s, transform .3s;
+        }
+
+        .menu-nav a .sym {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: clamp(16px, 2vw, 24px);
+            color: var(--c1);
+            opacity: 0;
+            transform: translateX(-20px);
+            transition: opacity .3s, transform .3s;
+        }
+
+        .menu-nav a:hover {
+            color: #fff;
+            transform: translateX(12px)
+        }
+
+        .menu-nav a:hover .sym {
+            opacity: 1;
+            transform: translateX(0)
+        }
+
+        .menu-social {
+            display: flex;
+            gap: 24px;
+            justify-content: center;
+            margin-top: 56px;
+            animation: fadeSlideUp .5s .5s both;
+        }
+
+        .menu-social a {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 12px;
+            letter-spacing: .15em;
+            text-transform: uppercase;
+            color: rgba(255, 255, 255, .4);
+            text-decoration: none;
+            transition: color .2s;
+        }
+
+        .menu-social a:hover {
+            color: #fff
+        }
+
+        @keyframes fadeSlideUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px)
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0)
+            }
+        }
+
+        /* ─── HERO ─── */
+        #hero {
+            position: relative;
+            z-index: 10;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-end;
+            padding: 0 40px clamp(60px, 8vw, 100px);
+        }
+
+        .hero-eyebrow {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 11px;
+            letter-spacing: .4em;
+            text-transform: uppercase;
+            color: var(--c1);
+            margin-bottom: 20px;
+            animation: fadeSlideUp .7s .3s both;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .hero-eyebrow::before {
+            content: '';
+            display: block;
+            width: 32px;
+            height: 1px;
+            background: var(--c1);
+        }
+
+        .hero-h1 {
+            font-family: var(--font-display);
+            font-size: clamp(72px, 14vw, 220px);
+            line-height: .88;
+            letter-spacing: -.01em;
+            color: #fff;
+            animation: heroReveal .9s .5s both;
+            position: relative;
+        }
+
+        @keyframes heroReveal {
+            from {
+                opacity: 0;
+                transform: translateY(60px) skewY(2deg)
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0) skewY(0)
+            }
+        }
+
+        .hero-h1 em {
+            font-style: italic;
+            font-family: 'Playfair Display', serif;
+            color: var(--c2);
+        }
+
+        .hero-sub {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: clamp(13px, 1.5vw, 15px);
+            font-weight: 300;
+            color: rgba(255, 255, 255, .55);
+            max-width: 420px;
+            line-height: 1.7;
+            margin-top: 24px;
+            animation: fadeSlideUp .7s .8s both;
+        }
+
+        .hero-cta {
+            display: flex;
+            gap: 16px;
+            align-items: center;
+            margin-top: 36px;
+            animation: fadeSlideUp .7s 1s both;
+        }
+
+        .btn-primary {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 13px;
+            letter-spacing: .15em;
+            text-transform: uppercase;
+            color: #000;
+            background: #fff;
+            border: none;
+            padding: 14px 32px;
+            cursor: pointer;
+            position: relative;
+            overflow: hidden;
+            transition: transform .3s;
+        }
+
+        .btn-primary::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: var(--c1);
+            transform: translateX(-101%);
+            transition: transform .35s cubic-bezier(.23, 1, .32, 1);
+        }
+
+        .btn-primary:hover::before {
+            transform: translateX(0)
+        }
+
+        .btn-primary:hover {
+            color: #fff
+        }
+
+        .btn-primary span {
+            position: relative;
+            z-index: 1
+        }
+
+        .btn-ghost {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 13px;
+            letter-spacing: .15em;
+            text-transform: uppercase;
+            color: rgba(255, 255, 255, .6);
+            background: none;
+            border: none;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            transition: color .2s;
+        }
+
+        .btn-ghost:hover {
+            color: #fff
+        }
+
+        .btn-ghost::after {
+            content: '→';
+            font-size: 16px;
+            transition: transform .2s;
+        }
+
+        .btn-ghost:hover::after {
+            transform: translateX(6px)
+        }
+
+        /* scroll counter */
+        .scroll-counter {
+            position: fixed;
+            bottom: 36px;
+            right: 40px;
+            z-index: 20;
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 11px;
+            letter-spacing: .15em;
+            color: rgba(255, 255, 255, .4);
+            writing-mode: vertical-rl;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .scroll-counter span {
+            color: #fff;
+            font-weight: 700;
+            font-size: 14px
+        }
+
+        /* slide indicator */
+        .slide-dots {
+            position: fixed;
+            right: 40px;
+            top: 50%;
+            transform: translateY(-50%);
+            z-index: 20;
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+
+        .slide-dot {
+            width: 3px;
+            height: 24px;
+            background: rgba(255, 255, 255, .2);
+            border-radius: 2px;
+            cursor: pointer;
+            transition: height .3s, background .3s;
+        }
+
+        .slide-dot.active {
+            height: 40px;
+            background: #fff
+        }
+
+        /* ─── SECTIONS ─── */
+        section {
+            position: relative;
+            z-index: 10;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            padding: 120px 40px;
+        }
+
+        .section-label {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 11px;
+            letter-spacing: .3em;
+            text-transform: uppercase;
+            color: var(--c1);
+            margin-bottom: 16px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .section-label::after {
+            content: '';
+            flex: 0 0 40px;
+            height: 1px;
+            background: var(--c1)
+        }
+
+        .section-h2 {
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(36px, 6vw, 84px);
+            font-weight: 900;
+            line-height: 1.05;
+            color: #fff;
+            margin-bottom: 32px;
+        }
+
+        .section-h2 em {
+            font-style: italic;
+            color: var(--c2);
+        }
+
+        /* cards grid */
+        .cards {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 1px;
+            background: rgba(255, 255, 255, .08);
+            border: 1px solid rgba(255, 255, 255, .08);
+            margin-top: 60px;
+        }
+
+        .card {
+            background: #000;
+            padding: 40px 32px;
+            position: relative;
+            overflow: hidden;
+            transition: background .3s;
+        }
+
+        .card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 2px;
+            background: var(--c1);
+            transform: scaleX(0);
+            transform-origin: left;
+            transition: transform .4s cubic-bezier(.23, 1, .32, 1);
+        }
+
+        .card:hover {
+            background: rgba(255, 255, 255, .04)
+        }
+
+        .card:hover::before {
+            transform: scaleX(1)
+        }
+
+        .card-num {
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: 64px;
+            color: rgba(255, 255, 255, .06);
+            line-height: 1;
+            margin-bottom: 12px;
+            transition: color .3s;
+        }
+
+        .card:hover .card-num {
+            color: rgba(255, 45, 85, .2)
+        }
+
+        .card-icon {
+            font-size: 22px;
+            margin-bottom: 16px;
+            color: var(--c2);
+        }
+
+        .card h3 {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 15px;
+            font-weight: 700;
+            letter-spacing: .05em;
+            text-transform: uppercase;
+            color: #fff;
+            margin-bottom: 10px;
+        }
+
+        .card p {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 13px;
+            font-weight: 300;
+            color: rgba(255, 255, 255, .45);
+            line-height: 1.7;
+        }
+
+        /* ─── MARQUEE ─── */
+        .marquee-wrap {
+            position: relative;
+            z-index: 10;
+            border-top: 1px solid rgba(255, 255, 255, .08);
+            border-bottom: 1px solid rgba(255, 255, 255, .08);
+            overflow: hidden;
+            padding: 20px 0;
+            background: rgba(0, 0, 0, .4);
+            backdrop-filter: blur(12px);
+        }
+
+        .marquee-track {
+            display: flex;
+            gap: 0;
+            width: max-content;
+            animation: marquee 28s linear infinite;
+        }
+
+        .marquee-track:hover {
+            animation-play-state: paused
+        }
+
+        @keyframes marquee {
+            0% {
+                transform: translateX(0)
+            }
+
+            100% {
+                transform: translateX(-50%)
+            }
+        }
+
+        .marquee-item {
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: clamp(18px, 2.5vw, 24px);
+            letter-spacing: .15em;
+            color: rgba(255, 255, 255, .15);
+            padding: 0 40px;
+            white-space: nowrap;
+            display: flex;
+            align-items: center;
+            gap: 40px;
+            transition: color .2s;
+        }
+
+        .marquee-item .dot {
+            width: 5px;
+            height: 5px;
+            border-radius: 50%;
+            background: var(--c1);
+            flex-shrink: 0;
+        }
+
+        /* ─── FRAME-BY-FRAME ANIMATION ─── */
+        .fbf-stage {
+            position: relative;
+            z-index: 10;
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+        }
+
+        .fbf-canvas {
+            position: relative;
+            width: min(600px, 90vw);
+            height: min(600px, 90vw);
+        }
+
+        .fbf-frame {
+            position: absolute;
+            inset: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            transition: opacity .05s;
+        }
+
+        .fbf-frame.visible {
+            opacity: 1
+        }
+
+        /* frame shapes */
+        .shape {
+            border-radius: 0
+        }
+
+        .f1 .shape {
+            width: 40%;
+            height: 40%;
+            background: var(--c1);
+            transform: rotate(0deg);
+            animation: none
+        }
+
+        .f2 .shape {
+            width: 55%;
+            height: 20%;
+            background: var(--c2);
+            transform: rotate(45deg)
+        }
+
+        .f3 .shape {
+            width: 70%;
+            height: 70%;
+            background: none;
+            border: 3px solid #fff;
+            border-radius: 50%
+        }
+
+        .f4 .shape {
+            width: 30%;
+            height: 80%;
+            background: var(--c1);
+            transform: skewX(-15deg)
+        }
+
+        .f5 .shape {
+            width: 80%;
+            height: 80%;
+            background: none;
+            border: 3px solid var(--c2);
+            transform: rotate(45deg)
+        }
+
+        .f6 .shape {
+            width: 50%;
+            height: 50%;
+            background: #fff;
+            clip-path: polygon(50% 0%, 100% 100%, 0% 100%)
+        }
+
+        .f7 .shape {
+            width: 60%;
+            height: 60%;
+            background: none;
+            border: 2px solid var(--c1);
+            border-radius: 50%;
+            box-shadow: 0 0 0 20px rgba(255, 45, 85, .1), 0 0 0 40px rgba(255, 45, 85, .05)
+        }
+
+        .f8 .shape {
+            width: 45%;
+            height: 45%;
+            background: var(--c2);
+            transform: rotate(22.5deg)
+        }
+
+        .fbf-text {
+            position: absolute;
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: clamp(72px, 16vw, 160px);
+            color: rgba(255, 255, 255, .07);
+            letter-spacing: .1em;
+            pointer-events: none;
+            white-space: nowrap;
+        }
+
+        .fbf-counter {
+            position: absolute;
+            bottom: 20px;
+            right: 20px;
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 11px;
+            color: rgba(255, 255, 255, .3);
+            letter-spacing: .15em;
+        }
+
+        /* ─── FOOTER ─── */
+        footer {
+            position: relative;
+            z-index: 10;
+            padding: 80px 40px 40px;
+            border-top: 1px solid rgba(255, 255, 255, .08);
+        }
+
+        .footer-top {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-end;
+            flex-wrap: wrap;
+            gap: 40px;
+            margin-bottom: 60px;
+        }
+
+        .footer-logo {
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: clamp(56px, 10vw, 120px);
+            color: rgba(255, 255, 255, .07);
+            line-height: 1;
+            letter-spacing: .05em;
+            transition: color .3s;
+            cursor: pointer;
+        }
+
+        .footer-logo:hover {
+            color: rgba(255, 255, 255, .15)
+        }
+
+        .footer-links {
+            display: flex;
+            gap: 32px;
+            list-style: none;
+            flex-wrap: wrap;
+        }
+
+        .footer-links a {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 12px;
+            letter-spacing: .15em;
+            text-transform: uppercase;
+            color: rgba(255, 255, 255, .35);
+            text-decoration: none;
+            transition: color .2s;
+        }
+
+        .footer-links a:hover {
+            color: #fff
+        }
+
+        .footer-bottom {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 16px;
+            padding-top: 24px;
+            border-top: 1px solid rgba(255, 255, 255, .05);
+        }
+
+        .footer-copy {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 11px;
+            color: rgba(255, 255, 255, .2);
+            letter-spacing: .1em;
+        }
+
+        /* ─── NOTIFICATIONS UI ─── */
+        #notif-toast {
+            position: fixed;
+            top: 90px;
+            right: 24px;
+            z-index: 999;
+            background: rgba(10, 10, 10, .95);
+            border: 1px solid rgba(255, 255, 255, .12);
+            border-left: 3px solid var(--c1);
+            padding: 16px 20px;
+            width: 300px;
+            backdrop-filter: blur(20px);
+            transform: translateX(120%);
+            transition: transform .4s cubic-bezier(.23, 1, .32, 1);
+        }
+
+        #notif-toast.show {
+            transform: translateX(0)
+        }
+
+        .notif-title {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 13px;
+            font-weight: 700;
+            color: #fff;
+            letter-spacing: .05em;
+            margin-bottom: 4px;
+        }
+
+        .notif-body {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 12px;
+            color: rgba(255, 255, 255, .5);
+            line-height: 1.5;
+        }
+
+        .notif-close {
+            position: absolute;
+            top: 10px;
+            right: 12px;
+            background: none;
+            border: none;
+            color: rgba(255, 255, 255, .3);
+            cursor: pointer;
+            font-size: 16px;
+            transition: color .2s;
+        }
+
+        .notif-close:hover {
+            color: #fff
+        }
+
+        /* ─── PAGE LOADER ─── */
+        #loader {
+            position: fixed;
+            inset: 0;
+            z-index: 9000;
+            background: #000;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+            gap: 24px;
+            transition: opacity .6s .2s, visibility .6s .2s;
+        }
+
+        #loader.done {
+            opacity: 0;
+            visibility: hidden
+        }
+
+        .loader-logo {
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: clamp(40px, 8vw, 80px);
+            letter-spacing: .2em;
+            color: #fff;
+            animation: loaderPulse 1.2s ease-in-out infinite;
+        }
+
+        @keyframes loaderPulse {
+
+            0%,
+            100% {
+                opacity: 1
+            }
+
+            50% {
+                opacity: .3
+            }
+        }
+
+        .loader-bar-wrap {
+            width: 200px;
+            height: 2px;
+            background: rgba(255, 255, 255, .1);
+        }
+
+        .loader-bar {
+            height: 100%;
+            background: var(--c1);
+            width: 0;
+            animation: loaderFill 1.6s ease forwards;
+        }
+
+        @keyframes loaderFill {
+            0% {
+                width: 0
+            }
+
+            100% {
+                width: 100%
+            }
+        }
+
+        /* ─── RESPONSIVE ─── */
+        @media(max-width:768px) {
+            nav {
+                padding: 0 20px
+            }
+
+            .nav-links {
+                display: none
+            }
+
+            #hero {
+                padding: 0 20px 60px
+            }
+
+            section {
+                padding: 80px 20px
+            }
+
+            .slide-dots,
+            .scroll-counter {
+                display: none
+            }
+
+            .cards {
+                grid-template-columns: 1fr
+            }
+
+            footer {
+                padding: 60px 20px 30px
+            }
+
+            .footer-top {
+                flex-direction: column;
+                align-items: flex-start
+            }
+        }
+
+        /* ─── BG COLOR BLEED ─── */
+        .bg-color-bleed {
+            position: fixed;
+            inset: 0;
+            z-index: 1;
+            pointer-events: none;
+            mix-blend-mode: color;
+            opacity: .25;
+            transition: background 2s ease;
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- PAGE LOADER -->
+    <div id="loader">
+        <div class="loader-logo">XTREME</div>
+        <div class="loader-bar-wrap">
+            <div class="loader-bar"></div>
+        </div>
+    </div>
+
+
+
+    <!-- BACKGROUNDS -->
+    <div id="bg-wrap">
+        <img id="bg-img" src="" alt="" class="fade-in">
+    </div>
+    <div class="bg-grain"></div>
+    <div class="bg-color-bleed" id="colorBleed"></div>
+    <div class="vignette"></div>
+
+    <!-- WATERMARK -->
+    <div id="wm">PHEONIX14 // RAYZIEN</div>
+
+    <!-- NOTIFICATION TOAST -->
+    <div id="notif-toast">
+        <button class="notif-close" onclick="closeToast()">&times;</button>
+        <div class="notif-title" id="nt-title">RAYZHUB // BLAST</div>
+        <div class="notif-body" id="nt-body">Welcome to the official hub.</div>
+    </div>
+
+    <!-- NAV -->
+    <nav id="navbar">
+        <a href="#" class="logo" style="letter-spacing:2px; font-weight:900;">RAYZHUB</a>
+        <ul class="nav-links">
+            <li><a href="#hero" data-symbol="[01]">Overview</a></li>
+            <li><a href="#about" data-symbol="[02]">About</a></li>
+            <li><a href="#youtube" data-symbol="[03]">YouTube</a></li>
+            <li><a href="#profiles" data-symbol="[04]">Architects</a></li>
+            <li><a href="#stars" data-symbol="[05]">Stars &amp; Repos</a></li>
+            <li><a href="#donation" data-symbol="[06]">Donate (LTC/POL)</a></li>
+            <li><a href="#messages" data-symbol="[07]">Transmit</a></li>
+            <li><a href="#contact" data-symbol="[08]">Contact &amp; Host</a></li>
+            <li><a href="http://127.0.0.1:8001" target="_blank" data-symbol="[RX]">Receiver</a></li>
+        </ul>
+        <div class="nav-right">
+            <button class="notif-btn" onclick="requestNotif()" title="Enable notifications">
+                [N]
+                <div class="notif-dot"></div>
+            </button>
+            <button class="ham" id="ham" onclick="toggleMenu()">
+                <span></span><span></span><span></span>
+            </button>
+        </div>
+    </nav>
+
+    <!-- FULL MENU OVERLAY -->
+    <div id="menu-overlay">
+        <div class="menu-inner">
+            <p class="menu-tag">// Navigation //</p>
+            <ul class="menu-nav">
+                <li><a href="#hero" onclick="closeMenu()"><span class="sym">[01]</span>Overview</a></li>
+                <li><a href="#about" onclick="closeMenu()"><span class="sym">[02]</span>About Us</a></li>
+                <li><a href="#youtube" onclick="closeMenu()"><span class="sym">[03]</span>YouTube Channel</a></li>
+                <li><a href="#profiles" onclick="closeMenu()"><span class="sym">[04]</span>Architects</a></li>
+                <li><a href="#stars" onclick="closeMenu()"><span class="sym">[05]</span>Stars &amp; Repos</a></li>
+                <li><a href="#donation" onclick="closeMenu()"><span class="sym">[06]</span>Donate (LTC / POL)</a></li>
+                <li><a href="#messages" onclick="closeMenu()"><span class="sym">[07]</span>Transmit</a></li>
+                <li><a href="#contact" onclick="closeMenu()"><span class="sym">[08]</span>Contact &amp; Host</a></li>
+                <li><a href="http://127.0.0.1:8001" target="_blank" onclick="closeMenu()"><span class="sym">[RX]</span>Live Receiver</a></li>
+            </ul>
+            <div class="menu-social">
+                <a href="https://youtube.com/@rayzien" target="_blank">YouTube @rayzien</a>
+                <a href="https://github.com/rayzien" target="_blank">GitHub @rayzien</a>
+                <a href="https://github.com/pheonix14" target="_blank">GitHub @pheonix14</a>
+                <a href="http://127.0.0.1:8000/api/blast/status" target="_blank">BLAST Gateway Health</a>
+            </div>
+        </div>
+    </div>
+
+    <!-- SLIDE DOTS -->
+    <div class="slide-dots">
+        <div class="slide-dot active"></div>
+        <div class="slide-dot"></div>
+        <div class="slide-dot"></div>
+        <div class="slide-dot"></div>
+    </div>
+
+    <!-- SCROLL COUNTER -->
+    <div class="scroll-counter"><span id="scrollPct">00</span>%</div>
+
+    <!-- ═══ HERO ═══ -->
+    <section id="hero" style="min-height: 90vh; display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center; padding: 100px 20px 40px 20px;">
+        <p class="hero-eyebrow" style="font-family:'Space Grotesk',sans-serif; letter-spacing:3px; color:#0affe4; font-weight:700;">
+            // RAYZHUB DISTRIBUTED PLATFORM // POWERED BY BLAST GATEWAY
+        </p>
+        <h1 class="hero-h1" id="hero-h1" style="font-size:clamp(54px, 11vw, 130px); line-height:0.9; margin: 16px 0;">
+            PHEONIX14<br><em style="color:#ff2d55;">RAYZIEN</em>
+        </h1>
+        <p class="hero-sub" style="max-width: 680px; font-size: clamp(15px, 1.8vw, 18px); color: rgba(255,255,255,0.7); margin-bottom: 24px;">
+            Autonomous Systems, Anti-Detect Engines, and Distributed Infrastructure. Built for speed and simplification of life.
+        </p>
+
+        <!-- ═══ PROMINENT ARCHITECTURE PATH ═══ -->
+        <div style="background: rgba(10, 14, 24, 0.85); backdrop-filter: blur(16px); border: 1px solid rgba(10,255,228,0.4); border-radius: 10px; padding: 14px 24px; margin: 0 0 32px 0; display: inline-flex; align-items: center; gap: 12px; flex-wrap: wrap; justify-content: center; box-shadow: 0 8px 30px rgba(0,0,0,0.6);">
+            <span style="font-family:'Space Grotesk',sans-serif; font-size:11px; font-weight:800; color:rgba(255,255,255,0.6); text-transform:uppercase; letter-spacing:1.5px;">
+                Architecture Flow:
+            </span>
+            <span style="background:rgba(255,45,85,0.2); color:#ff5e7e; border:1px solid rgba(255,45,85,0.4); padding:4px 12px; border-radius:4px; font-weight:700; font-size:13px;">
+                RAYZHUB [Client / API]
+            </span>
+            <span style="color:rgba(255,255,255,0.4); font-weight:bold;">&gt;&gt;</span>
+            <span style="background:rgba(10,255,228,0.2); color:#0affe4; border:1px solid rgba(10,255,228,0.4); padding:4px 12px; border-radius:4px; font-weight:700; font-size:13px;">
+                BLAST GATEWAY [Render Cluster Queue]
+            </span>
+            <span style="color:rgba(255,255,255,0.4); font-weight:bold;">&gt;&gt;</span>
+            <span style="background:rgba(62,207,142,0.2); color:#3ecf8e; border:1px solid rgba(62,207,142,0.4); padding:4px 12px; border-radius:4px; font-weight:700; font-size:13px;">
+                SUPABASE [Persistent DB Backend]
+            </span>
+        </div>
+
+        <div class="hero-cta" style="display: flex; gap: 14px; flex-wrap: wrap; justify-content: center;">
+            <a href="#about" class="btn-primary" style="text-decoration:none;"><span>About Us</span></a>
+            <a href="#youtube" class="btn-ghost" style="text-decoration:none; border-color:#ff2d55; color:#ff8099;">YouTube Channel</a>
+            <a href="#profiles" class="btn-ghost" style="text-decoration:none;">Architects</a>
+            <a href="#stars" class="btn-ghost" style="text-decoration:none;">Repositories</a>
+            <a href="#donation" class="btn-ghost" style="text-decoration:none; border-color:#9945ff; color:#bb7eff;">Donate (LTC/POL)</a>
+            <a href="#messages" class="btn-ghost" style="text-decoration:none; border-color:#0affe4; color:#0affe4;">Transmit</a>
+            <a href="#contact" class="btn-ghost" style="text-decoration:none; border-color:#00ff66; color:#00ff66;">Contact &amp; Host</a>
+        </div>
+    </section>
+
+<section id="donation" style="padding: 60px 20px; display: flex; flex-direction: column; align-items: center; position: relative; z-index: 10;">
+        <p class="section-label" style="justify-content:center;">// SPONSORSHIP &amp; FUNDING</p>
+        <h2 class="section-h2" style="text-align:center;">Support<br><em>Open Source</em><br>Infrastructure</h2>
+        <p style="font-family:'Space Grotesk',sans-serif; color:rgba(255,255,255,0.6); max-width:620px; text-align:center; font-size:14px; margin: 12px 0 36px 0; line-height: 1.6;">
+            Help fund continuous server nodes, high-speed proxy bandwidth, and GPU compute clusters for @rayzien and @pheonix14.
+        </p>
+
+        <!-- QR CODE STORAGE INFO BANNER -->
+        <div style="background: rgba(10, 14, 24, 0.85); border: 1px solid rgba(10,255,228,0.3); border-radius: 8px; padding: 12px 18px; margin-bottom: 24px; max-width: 880px; width: 100%; font-family:'Space Grotesk',sans-serif; font-size: 12.5px; color: rgba(255,255,255,0.8); display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 8px;">
+            <div>
+                <span style="color:#0affe4; font-weight:700;">[STORAGE STRUCTURE]</span>
+                Folders: <code style="color:#ff8099; background:rgba(255,45,85,0.1); padding:2px 6px; border-radius:3px;">ltc/</code>, <code style="color:#ff8099; background:rgba(255,45,85,0.1); padding:2px 6px; border-radius:3px;">sltc/</code>, <code style="color:#bb7eff; background:rgba(153,69,255,0.15); padding:2px 6px; border-radius:3px;">pol/</code>, <code style="color:#bb7eff; background:rgba(153,69,255,0.15); padding:2px 6px; border-radius:3px;">polygon/</code>
+            </div>
+            <div style="font-size: 11.5px; color: rgba(255,255,255,0.55);">
+                Replace &lt;coin&gt;.png &amp; &lt;coin&gt;.txt to live-update addresses
+            </div>
+        </div>
+
+        <!-- CRYPTO ADDRESS CARDS WITH HIGH-CONTRAST QR DISPLAY (LITECOIN & POLYGON ONLY) -->
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 24px; width: 100%; max-width: 880px; margin-bottom: 36px;">
+            
+            <!-- LITECOIN (LTC / SLTC) -->
+            <div style="background: rgba(14, 18, 30, 0.85); backdrop-filter: blur(16px); border: 1px solid rgba(255, 45, 85, 0.4); border-radius: 10px; padding: 24px; display: flex; flex-direction: column; gap: 14px; text-align: center;">
+                <div style="display: flex; justify-content: space-between; align-items: center;">
+                    <span style="font-family:'Space Grotesk',sans-serif; font-weight: 700; font-size: 15px; color: #fff;">Litecoin (LTC / SLTC)</span>
+                    <span style="background: rgba(255,45,85,0.15); color: #ff5e7e; padding: 2px 8px; border-radius: 4px; font-size: 10px; font-weight: 700; text-transform: uppercase;">Scrypt // Fast</span>
+                </div>
+                <div style="background: #ffffff; border-radius: 8px; padding: 10px; width: 150px; height: 150px; margin: 0 auto; display: flex; align-items: center; justify-content: center; box-shadow: 0 4px 16px rgba(0,0,0,0.5);">
+                    <img src="ltc/ltc.png" alt="LTC QR" style="width: 130px; height: 130px; object-fit: contain; image-rendering: pixelated;">
+                </div>
+                <div style="background: rgba(0,0,0,0.55); padding: 10px 12px; border-radius: 6px; border: 1px solid rgba(255,255,255,0.08); font-family: monospace; font-size: 12px; color: #ff5e7e; word-break: break-all;" id="addrLtc">
+                    LTC_PLACEHOLDER_WALLET_ADDRESS
+                </div>
+                <div style="display: flex; gap: 8px;">
+                    <button onclick="copyCryptoAddress('addrLtc', 'Litecoin Address')" 
+                        style="flex: 1; background: rgba(255,45,85,0.18); border: 1px solid #ff2d55; color: #fff; padding: 9px 14px; border-radius: 6px; font-family:'Space Grotesk',sans-serif; font-size: 12px; font-weight: 600; cursor: pointer; transition: background 0.2s;">
+                        Copy LTC Address
+                    </button>
+                    <a href="ltc/ltc.txt" target="_blank" style="background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.15); color: rgba(255,255,255,0.7); padding: 9px 12px; border-radius: 6px; font-family:'Space Grotesk',sans-serif; font-size: 11px; text-decoration: none; display: flex; align-items: center;">
+                        [txt]
+                    </a>
+                </div>
+                <span style="font-size: 10.5px; color: rgba(255,255,255,0.45); font-family: monospace;">Source: /ltc/ltc.png &amp; /sltc/</span>
+            </div>
+
+            <!-- POLYGON (POL / MATIC) -->
+            <div style="background: rgba(14, 18, 30, 0.85); backdrop-filter: blur(16px); border: 1px solid rgba(153, 69, 255, 0.45); border-radius: 10px; padding: 24px; display: flex; flex-direction: column; gap: 14px; text-align: center;">
+                <div style="display: flex; justify-content: space-between; align-items: center;">
+                    <span style="font-family:'Space Grotesk',sans-serif; font-weight: 700; font-size: 15px; color: #fff;">Polygon (POL / MATIC)</span>
+                    <span style="background: rgba(153,69,255,0.18); color: #bb7eff; padding: 2px 8px; border-radius: 4px; font-size: 10px; font-weight: 700; text-transform: uppercase;">Polygon PoS // EVM</span>
+                </div>
+                <div style="background: #ffffff; border-radius: 8px; padding: 10px; width: 150px; height: 150px; margin: 0 auto; display: flex; align-items: center; justify-content: center; box-shadow: 0 4px 16px rgba(0,0,0,0.5);">
+                    <img src="pol/pol.png" alt="Polygon QR" style="width: 130px; height: 130px; object-fit: contain; image-rendering: pixelated;">
+                </div>
+                <div style="background: rgba(0,0,0,0.55); padding: 10px 12px; border-radius: 6px; border: 1px solid rgba(255,255,255,0.08); font-family: monospace; font-size: 12px; color: #bb7eff; word-break: break-all;" id="addrPol">
+                    0x71C83a542b5B5187e59b7Ab486B26A476FCE6b38
+                </div>
+                <div style="display: flex; gap: 8px;">
+                    <button onclick="copyCryptoAddress('addrPol', 'Polygon Address')" 
+                        style="flex: 1; background: rgba(153,69,255,0.22); border: 1px solid #9945ff; color: #fff; padding: 9px 14px; border-radius: 6px; font-family:'Space Grotesk',sans-serif; font-size: 12px; font-weight: 600; cursor: pointer; transition: background 0.2s;">
+                        Copy POL Address
+                    </button>
+                    <a href="pol/pol.txt" target="_blank" style="background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.15); color: rgba(255,255,255,0.7); padding: 9px 12px; border-radius: 6px; font-family:'Space Grotesk',sans-serif; font-size: 11px; text-decoration: none; display: flex; align-items: center;">
+                        [txt]
+                    </a>
+                </div>
+                <span style="font-size: 10.5px; color: rgba(255,255,255,0.45); font-family: monospace;">Source: /pol/pol.png &amp; /polygon/</span>
+            </div>
+
+        </div>
+
+        <!-- CONTRIBUTION FORM BOX -->
+        <div style="background: rgba(14, 17, 27, 0.88); backdrop-filter: blur(24px); border: 1px solid rgba(255,45,85,0.3); border-radius: 12px; padding: 28px; width: 100%; max-width: 680px; box-shadow: 0 16px 40px rgba(0,0,0,0.6); display: flex; flex-direction: column; gap: 16px;">
+            <div style="font-family:'Space Grotesk',sans-serif; font-size: 15px; font-weight: 700; color: #fff; border-bottom: 1px solid rgba(255,255,255,0.08); padding-bottom: 10px;">
+                Record Contribution Proof &amp; Shoutout
+            </div>
+
+            <!-- TIER SELECTOR BUTTONS -->
+            <div style="display: flex; gap: 8px; flex-wrap: wrap;">
+                <button onclick="setDonationTier('$5 Coffee', this)" class="tier-btn active"
+                    style="background: rgba(255,45,85,0.2); border: 1px solid #ff2d55; color: #fff; padding: 6px 14px; border-radius: 4px; font-family:'Space Grotesk',sans-serif; font-size: 12px; cursor: pointer;">
+                    $5 Coffee
+                </button>
+                <button onclick="setDonationTier('$20 Server Node', this)" class="tier-btn"
+                    style="background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.15); color: rgba(255,255,255,0.8); padding: 6px 14px; border-radius: 4px; font-family:'Space Grotesk',sans-serif; font-size: 12px; cursor: pointer;">
+                    $20 Server Node
+                </button>
+                <button onclick="setDonationTier('$50 Cluster Power', this)" class="tier-btn"
+                    style="background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.15); color: rgba(255,255,255,0.8); padding: 6px 14px; border-radius: 4px; font-family:'Space Grotesk',sans-serif; font-size: 12px; cursor: pointer;">
+                    $50 Cluster Power
+                </button>
+                <button onclick="setDonationTier('$100 Visionary', this)" class="tier-btn"
+                    style="background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.15); color: rgba(255,255,255,0.8); padding: 6px 14px; border-radius: 4px; font-family:'Space Grotesk',sans-serif; font-size: 12px; cursor: pointer;">
+                    $100 Visionary
+                </button>
+            </div>
+
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 12px;">
+                <input type="text" id="tipName" placeholder="Donor Name / Alias" 
+                    style="background: rgba(0,0,0,0.5); border: 1px solid rgba(255,255,255,0.15); border-radius: 6px; padding: 10px 14px; color: #fff; font-family:'Space Grotesk',sans-serif; font-size: 13px; outline: none;">
+                <input type="text" id="tipAmount" value="$5 Coffee" placeholder="Amount or Tier" 
+                    style="background: rgba(0,0,0,0.5); border: 1px solid rgba(255,255,255,0.15); border-radius: 6px; padding: 10px 14px; color: #fff; font-family:'Space Grotesk',sans-serif; font-size: 13px; outline: none;">
+            </div>
+
+            <input type="text" id="tipTxId" placeholder="Transaction Hash / Proof ID (optional)" 
+                style="background: rgba(0,0,0,0.5); border: 1px solid rgba(255,255,255,0.15); border-radius: 6px; padding: 10px 14px; color: #fff; font-family:'Space Grotesk',sans-serif; font-size: 13px; outline: none;">
+                
+            <div style="display: flex; flex-direction: column; gap: 8px;">
+                <label for="tipProofImage" style="font-family:'Space Grotesk',sans-serif; font-size: 13px; color: rgba(255,255,255,0.7);">Upload Proof Image (Optional)</label>
+                <input type="file" id="tipProofImage" accept="image/*" 
+                    style="background: rgba(0,0,0,0.5); border: 1px solid rgba(255,255,255,0.15); border-radius: 6px; padding: 8px; color: #fff; font-family:'Space Grotesk',sans-serif; font-size: 13px; outline: none; cursor: pointer;">
+            </div>
+
+            <textarea id="tipMsg" rows="2" placeholder="Note or shoutout to the developers..." 
+                style="background: rgba(0,0,0,0.5); border: 1px solid rgba(255,255,255,0.15); border-radius: 6px; padding: 10px 14px; color: #fff; font-family:'Space Grotesk',sans-serif; font-size: 13px; outline: none; resize: vertical;"></textarea>
+
+            <button id="btnSendTip" onclick="submitDonationProof()"
+                style="background: linear-gradient(135deg, #ff2d55, #ff5e7e); border: none; color: #fff; padding: 12px 20px; border-radius: 6px; font-family:'Space Grotesk',sans-serif; font-size: 13px; font-weight: 700; text-transform: uppercase; letter-spacing: 1px; cursor: pointer;">
+                Confirm Contribution Proof
+            </button>
+            <div id="tipStatus" style="display: none; padding: 10px 14px; border-radius: 6px; font-size: 13px;"></div>
+        </div>
+    </section>
+
+    <!-- MARQUEE -->
+    <div class="marquee-wrap">
+        <div class="marquee-track" id="mq">
+            <!-- filled by JS -->
+        </div>
+    </div>
+
+    <!-- ═══ FRAME-BY-FRAME ANIMATION ═══ -->
+    <div class="fbf-stage" id="fbf">
+        <div class="fbf-canvas" id="fbfCanvas">
+            <div class="fbf-text">RAYZHUB</div>
+            <div class="fbf-frame f1 visible">
+                <div class="shape"></div>
+            </div>
+            <div class="fbf-frame f2">
+                <div class="shape"></div>
+            </div>
+            <div class="fbf-frame f3">
+                <div class="shape"></div>
+            </div>
+            <div class="fbf-frame f4">
+                <div class="shape"></div>
+            </div>
+            <div class="fbf-frame f5">
+                <div class="shape"></div>
+            </div>
+            <div class="fbf-frame f6">
+                <div class="shape"></div>
+            </div>
+            <div class="fbf-frame f7">
+                <div class="shape"></div>
+            </div>
+            <div class="fbf-frame f8">
+                <div class="shape"></div>
+            </div>
+            <div class="fbf-counter" id="fbfCounter">01 / 08</div>
+        </div>
+    </div>
+
+    <!-- ═══ ENGINEERING DISCIPLINES ═══ -->
+    <section id="work">
+        <p class="section-label">// DISCIPLINES</p>
+        <h2 class="section-h2">Core Systems<br><em>Engineering</em></h2>
+        <div class="cards">
+            <div class="card">
+                <div class="card-num">01</div>
+                <div class="card-icon">[GTW]</div>
+                <h3>BLAST Gateway &amp; Proxies</h3>
+                <p>Supabase security firewall, token rate limiting, and durable retry queue engine.</p>
+            </div>
+            <div class="card">
+                <div class="card-num">02</div>
+                <div class="card-icon">[SCR]</div>
+                <h3>Anti-Detect Web Scraping</h3>
+                <p>Anakin headless browser proxy rotation and structured markdown extraction.</p>
+            </div>
+            <div class="card">
+                <div class="card-num">03</div>
+                <div class="card-icon">[DBS]</div>
+                <h3>Distributed Sharded Storage</h3>
+                <p>rayzOSS GitHub backend filesystem and GITBACK mirrored git preservation.</p>
+            </div>
+            <div class="card">
+                <div class="card-num">04</div>
+                <div class="card-icon">[SYS]</div>
+                <h3>Desktop Memory &amp; Privacy</h3>
+                <p>Yimiter PC RAM limiter and LiveDRIVE zero-logging encrypted cloud drive.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- ═══ CAPABILITIES & CUSTOM PROJECTS ═══ -->
+    <section id="services" style="background:rgba(255,45,85,.03)">
+        <p class="section-label">// CAPABILITIES</p>
+        <h2 class="section-h2">What We<br><em>Build</em></h2>
+        <div class="cards">
+            <div class="card">
+                <div class="card-num">I</div>
+                <h3>Custom Developer Tooling</h3>
+                <p>Taking custom client projects, performance optimizers, and automated workflows.</p>
+            </div>
+            <div class="card">
+                <div class="card-num">II</div>
+                <h3>Autonomous Discord Bots</h3>
+                <p>High-concurrency systems, state sync, STORMGOD, and sudo-podark bot infrastructure.</p>
+            </div>
+            <div class="card">
+                <div class="card-num">III</div>
+                <h3>FastAPI &amp; Supabase Pipelines</h3>
+                <p>High throughput, durable queuing, and secure data routing via BLAST Gateway.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- ============================================================== -->
+    <!-- SECTION: ABOUT RAYZIEN & PHEONIX14                              -->
+    <!-- ============================================================== -->
+    <section id="about" style="padding: 60px 20px; display: flex; flex-direction: column; align-items: center; position: relative; z-index: 10;">
+        <p class="section-label" style="justify-content:center;">// ABOUT RAYZIEN &amp; PHEONIX14</p>
+        <h2 class="section-h2" style="text-align:center;">Autonomous<br><em>Architects</em><br>&amp; Builders</h2>
+        <p style="font-family:'Space Grotesk',sans-serif; color:rgba(255,255,255,0.65); max-width:680px; text-align:center; font-size:15px; margin: 12px 0 36px 0; line-height: 1.7;">
+            Rayzien and Pheonix14 design open-source automation, privacy systems, and cluster gateways with zero bloat and zero tracking. Everything is engineered to simplify life and give developers full sovereignty over their data.
+        </p>
+
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 20px; width: 100%; max-width: 980px;">
+            <div style="background: rgba(14, 18, 30, 0.85); backdrop-filter: blur(16px); border: 1px solid rgba(10,255,228,0.3); border-radius: 10px; padding: 24px; display: flex; flex-direction: column; gap: 10px;">
+                <div style="font-family: monospace; font-size: 11.5px; color: #0affe4; font-weight: 700;">[PILLAR 01]</div>
+                <h3 style="font-family:'Bebas Neue',sans-serif; font-size: 24px; color: #fff; margin: 0; letter-spacing: 1px;">Zero Paywalls &amp; Tracking</h3>
+                <p style="font-family:'Space Grotesk',sans-serif; font-size: 13px; color: rgba(255,255,255,0.7); line-height: 1.6; margin: 0;">
+                    Complete elimination of third-party platform limitations. Self-hostable, transparent codebases designed for total user sovereignty.
+                </p>
+            </div>
+
+            <div style="background: rgba(14, 18, 30, 0.85); backdrop-filter: blur(16px); border: 1px solid rgba(255,45,85,0.35); border-radius: 10px; padding: 24px; display: flex; flex-direction: column; gap: 10px;">
+                <div style="font-family: monospace; font-size: 11.5px; color: #ff5e7e; font-weight: 700;">[PILLAR 02]</div>
+                <h3 style="font-family:'Bebas Neue',sans-serif; font-size: 24px; color: #fff; margin: 0; letter-spacing: 1px;">BLAST Gateway Proxy</h3>
+                <p style="font-family:'Space Grotesk',sans-serif; font-size: 13px; color: rgba(255,255,255,0.7); line-height: 1.6; margin: 0;">
+                    Decoupled database queuing architecture ensuring zero direct database credentials are exposed to frontend applications or public clients.
+                </p>
+            </div>
+
+            <div style="background: rgba(14, 18, 30, 0.85); backdrop-filter: blur(16px); border: 1px solid rgba(153,69,255,0.35); border-radius: 10px; padding: 24px; display: flex; flex-direction: column; gap: 10px;">
+                <div style="font-family: monospace; font-size: 11.5px; color: #bb7eff; font-weight: 700;">[PILLAR 03]</div>
+                <h3 style="font-family:'Bebas Neue',sans-serif; font-size: 24px; color: #fff; margin: 0; letter-spacing: 1px;">Marketplace Publisher</h3>
+                <p style="font-family:'Space Grotesk',sans-serif; font-size: 13px; color: rgba(255,255,255,0.7); line-height: 1.6; margin: 0;">
+                    Creators of verified tools in the GitHub Marketplace including MCP Shield, Achievement Radar, and Glass Bento Cards.
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- ============================================================== -->
+    <!-- SECTION: OFFICIAL YOUTUBE CHANNEL & RELEASES                    -->
+    <!-- ============================================================== -->
+    <section id="youtube" style="padding: 60px 20px; display: flex; flex-direction: column; align-items: center; position: relative; z-index: 10;">
+        <p class="section-label" style="justify-content:center;">// OFFICIAL YOUTUBE CHANNEL</p>
+        <h2 class="section-h2" style="text-align:center;">Engineering<br><em>Devlogs</em><br>&amp; Releases</h2>
+        <p style="font-family:'Space Grotesk',sans-serif; color:rgba(255,255,255,0.6); max-width:620px; text-align:center; font-size:14px; margin: 12px 0 32px 0; line-height: 1.6;">
+            Deep-dives into anti-detect systems, distributed high-throughput routing, and autonomous cluster tooling by Rayzien and Pheonix14.
+        </p>
+
+        <!-- YOUTUBE SHOWCASE CARD -->
+        <div style="background: rgba(14, 18, 30, 0.88); backdrop-filter: blur(20px); border: 1px solid rgba(255, 45, 85, 0.4); border-radius: 12px; padding: 28px; width: 100%; max-width: 820px; box-shadow: 0 16px 40px rgba(0,0,0,0.6); display: flex; flex-direction: column; gap: 20px;">
+            <div style="display: flex; gap: 18px; align-items: center; flex-wrap: wrap;">
+                <div style="background: #111; border-radius: 12px; padding: 10px; width: 84px; height: 84px; display: flex; align-items: center; justify-content: center; border: 1px solid rgba(255,45,85,0.4); box-shadow: 0 0 20px rgba(255,45,85,0.25);">
+                    <img src="yt/yt.png" alt="YouTube Channel Icon" style="width: 64px; height: 64px; object-fit: contain;">
+                </div>
+                <div style="flex: 1; min-width: 240px;">
+                    <div style="display: inline-block; background: rgba(255,45,85,0.15); color: #ff5e7e; border: 1px solid rgba(255,45,85,0.4); padding: 2px 8px; border-radius: 4px; font-size: 10px; font-weight: 700; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 4px;">
+                        OFFICIAL CHANNEL
+                    </div>
+                    <h3 id="ytChannelName" style="font-family:'Bebas Neue',sans-serif; font-size: 30px; letter-spacing: 1px; color: #fff; margin: 0;">
+                        Rayzien &amp; Pheonix14 Tech
+                    </h3>
+                    <div id="ytChannelHandle" style="font-family: monospace; font-size: 13px; color: #ff8099;">
+                        @rayzien // @pheonix14
+                    </div>
+                </div>
+                <a id="ytChannelBtn" href="https://youtube.com/@rayzien" target="_blank" 
+                    style="background: linear-gradient(135deg, #ff2d55, #ff5e7e); color: #fff; text-decoration: none; padding: 12px 22px; border-radius: 6px; font-family:'Space Grotesk',sans-serif; font-size: 13px; font-weight: 700; text-transform: uppercase; letter-spacing: 1px; transition: opacity 0.2s; box-shadow: 0 4px 16px rgba(255,45,85,0.4);">
+                    Watch on YouTube &gt;
+                </a>
+            </div>
+
+            <p id="ytChannelDesc" style="font-family:'Space Grotesk',sans-serif; font-size: 13.5px; color: #d0d8e2; line-height: 1.6; margin: 0; background: rgba(0,0,0,0.35); padding: 14px 16px; border-radius: 6px; border: 1px solid rgba(255,255,255,0.06);">
+                Deep-dives into anti-detect systems, distributed high-throughput routing, and autonomous cluster tooling.
+            </p>
+
+            <!-- STATS ROW -->
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 12px; text-align: center;">
+                <div style="background: rgba(0,0,0,0.4); padding: 12px 10px; border-radius: 6px; border: 1px solid rgba(255,255,255,0.06);">
+                    <div id="ytSubs" style="font-family:'Bebas Neue',sans-serif; font-size: 24px; color: #ff5e7e;">1.2K+</div>
+                    <div style="font-size: 11px; color: rgba(255,255,255,0.5); text-transform: uppercase;">Subscribers</div>
+                </div>
+                <div style="background: rgba(0,0,0,0.4); padding: 12px 10px; border-radius: 6px; border: 1px solid rgba(255,255,255,0.06);">
+                    <div id="ytVideos" style="font-family:'Bebas Neue',sans-serif; font-size: 24px; color: #0affe4;">28 Releases</div>
+                    <div style="font-size: 11px; color: rgba(255,255,255,0.5); text-transform: uppercase;">Technical Showcases</div>
+                </div>
+                <div style="background: rgba(0,0,0,0.4); padding: 12px 10px; border-radius: 6px; border: 1px solid rgba(255,255,255,0.06);">
+                    <div style="font-family:'Bebas Neue',sans-serif; font-size: 24px; color: #00ff66;">100% Free</div>
+                    <div style="font-size: 11px; color: rgba(255,255,255,0.5); text-transform: uppercase;">Open Knowledge</div>
+                </div>
+            </div>
+
+            <!-- FOLDER DATA FOOTNOTE -->
+            <div style="font-family: monospace; font-size: 11px; color: rgba(255,255,255,0.45); border-top: 1px solid rgba(255,255,255,0.06); padding-top: 10px; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 8px;">
+                <span>Data Source: folder /yt/ [channel.txt, yt.txt, info.json, yt.png]</span>
+                <a href="yt/info.json" target="_blank" style="color: #0affe4; text-decoration: none;">[View JSON Metadata]</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- ============================================================== -->
+    <!-- SECTION: CORE ARCHITECTS SHOWCASE                              -->
+    <!-- ============================================================== -->
+    <section id="profiles" style="padding: 60px 20px; display: flex; flex-direction: column; align-items: center; position: relative; z-index: 10;">
+        <p class="section-label" style="justify-content:center;">// CREATOR SPOTLIGHT</p>
+        <h2 class="section-h2" style="text-align:center;">The<br><em>Architects</em><br>Behind BLAST</h2>
+        <p style="font-family:'Space Grotesk',sans-serif; color:rgba(255,255,255,0.6); max-width:620px; text-align:center; font-size:14px; margin: 12px 0 36px 0; line-height: 1.6;">
+            Autonomous distributed infrastructure, high-throughput security proxies, and desktop performance engines crafted for zero friction.
+        </p>
+
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 24px; width: 100%; max-width: 980px;">
+            <!-- PROFILE 1: RAYZIEN -->
+            <div style="background: rgba(14, 18, 30, 0.85); backdrop-filter: blur(20px); border: 1px solid rgba(10, 255, 228, 0.3); border-radius: 12px; padding: 28px; display: flex; flex-direction: column; gap: 20px; box-shadow: 0 12px 36px rgba(0,0,0,0.5);">
+                <div style="display: flex; gap: 18px; align-items: center;">
+                    <img src="https://avatars.githubusercontent.com/u/328525664?v=4" alt="Rayzien" 
+                        style="width: 72px; height: 72px; border-radius: 50%; border: 2px solid #0affe4; box-shadow: 0 0 16px rgba(10,255,228,0.4); object-fit: cover;">
+                    <div>
+                        <div style="display: inline-block; background: rgba(10,255,228,0.12); color: #0affe4; border: 1px solid rgba(10,255,228,0.3); padding: 2px 8px; border-radius: 4px; font-size: 10px; font-weight: 700; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 4px;">
+                            SYSTEMS ARCHITECT
+                        </div>
+                        <h3 style="font-family:'Bebas Neue',sans-serif; font-size: 28px; letter-spacing: 1px; color: #fff; margin: 0;">Rayzien</h3>
+                        <a href="https://github.com/rayzien" target="_blank" style="color: rgba(255,255,255,0.6); font-size: 13px; text-decoration: none; font-family:'Space Grotesk',sans-serif;">
+                            github.com/rayzien
+                        </a>
+                    </div>
+                </div>
+
+                <p style="font-family:'Space Grotesk',sans-serif; font-size: 13.5px; color: #d0d8e2; line-height: 1.6; margin: 0; background: rgba(0,0,0,0.3); padding: 12px 14px; border-radius: 6px; border: 1px solid rgba(255,255,255,0.06);">
+                    "Automation is peak&gt;&gt;" — Specializing in distributed cluster orchestration, gateway protocols, and RayzHub engine architecture.
+                </p>
+
+                <!-- STATS -->
+                <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; text-align: center;">
+                    <div style="background: rgba(0,0,0,0.4); padding: 10px 6px; border-radius: 6px; border: 1px solid rgba(255,255,255,0.05);">
+                        <div style="font-family:'Bebas Neue',sans-serif; font-size: 22px; color: #0affe4;">169</div>
+                        <div style="font-size: 11px; color: rgba(255,255,255,0.5); text-transform: uppercase;">Followers</div>
+                    </div>
+                    <div style="background: rgba(0,0,0,0.4); padding: 10px 6px; border-radius: 6px; border: 1px solid rgba(255,255,255,0.05);">
+                        <div style="font-family:'Bebas Neue',sans-serif; font-size: 22px; color: #0affe4;">17</div>
+                        <div style="font-size: 11px; color: rgba(255,255,255,0.5); text-transform: uppercase;">Repositories</div>
+                    </div>
+                    <div style="background: rgba(0,0,0,0.4); padding: 10px 6px; border-radius: 6px; border: 1px solid rgba(255,255,255,0.05);">
+                        <div style="font-family:'Bebas Neue',sans-serif; font-size: 22px; color: #0affe4;">317</div>
+                        <div style="font-size: 11px; color: rgba(255,255,255,0.5); text-transform: uppercase;">Following</div>
+                    </div>
+                </div>
+
+                <!-- KEY STACKS -->
+                <div style="display: flex; gap: 6px; flex-wrap: wrap;">
+                    <span style="font-size: 11px; padding: 3px 8px; border-radius: 4px; background: rgba(255,255,255,0.06); color: rgba(255,255,255,0.8);">Python</span>
+                    <span style="font-size: 11px; padding: 3px 8px; border-radius: 4px; background: rgba(255,255,255,0.06); color: rgba(255,255,255,0.8);">FastAPI</span>
+                    <span style="font-size: 11px; padding: 3px 8px; border-radius: 4px; background: rgba(255,255,255,0.06); color: rgba(255,255,255,0.8);">Distributed FS</span>
+                    <span style="font-size: 11px; padding: 3px 8px; border-radius: 4px; background: rgba(255,255,255,0.06); color: rgba(255,255,255,0.8);">Gateway Queues</span>
+                </div>
+
+                <div style="display: flex; gap: 10px; margin-top: auto;">
+                    <a href="https://github.com/rayzien" target="_blank" 
+                        style="flex: 1; text-align: center; background: #0affe4; color: #000; font-family:'Space Grotesk',sans-serif; font-weight: 700; font-size: 13px; padding: 10px; border-radius: 6px; text-decoration: none; transition: opacity 0.2s;">
+                        Follow @rayzien
+                    </a>
+                    <a href="https://github.com/rayzien?tab=repositories" target="_blank" 
+                        style="text-align: center; background: rgba(255,255,255,0.08); border: 1px solid rgba(255,255,255,0.2); color: #fff; font-family:'Space Grotesk',sans-serif; font-size: 13px; padding: 10px 14px; border-radius: 6px; text-decoration: none;">
+                        Repos
+                    </a>
+                </div>
+            </div>
+
+            <!-- PROFILE 2: PHEONIX14 -->
+            <div style="background: rgba(14, 18, 30, 0.85); backdrop-filter: blur(20px); border: 1px solid rgba(255, 45, 85, 0.35); border-radius: 12px; padding: 28px; display: flex; flex-direction: column; gap: 20px; box-shadow: 0 12px 36px rgba(0,0,0,0.5);">
+                <div style="display: flex; gap: 18px; align-items: center;">
+                    <img src="https://avatars.githubusercontent.com/u/252557369?v=4" alt="pheonix14" 
+                        style="width: 72px; height: 72px; border-radius: 50%; border: 2px solid #ff2d55; box-shadow: 0 0 16px rgba(255,45,85,0.4); object-fit: cover;">
+                    <div>
+                        <div style="display: inline-block; background: rgba(255,45,85,0.15); color: #ff5e7e; border: 1px solid rgba(255,45,85,0.3); padding: 2px 8px; border-radius: 4px; font-size: 10px; font-weight: 700; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 4px;">
+                            CUSTOM PROJECTS & PRIVACY
+                        </div>
+                        <h3 style="font-family:'Bebas Neue',sans-serif; font-size: 28px; letter-spacing: 1px; color: #fff; margin: 0;">pheonix 14</h3>
+                        <a href="https://github.com/pheonix14" target="_blank" style="color: rgba(255,255,255,0.6); font-size: 13px; text-decoration: none; font-family:'Space Grotesk',sans-serif;">
+                            github.com/pheonix14
+                        </a>
+                    </div>
+                </div>
+
+                <p style="font-family:'Space Grotesk',sans-serif; font-size: 13.5px; color: #d0d8e2; line-height: 1.6; margin: 0; background: rgba(0,0,0,0.3); padding: 12px 14px; border-radius: 6px; border: 1px solid rgba(255,255,255,0.06);">
+                    "Built for fun and simplification of life. Zero logging, anti-detect engines, high-performance tooling. Taking custom projects."
+                </p>
+
+                <!-- STATS -->
+                <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; text-align: center;">
+                    <div style="background: rgba(0,0,0,0.4); padding: 10px 6px; border-radius: 6px; border: 1px solid rgba(255,255,255,0.05);">
+                        <div style="font-family:'Bebas Neue',sans-serif; font-size: 22px; color: #ff2d55;">1,193</div>
+                        <div style="font-size: 11px; color: rgba(255,255,255,0.5); text-transform: uppercase;">Followers</div>
+                    </div>
+                    <div style="background: rgba(0,0,0,0.4); padding: 10px 6px; border-radius: 6px; border: 1px solid rgba(255,255,255,0.05);">
+                        <div style="font-family:'Bebas Neue',sans-serif; font-size: 22px; color: #ff2d55;">58</div>
+                        <div style="font-size: 11px; color: rgba(255,255,255,0.5); text-transform: uppercase;">Repositories</div>
+                    </div>
+                    <div style="background: rgba(0,0,0,0.4); padding: 10px 6px; border-radius: 6px; border: 1px solid rgba(255,255,255,0.05);">
+                        <div style="font-family:'Bebas Neue',sans-serif; font-size: 22px; color: #ff2d55;">4,259</div>
+                        <div style="font-size: 11px; color: rgba(255,255,255,0.5); text-transform: uppercase;">Following</div>
+                    </div>
+                </div>
+
+                <!-- KEY STACKS -->
+                <div style="display: flex; gap: 6px; flex-wrap: wrap;">
+                    <span style="font-size: 11px; padding: 3px 8px; border-radius: 4px; background: rgba(255,255,255,0.06); color: rgba(255,255,255,0.8);">Web Scraping</span>
+                    <span style="font-size: 11px; padding: 3px 8px; border-radius: 4px; background: rgba(255,255,255,0.06); color: rgba(255,255,255,0.8);">Privacy Tools</span>
+                    <span style="font-size: 11px; padding: 3px 8px; border-radius: 4px; background: rgba(255,255,255,0.06); color: rgba(255,255,255,0.8);">Desktop Optimizers</span>
+                    <span style="font-size: 11px; padding: 3px 8px; border-radius: 4px; background: rgba(255,255,255,0.06); color: rgba(255,255,255,0.8);">RAM Control</span>
+                </div>
+
+                <div style="display: flex; gap: 10px; margin-top: auto;">
+                    <a href="https://github.com/pheonix14" target="_blank" 
+                        style="flex: 1; text-align: center; background: #ff2d55; color: #fff; font-family:'Space Grotesk',sans-serif; font-weight: 700; font-size: 13px; padding: 10px; border-radius: 6px; text-decoration: none; transition: opacity 0.2s;">
+                        Follow @pheonix14
+                    </a>
+                    <a href="https://github.com/pheonix14?tab=repositories" target="_blank" 
+                        style="text-align: center; background: rgba(255,255,255,0.08); border: 1px solid rgba(255,255,255,0.2); color: #fff; font-family:'Space Grotesk',sans-serif; font-size: 13px; padding: 10px 14px; border-radius: 6px; text-decoration: none;">
+                        Repos
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ============================================================== -->
+    <!-- SECTION: RECENT STARS & TOP REPOSITORIES                       -->
+    <!-- ============================================================== -->
+    <section id="stars" style="padding: 60px 20px; display: flex; flex-direction: column; align-items: center; position: relative; z-index: 10;">
+        <p class="section-label" style="justify-content:center;">// OPEN SOURCE ARTIFACTS</p>
+        <h2 class="section-h2" style="text-align:center;">Recent<br><em>Stars &</em><br>Repositories</h2>
+        <p style="font-family:'Space Grotesk',sans-serif; color:rgba(255,255,255,0.6); max-width:640px; text-align:center; font-size:14px; margin: 12px 0 28px 0; line-height: 1.6;">
+            Verified open-source releases from both developer portfolios with live star counts and technical breakdowns.
+        </p>
+
+        <!-- FILTER BUTTONS -->
+        <div style="display: flex; gap: 8px; flex-wrap: wrap; justify-content: center; margin-bottom: 28px;">
+            <button onclick="filterRepoCards('all', this)" class="repo-filter-btn active" 
+                style="background: rgba(10,255,228,0.2); border: 1px solid #0affe4; color: #fff; padding: 6px 16px; border-radius: 4px; font-family:'Space Grotesk',sans-serif; font-size: 12px; font-weight: 600; cursor: pointer;">
+                All Repositories
+            </button>
+            <button onclick="filterRepoCards('pheonix14', this)" class="repo-filter-btn" 
+                style="background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.15); color: rgba(255,255,255,0.7); padding: 6px 16px; border-radius: 4px; font-family:'Space Grotesk',sans-serif; font-size: 12px; font-weight: 600; cursor: pointer;">
+                @pheonix14 Projects
+            </button>
+            <button onclick="filterRepoCards('rayzien', this)" class="repo-filter-btn" 
+                style="background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.15); color: rgba(255,255,255,0.7); padding: 6px 16px; border-radius: 4px; font-family:'Space Grotesk',sans-serif; font-size: 12px; font-weight: 600; cursor: pointer;">
+                @rayzien Projects
+            </button>
+        </div>
+
+        <!-- REPOSITORIES GRID -->
+        <div id="reposGrid" style="display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 16px; width: 100%; max-width: 1040px;">
+
+            <!-- LiveDRIVE -->
+            <div class="repo-card" data-author="pheonix14" style="background: rgba(15, 19, 31, 0.75); border: 1px solid rgba(255,255,255,0.08); border-radius: 8px; padding: 20px; display: flex; flex-direction: column; gap: 12px; transition: transform 0.2s, border-color 0.2s;">
+                <div style="display: flex; justify-content: space-between; align-items: flex-start;">
+                    <div>
+                        <span style="font-size: 10px; color: #ff5e7e; font-weight: 700; text-transform: uppercase;">@pheonix14</span>
+                        <h4 style="font-family:'Space Grotesk',sans-serif; font-size: 17px; font-weight: 700; color: #fff; margin-top: 2px;">
+                            <a href="https://github.com/pheonix14/LiveDRIVE" target="_blank" style="color:#fff; text-decoration:none;">LiveDRIVE</a>
+                        </h4>
+                    </div>
+                    <div style="display: inline-flex; align-items: center; gap: 4px; background: rgba(255,215,0,0.12); color: #ffd700; padding: 3px 8px; border-radius: 4px; font-size: 12px; font-weight: 700;">
+                        <svg width="12" height="12" viewBox="0 0 24 24" fill="#ffd700"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+                        <span>81</span>
+                    </div>
+                </div>
+                <p style="font-family:'Space Grotesk',sans-serif; font-size: 13px; color: rgba(255,255,255,0.65); line-height: 1.5; margin: 0;">
+                    Anonymous storage and drive architecture. Full zero-logging design, cryptographic integrity, and secure privacy channels.
+                </p>
+                <div style="display: flex; justify-content: space-between; align-items: center; margin-top: auto; padding-top: 8px; font-size: 12px; color: rgba(255,255,255,0.5);">
+                    <span>Language: HTML / Web</span>
+                    <a href="https://github.com/pheonix14/LiveDRIVE" target="_blank" style="color: #0affe4; text-decoration: none; font-weight: 600;">View Code &gt;</a>
+                </div>
+            </div>
+
+            <!-- Yimiter -->
+            <div class="repo-card" data-author="pheonix14" style="background: rgba(15, 19, 31, 0.75); border: 1px solid rgba(255,255,255,0.08); border-radius: 8px; padding: 20px; display: flex; flex-direction: column; gap: 12px; transition: transform 0.2s, border-color 0.2s;">
+                <div style="display: flex; justify-content: space-between; align-items: flex-start;">
+                    <div>
+                        <span style="font-size: 10px; color: #ff5e7e; font-weight: 700; text-transform: uppercase;">@pheonix14</span>
+                        <h4 style="font-family:'Space Grotesk',sans-serif; font-size: 17px; font-weight: 700; color: #fff; margin-top: 2px;">
+                            <a href="https://github.com/pheonix14/Yimiter---Ram-Limiter-for-PC" target="_blank" style="color:#fff; text-decoration:none;">Yimiter</a>
+                        </h4>
+                    </div>
+                    <div style="display: inline-flex; align-items: center; gap: 4px; background: rgba(255,215,0,0.12); color: #ffd700; padding: 3px 8px; border-radius: 4px; font-size: 12px; font-weight: 700;">
+                        <svg width="12" height="12" viewBox="0 0 24 24" fill="#ffd700"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+                        <span>81</span>
+                    </div>
+                </div>
+                <p style="font-family:'Space Grotesk',sans-serif; font-size: 13px; color: rgba(255,255,255,0.65); line-height: 1.5; margin: 0;">
+                    Desktop memory control utility. Open-source RAM limiter application for desktop workstations and gaming PCs.
+                </p>
+                <div style="display: flex; justify-content: space-between; align-items: center; margin-top: auto; padding-top: 8px; font-size: 12px; color: rgba(255,255,255,0.5);">
+                    <span>Desktop System Tool</span>
+                    <a href="https://github.com/pheonix14/Yimiter---Ram-Limiter-for-PC" target="_blank" style="color: #0affe4; text-decoration: none; font-weight: 600;">View Code &gt;</a>
+                </div>
+            </div>
+
+            <!-- stoud -->
+            <div class="repo-card" data-author="pheonix14" style="background: rgba(15, 19, 31, 0.75); border: 1px solid rgba(255,255,255,0.08); border-radius: 8px; padding: 20px; display: flex; flex-direction: column; gap: 12px; transition: transform 0.2s, border-color 0.2s;">
+                <div style="display: flex; justify-content: space-between; align-items: flex-start;">
+                    <div>
+                        <span style="font-size: 10px; color: #ff5e7e; font-weight: 700; text-transform: uppercase;">@pheonix14</span>
+                        <h4 style="font-family:'Space Grotesk',sans-serif; font-size: 17px; font-weight: 700; color: #fff; margin-top: 2px;">
+                            <a href="https://github.com/pheonix14/stoud" target="_blank" style="color:#fff; text-decoration:none;">stoud</a>
+                        </h4>
+                    </div>
+                    <div style="display: inline-flex; align-items: center; gap: 4px; background: rgba(255,215,0,0.12); color: #ffd700; padding: 3px 8px; border-radius: 4px; font-size: 12px; font-weight: 700;">
+                        <svg width="12" height="12" viewBox="0 0 24 24" fill="#ffd700"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+                        <span>80</span>
+                    </div>
+                </div>
+                <p style="font-family:'Space Grotesk',sans-serif; font-size: 13px; color: rgba(255,255,255,0.65); line-height: 1.5; margin: 0;">
+                    Stoud Real-Time Broadcast Engine. Ultra-low latency streaming and media relay pipeline built on Python.
+                </p>
+                <div style="display: flex; justify-content: space-between; align-items: center; margin-top: auto; padding-top: 8px; font-size: 12px; color: rgba(255,255,255,0.5);">
+                    <span>Language: Python</span>
+                    <a href="https://github.com/pheonix14/stoud" target="_blank" style="color: #0affe4; text-decoration: none; font-weight: 600;">View Code &gt;</a>
+                </div>
+            </div>
+
+            <!-- Zero-Android-Gaming-Ui-launcher -->
+            <div class="repo-card" data-author="pheonix14" style="background: rgba(15, 19, 31, 0.75); border: 1px solid rgba(255,255,255,0.08); border-radius: 8px; padding: 20px; display: flex; flex-direction: column; gap: 12px; transition: transform 0.2s, border-color 0.2s;">
+                <div style="display: flex; justify-content: space-between; align-items: flex-start;">
+                    <div>
+                        <span style="font-size: 10px; color: #ff5e7e; font-weight: 700; text-transform: uppercase;">@pheonix14</span>
+                        <h4 style="font-family:'Space Grotesk',sans-serif; font-size: 17px; font-weight: 700; color: #fff; margin-top: 2px;">
+                            <a href="https://github.com/pheonix14/Zero-Android-Gaming-Ui-launcher" target="_blank" style="color:#fff; text-decoration:none;">Zero UI Launcher</a>
+                        </h4>
+                    </div>
+                    <div style="display: inline-flex; align-items: center; gap: 4px; background: rgba(255,215,0,0.12); color: #ffd700; padding: 3px 8px; border-radius: 4px; font-size: 12px; font-weight: 700;">
+                        <svg width="12" height="12" viewBox="0 0 24 24" fill="#ffd700"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+                        <span>79</span>
+                    </div>
+                </div>
+                <p style="font-family:'Space Grotesk',sans-serif; font-size: 13px; color: rgba(255,255,255,0.65); line-height: 1.5; margin: 0;">
+                    High-refresh rate mobile gaming environment and controller-optimized UI launcher framework.
+                </p>
+                <div style="display: flex; justify-content: space-between; align-items: center; margin-top: auto; padding-top: 8px; font-size: 12px; color: rgba(255,255,255,0.5);">
+                    <span>Android / Engine</span>
+                    <a href="https://github.com/pheonix14/Zero-Android-Gaming-Ui-launcher" target="_blank" style="color: #0affe4; text-decoration: none; font-weight: 600;">View Code &gt;</a>
+                </div>
+            </div>
+
+            <!-- sudo-podark -->
+            <div class="repo-card" data-author="rayzien" style="background: rgba(15, 19, 31, 0.75); border: 1px solid rgba(255,255,255,0.08); border-radius: 8px; padding: 20px; display: flex; flex-direction: column; gap: 12px; transition: transform 0.2s, border-color 0.2s;">
+                <div style="display: flex; justify-content: space-between; align-items: flex-start;">
+                    <div>
+                        <span style="font-size: 10px; color: #0affe4; font-weight: 700; text-transform: uppercase;">@rayzien</span>
+                        <h4 style="font-family:'Space Grotesk',sans-serif; font-size: 17px; font-weight: 700; color: #fff; margin-top: 2px;">
+                            <a href="https://github.com/rayzien/sudo-podark" target="_blank" style="color:#fff; text-decoration:none;">sudo-podark</a>
+                        </h4>
+                    </div>
+                    <div style="display: inline-flex; align-items: center; gap: 4px; background: rgba(255,215,0,0.12); color: #ffd700; padding: 3px 8px; border-radius: 4px; font-size: 12px; font-weight: 700;">
+                        <svg width="12" height="12" viewBox="0 0 24 24" fill="#ffd700"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+                        <span>11</span>
+                    </div>
+                </div>
+                <p style="font-family:'Space Grotesk',sans-serif; font-size: 13px; color: rgba(255,255,255,0.65); line-height: 1.5; margin: 0;">
+                    Multi-functional Discord orchestration bot with local fallback runner, container templates, and live event monitoring.
+                </p>
+                <div style="display: flex; justify-content: space-between; align-items: center; margin-top: auto; padding-top: 8px; font-size: 12px; color: rgba(255,255,255,0.5);">
+                    <span>Language: Python</span>
+                    <a href="https://github.com/rayzien/sudo-podark" target="_blank" style="color: #0affe4; text-decoration: none; font-weight: 600;">View Code &gt;</a>
+                </div>
+            </div>
+
+            <!-- GITBACK -->
+            <div class="repo-card" data-author="rayzien" style="background: rgba(15, 19, 31, 0.75); border: 1px solid rgba(255,255,255,0.08); border-radius: 8px; padding: 20px; display: flex; flex-direction: column; gap: 12px; transition: transform 0.2s, border-color 0.2s;">
+                <div style="display: flex; justify-content: space-between; align-items: flex-start;">
+                    <div>
+                        <span style="font-size: 10px; color: #0affe4; font-weight: 700; text-transform: uppercase;">@rayzien &amp; @pheonix14</span>
+                        <h4 style="font-family:'Space Grotesk',sans-serif; font-size: 17px; font-weight: 700; color: #fff; margin-top: 2px;">
+                            <a href="https://github.com/rayzien/GITBACK" target="_blank" style="color:#fff; text-decoration:none;">GITBACK</a>
+                        </h4>
+                    </div>
+                    <div style="display: inline-flex; align-items: center; gap: 4px; background: rgba(255,215,0,0.12); color: #ffd700; padding: 3px 8px; border-radius: 4px; font-size: 12px; font-weight: 700;">
+                        <svg width="12" height="12" viewBox="0 0 24 24" fill="#ffd700"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+                        <span>8</span>
+                    </div>
+                </div>
+                <p style="font-family:'Space Grotesk',sans-serif; font-size: 13px; color: rgba(255,255,255,0.65); line-height: 1.5; margin: 0;">
+                    Automated Git preservation and mirrored backup engine protecting developer commits and repositories across networks.
+                </p>
+                <div style="display: flex; justify-content: space-between; align-items: center; margin-top: auto; padding-top: 8px; font-size: 12px; color: rgba(255,255,255,0.5);">
+                    <span>Language: Python</span>
+                    <a href="https://github.com/rayzien/GITBACK" target="_blank" style="color: #0affe4; text-decoration: none; font-weight: 600;">View Code &gt;</a>
+                </div>
+            </div>
+
+            <!-- STORMGOD -->
+            <div class="repo-card" data-author="rayzien" style="background: rgba(15, 19, 31, 0.75); border: 1px solid rgba(255,255,255,0.08); border-radius: 8px; padding: 20px; display: flex; flex-direction: column; gap: 12px; transition: transform 0.2s, border-color 0.2s;">
+                <div style="display: flex; justify-content: space-between; align-items: flex-start;">
+                    <div>
+                        <span style="font-size: 10px; color: #0affe4; font-weight: 700; text-transform: uppercase;">@rayzien</span>
+                        <h4 style="font-family:'Space Grotesk',sans-serif; font-size: 17px; font-weight: 700; color: #fff; margin-top: 2px;">
+                            <a href="https://github.com/rayzien/STORMGOD" target="_blank" style="color:#fff; text-decoration:none;">STORMGOD</a>
+                        </h4>
+                    </div>
+                    <div style="display: inline-flex; align-items: center; gap: 4px; background: rgba(255,215,0,0.12); color: #ffd700; padding: 3px 8px; border-radius: 4px; font-size: 12px; font-weight: 700;">
+                        <svg width="12" height="12" viewBox="0 0 24 24" fill="#ffd700"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+                        <span>7</span>
+                    </div>
+                </div>
+                <p style="font-family:'Space Grotesk',sans-serif; font-size: 13px; color: rgba(255,255,255,0.65); line-height: 1.5; margin: 0;">
+                    Secure and performant open-source Discord automation engine with state synchronization and safety guards.
+                </p>
+                <div style="display: flex; justify-content: space-between; align-items: center; margin-top: auto; padding-top: 8px; font-size: 12px; color: rgba(255,255,255,0.5);">
+                    <span>Language: Python</span>
+                    <a href="https://github.com/rayzien/STORMGOD" target="_blank" style="color: #0affe4; text-decoration: none; font-weight: 600;">View Code &gt;</a>
+                </div>
+            </div>
+
+            <!-- anakin -->
+            <div class="repo-card" data-author="pheonix14" style="background: rgba(15, 19, 31, 0.75); border: 1px solid rgba(255,255,255,0.08); border-radius: 8px; padding: 20px; display: flex; flex-direction: column; gap: 12px; transition: transform 0.2s, border-color 0.2s;">
+                <div style="display: flex; justify-content: space-between; align-items: flex-start;">
+                    <div>
+                        <span style="font-size: 10px; color: #ff5e7e; font-weight: 700; text-transform: uppercase;">@pheonix14</span>
+                        <h4 style="font-family:'Space Grotesk',sans-serif; font-size: 17px; font-weight: 700; color: #fff; margin-top: 2px;">
+                            <a href="https://github.com/pheonix14/anakin" target="_blank" style="color:#fff; text-decoration:none;">anakin</a>
+                        </h4>
+                    </div>
+                    <div style="display: inline-flex; align-items: center; gap: 4px; background: rgba(255,215,0,0.12); color: #ffd700; padding: 3px 8px; border-radius: 4px; font-size: 12px; font-weight: 700;">
+                        <svg width="12" height="12" viewBox="0 0 24 24" fill="#ffd700"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+                        <span>5</span>
+                    </div>
+                </div>
+                <p style="font-family:'Space Grotesk',sans-serif; font-size: 13px; color: rgba(255,255,255,0.65); line-height: 1.5; margin: 0;">
+                    Self-hosted web scraping API. Converts sites into structured JSON or clean Markdown with anti-detect browsing.
+                </p>
+                <div style="display: flex; justify-content: space-between; align-items: center; margin-top: auto; padding-top: 8px; font-size: 12px; color: rgba(255,255,255,0.5);">
+                    <span>API / Proxy Engine</span>
+                    <a href="https://github.com/pheonix14/anakin" target="_blank" style="color: #0affe4; text-decoration: none; font-weight: 600;">View Code &gt;</a>
+                </div>
+            </div>
+
+            <!-- BLAST GATEWAY -->
+            <div class="repo-card" data-author="rayzien" style="background: rgba(15, 19, 31, 0.75); border: 1px solid rgba(10,255,228,0.25); border-radius: 8px; padding: 20px; display: flex; flex-direction: column; gap: 12px; transition: transform 0.2s, border-color 0.2s;">
+                <div style="display: flex; justify-content: space-between; align-items: flex-start;">
+                    <div>
+                        <span style="font-size: 10px; color: #0affe4; font-weight: 700; text-transform: uppercase;">@rayzien &amp; @pheonix14</span>
+                        <h4 style="font-family:'Space Grotesk',sans-serif; font-size: 17px; font-weight: 700; color: #fff; margin-top: 2px;">
+                            <a href="https://github.com/rayzien/BLAST" target="_blank" style="color:#0affe4; text-decoration:none;">BLAST Gateway</a>
+                        </h4>
+                    </div>
+                    <div style="display: inline-flex; align-items: center; gap: 4px; background: rgba(10,255,228,0.15); color: #0affe4; padding: 3px 8px; border-radius: 4px; font-size: 12px; font-weight: 700;">
+                        <span>ACTIVE ENGINE</span>
+                    </div>
+                </div>
+                <p style="font-family:'Space Grotesk',sans-serif; font-size: 13px; color: rgba(255,255,255,0.65); line-height: 1.5; margin: 0;">
+                    High-performance security, durable queue, and cluster gateway routing RayzHub operations to Supabase safely.
+                </p>
+                <div style="display: flex; justify-content: space-between; align-items: center; margin-top: auto; padding-top: 8px; font-size: 12px; color: rgba(255,255,255,0.5);">
+                    <span>Language: Python / FastProxy</span>
+                    <a href="https://github.com/rayzien/BLAST" target="_blank" style="color: #0affe4; text-decoration: none; font-weight: 600;">View Code &gt;</a>
+                </div>
+            </div>
+
+            <!-- rayzOSS -->
+            <div class="repo-card" data-author="rayzien" style="background: rgba(15, 19, 31, 0.75); border: 1px solid rgba(255,255,255,0.08); border-radius: 8px; padding: 20px; display: flex; flex-direction: column; gap: 12px; transition: transform 0.2s, border-color 0.2s;">
+                <div style="display: flex; justify-content: space-between; align-items: flex-start;">
+                    <div>
+                        <span style="font-size: 10px; color: #0affe4; font-weight: 700; text-transform: uppercase;">@rayzien &amp; @pheonix14</span>
+                        <h4 style="font-family:'Space Grotesk',sans-serif; font-size: 17px; font-weight: 700; color: #fff; margin-top: 2px;">
+                            <a href="https://github.com/rayzien/rayzOSS" target="_blank" style="color:#fff; text-decoration:none;">rayzOSS</a>
+                        </h4>
+                    </div>
+                    <div style="display: inline-flex; align-items: center; gap: 4px; background: rgba(255,215,0,0.12); color: #ffd700; padding: 3px 8px; border-radius: 4px; font-size: 12px; font-weight: 700;">
+                        <svg width="12" height="12" viewBox="0 0 24 24" fill="#ffd700"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+                        <span>1</span>
+                    </div>
+                </div>
+                <p style="font-family:'Space Grotesk',sans-serif; font-size: 13px; color: rgba(255,255,255,0.65); line-height: 1.5; margin: 0;">
+                    Distributed sharded filesystem, database architecture, and auto-sync engine using GitHub as a high-durability backend.
+                </p>
+                <div style="display: flex; justify-content: space-between; align-items: center; margin-top: auto; padding-top: 8px; font-size: 12px; color: rgba(255,255,255,0.5);">
+                    <span>Language: Python / Storage</span>
+                    <a href="https://github.com/rayzien/rayzOSS" target="_blank" style="color: #0affe4; text-decoration: none; font-weight: 600;">View Code &gt;</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ============================================================== -->
+    <!-- SECTION: CRYPTOGRAPHIC DONATION & SPONSORSHIP HUB              -->
+    <!-- ============================================================== -->
+    
+
+    <!-- ============================================================== -->
+    <!-- SECTION: DIRECT TRANSMISSION BOXES                             -->
+    <!-- ============================================================== -->
+    <section id="messages" style="text-align:center; align-items:center; padding: 40px 20px 80px 20px; position: relative; z-index: 10;">
+        <p class="section-label" style="justify-content:center;">// DIRECT TRANSMISSION</p>
+        <h2 class="section-h2" style="text-align:center;">Send<br><em>Messages</em><br>Direct</h2>
+
+        <!-- Pipeline badge -->
+        <div style="background: rgba(0,0,0,0.65); border: 1px solid rgba(10,255,228,0.25); border-radius: 20px; padding: 8px 20px; margin: 16px 0 32px 0; font-family:'Space Grotesk',sans-serif; font-size: 13px; color: rgba(255,255,255,0.85); display: inline-flex; align-items: center; gap: 10px; flex-wrap: wrap; justify-content: center;">
+            <span style="color:#0affe4; font-weight:700;">Architecture Pipeline:</span>
+            <span style="background:rgba(255,45,85,0.2); color:#ff5e7e; padding:2px 8px; border-radius:4px; font-weight:600;">rays</span>
+            <span style="color:rgba(255,255,255,0.4);">&gt;&gt;</span>
+            <span style="background:rgba(10,255,228,0.2); color:#0affe4; padding:2px 8px; border-radius:4px; font-weight:600;">blast</span>
+            <span style="color:rgba(255,255,255,0.4);">&gt;&gt;</span>
+            <span style="background:rgba(62,207,142,0.2); color:#3ecf8e; padding:2px 8px; border-radius:4px; font-weight:600;">supabase</span>
+        </div>
+
+        <!-- Form Container -->
+        <div style="background: rgba(14, 17, 27, 0.88); backdrop-filter: blur(24px); border: 1px solid rgba(10,255,228,0.25); border-radius: 14px; padding: 32px 28px; width: 100%; max-width: 650px; text-align: left; box-shadow: 0 16px 48px rgba(0,0,0,0.7); display: flex; flex-direction: column; gap: 18px;">
+            
+            <!-- Sender Name Box -->
+            <div style="display: flex; flex-direction: column; gap: 6px;">
+                <label style="font-family:'Space Grotesk',sans-serif; font-size: 12px; font-weight: 700; text-transform: uppercase; letter-spacing: 1px; color: #0affe4;">
+                    Sender Name / Handle
+                </label>
+                <input type="text" id="msgName" placeholder="e.g. Phoenix, Tester14, or RayzFan" 
+                    style="background: rgba(0,0,0,0.55); border: 1px solid rgba(255,255,255,0.18); border-radius: 6px; padding: 12px 16px; color: #fff; font-family:'Space Grotesk',sans-serif; font-size: 14px; outline: none; transition: border-color 0.2s;"
+                    onfocus="this.style.borderColor='#0affe4'" onblur="this.style.borderColor='rgba(255,255,255,0.18)'">
+            </div>
+
+            <!-- Email Box -->
+            <div style="display: flex; flex-direction: column; gap: 6px;">
+                <label style="font-family:'Space Grotesk',sans-serif; font-size: 12px; font-weight: 700; text-transform: uppercase; letter-spacing: 1px; color: rgba(255,255,255,0.7);">
+                    Email Address (Optional)
+                </label>
+                <input type="email" id="msgEmail" placeholder="your.email@domain.com" 
+                    style="background: rgba(0,0,0,0.55); border: 1px solid rgba(255,255,255,0.18); border-radius: 6px; padding: 12px 16px; color: #fff; font-family:'Space Grotesk',sans-serif; font-size: 14px; outline: none; transition: border-color 0.2s;"
+                    onfocus="this.style.borderColor='#0affe4'" onblur="this.style.borderColor='rgba(255,255,255,0.18)'">
+            </div>
+
+            <!-- Message Type Selector -->
+            <div style="display: flex; flex-direction: column; gap: 6px;">
+                <label style="font-family:'Space Grotesk',sans-serif; font-size: 12px; font-weight: 700; text-transform: uppercase; letter-spacing: 1px; color: rgba(255,255,255,0.7);">
+                    Transmission Type
+                </label>
+                <select id="msgType" style="background: rgba(0,0,0,0.75); border: 1px solid rgba(255,255,255,0.18); border-radius: 6px; padding: 12px 16px; color: #fff; font-family:'Space Grotesk',sans-serif; font-size: 14px; outline: none; cursor: pointer;">
+                    <option value="message" selected>[Direct Message]</option>
+                    <option value="feedback">[Platform Feedback]</option>
+                    <option value="request">[Feature Request]</option>
+                    <option value="collab">[Collaboration / Ping]</option>
+                </select>
+            </div>
+
+            <!-- Message Content Box -->
+            <div style="display: flex; flex-direction: column; gap: 6px;">
+                <label style="font-family:'Space Grotesk',sans-serif; font-size: 12px; font-weight: 700; text-transform: uppercase; letter-spacing: 1px; color: #ff2d55;">
+                    Message Content *
+                </label>
+                <textarea id="msgBody" rows="4" placeholder="Write your message here to send to others..." 
+                    style="background: rgba(0,0,0,0.55); border: 1px solid rgba(255,255,255,0.18); border-radius: 6px; padding: 12px 16px; color: #fff; font-family:'Space Grotesk',sans-serif; font-size: 14px; outline: none; resize: vertical; transition: border-color 0.2s;"
+                    onfocus="this.style.borderColor='#ff2d55'" onblur="this.style.borderColor='rgba(255,255,255,0.18)'"></textarea>
+            </div>
+
+            <!-- Options Row -->
+            <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 10px;">
+                <label style="display: flex; align-items: center; gap: 8px; font-size: 13px; color: rgba(255,255,255,0.75); cursor: pointer; user-select: none;">
+                    <input type="checkbox" id="msgAnon" style="accent-color: #ff2d55; width: 16px; height: 16px;">
+                    Send as Anonymous
+                </label>
+                <a href="http://127.0.0.1:8001" target="_blank" style="color: #0affe4; font-size: 12.5px; text-decoration: none; display: inline-flex; align-items: center; gap: 4px;">
+                    [Open Receiver: 127.0.0.1:8001]
+                </a>
+            </div>
+
+            <!-- Send Button -->
+            <button id="btnSendMsg" onclick="sendDirectMessage()" style="background: linear-gradient(135deg, #ff2d55, #ff5e7e); border: none; color: #fff; padding: 15px 24px; border-radius: 6px; font-family:'Space Grotesk',sans-serif; font-size: 14px; font-weight: 700; letter-spacing: 1px; text-transform: uppercase; cursor: pointer; transition: all 0.2s; box-shadow: 0 4px 20px rgba(255,45,85,0.4);">
+                Transmit Message via BLAST Gateway
+            </button>
+
+            <!-- Status Box -->
+            <div id="msgStatus" style="display: none; padding: 12px 16px; border-radius: 6px; font-size: 13px; line-height: 1.5;"></div>
+        </div>
+    </section>
+
+    <!-- ============================================================== -->
+    <!-- SECTION: SHORT LINKS & PROTOCOL ROUTING                         -->
+    <!-- ============================================================== -->
+    <section id="links" style="padding: 40px 20px 60px 20px; display: flex; flex-direction: column; align-items: center; position: relative; z-index: 10;">
+        <p class="section-label" style="justify-content:center;">// SHORT LINKS &amp; PROTOCOLS</p>
+        <h2 class="section-h2" style="text-align:center;">Network<br><em>Short Links</em></h2>
+        <p style="font-family:'Space Grotesk',sans-serif; color:rgba(255,255,255,0.6); max-width:580px; text-align:center; font-size:13.5px; margin: 8px 0 24px 0;">
+            Fast redirected access points logged with telemetry through BLAST Gateway.
+        </p>
+
+        <div id="linksList" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 14px; width: 100%; max-width: 900px;">
+            <!-- Populated dynamically via /api/links -->
+        </div>
+    </section>
+
+    <!-- ============================================================== -->
+    <!-- SECTION: LIVE EMBEDDED RECEIVER FEED                            -->
+    <!-- ============================================================== -->
+    <section id="inbox" style="padding: 20px 20px 80px 20px; display: flex; flex-direction: column; align-items: center; position: relative; z-index: 10;">
+        <p class="section-label" style="justify-content:center;">// REAL-TIME INBOX MONITOR</p>
+        <h2 class="section-h2" style="text-align:center;">Live<br><em>Transmissions</em><br>Feed</h2>
+        <div style="background: rgba(0,0,0,0.6); border: 1px solid rgba(10,255,228,0.25); border-radius: 20px; padding: 6px 16px; margin: 12px 0 24px 0; font-family:'Space Grotesk',sans-serif; font-size: 12px; color: rgba(255,255,255,0.8); display: inline-flex; align-items: center; gap: 8px;">
+            <span style="width:8px; height:8px; border-radius:50%; background:#00ff66; box-shadow:0 0 8px #00ff66;"></span>
+            <span>Live Stream Polling Every 3s // Receiver Host: 127.0.0.1:8001</span>
+        </div>
+
+        <div id="embeddedFeed" style="display: flex; flex-direction: column; gap: 12px; width: 100%; max-width: 720px;">
+            <!-- Real-time feed populated by JS -->
+        </div>
+    </section>
+
+    <!-- ============================================================== -->
+    <!-- SECTION: CONTACT & CLOUD HOSTING ARCHITECTURE                  -->
+    <!-- ============================================================== -->
+    <section id="contact" style="padding: 60px 20px 80px 20px; display: flex; flex-direction: column; align-items: center; position: relative; z-index: 10;">
+        <p class="section-label" style="justify-content:center;">// CONTACT &amp; HOSTING TECHNOLOGY</p>
+        <h2 class="section-h2" style="text-align:center;">Contact &amp; Host<br><em>Distributed</em><br>Architecture</h2>
+        <p style="font-family:'Space Grotesk',sans-serif; color:rgba(255,255,255,0.6); max-width:680px; text-align:center; font-size:14px; margin: 12px 0 36px 0; line-height: 1.6;">
+            Connect with Rayzien and Pheonix14, or host this web application using GitHub Pages, Render, or self-hosted edge nodes powered by BLAST Gateway.
+        </p>
+
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 24px; width: 100%; max-width: 1080px; margin-bottom: 36px;">
+            
+            <!-- DIRECT CONTACT CHANNELS -->
+            <div style="background: rgba(14, 18, 30, 0.85); backdrop-filter: blur(16px); border: 1px solid rgba(10, 255, 228, 0.35); border-radius: 12px; padding: 28px; display: flex; flex-direction: column; gap: 18px;">
+                <div style="font-family:'Space Grotesk',sans-serif; font-weight: 700; font-size: 16px; color: #fff; border-bottom: 1px solid rgba(255,255,255,0.08); padding-bottom: 12px; display: flex; justify-content: space-between; align-items: center;">
+                    <span>Direct Contact Points</span>
+                    <span style="font-size: 10.5px; color: #0affe4; font-family: monospace;">[PHEONIX14 // RAYZIEN]</span>
+                </div>
+
+                <div style="display: flex; flex-direction: column; gap: 12px;">
+                    <a href="https://github.com/rayzien" target="_blank" 
+                        style="background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.12); border-radius: 8px; padding: 12px 16px; text-decoration: none; display: flex; justify-content: space-between; align-items: center; transition: border-color 0.2s;">
+                        <span style="font-family:'Space Grotesk',sans-serif; font-size: 13.5px; font-weight: 600; color: #fff;">Rayzien on GitHub</span>
+                        <span style="color: #ff5e7e; font-family: monospace; font-size: 12px;">github.com/rayzien &gt;</span>
+                    </a>
+
+                    <a href="https://github.com/pheonix14" target="_blank" 
+                        style="background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.12); border-radius: 8px; padding: 12px 16px; text-decoration: none; display: flex; justify-content: space-between; align-items: center; transition: border-color 0.2s;">
+                        <span style="font-family:'Space Grotesk',sans-serif; font-size: 13.5px; font-weight: 600; color: #fff;">Pheonix14 on GitHub</span>
+                        <span style="color: #0affe4; font-family: monospace; font-size: 12px;">github.com/pheonix14 &gt;</span>
+                    </a>
+
+                    <a href="#messages" 
+                        style="background: rgba(255,45,85,0.12); border: 1px solid rgba(255,45,85,0.3); border-radius: 8px; padding: 12px 16px; text-decoration: none; display: flex; justify-content: space-between; align-items: center; transition: border-color 0.2s;">
+                        <span style="font-family:'Space Grotesk',sans-serif; font-size: 13.5px; font-weight: 600; color: #fff;">Instant Direct Message</span>
+                        <span style="color: #ff8099; font-family: monospace; font-size: 12px;">[Transmit Form] &gt;</span>
+                    </a>
+
+                    <a href="http://127.0.0.1:8001" target="_blank" 
+                        style="background: rgba(10,255,228,0.08); border: 1px solid rgba(10,255,228,0.25); border-radius: 8px; padding: 12px 16px; text-decoration: none; display: flex; justify-content: space-between; align-items: center; transition: border-color 0.2s;">
+                        <span style="font-family:'Space Grotesk',sans-serif; font-size: 13.5px; font-weight: 600; color: #fff;">Live Receiver Dashboard</span>
+                        <span style="color: #0affe4; font-family: monospace; font-size: 12px;">127.0.0.1:8001 &gt;</span>
+                    </a>
+                </div>
+
+                <!-- BLAST DIAGNOSTIC PING -->
+                <div style="background: rgba(0,0,0,0.5); border: 1px solid rgba(255,255,255,0.08); border-radius: 8px; padding: 14px; margin-top: 6px; display: flex; flex-direction: column; gap: 8px;">
+                    <div style="display: flex; justify-content: space-between; align-items: center;">
+                        <span style="font-size: 11.5px; color: rgba(255,255,255,0.7); font-family: monospace;">BLAST Cluster Telemetry:</span>
+                        <button onclick="pingBlastGateway()" style="background: rgba(10,255,228,0.15); border: 1px solid #0affe4; color: #0affe4; padding: 3px 8px; border-radius: 4px; font-size: 10.5px; font-family: monospace; cursor: pointer;">
+                            [Ping Gateway]
+                        </button>
+                    </div>
+                    <div id="blastPingOutput" style="font-family: monospace; font-size: 11px; color: #0affe4; background: rgba(0,0,0,0.4); padding: 8px; border-radius: 4px; word-break: break-all;">
+                        Status: Ready // Click [Ping Gateway] to test route
+                    </div>
+                </div>
+            </div>
+
+            <!-- HOSTING GUIDE & TECHNOLOGY TABS -->
+            <div style="background: rgba(14, 18, 30, 0.85); backdrop-filter: blur(16px); border: 1px solid rgba(255, 45, 85, 0.35); border-radius: 12px; padding: 28px; display: flex; flex-direction: column; gap: 18px;">
+                <div style="font-family:'Space Grotesk',sans-serif; font-weight: 700; font-size: 16px; color: #fff; border-bottom: 1px solid rgba(255,255,255,0.08); padding-bottom: 12px; display: flex; justify-content: space-between; align-items: center;">
+                    <span>Hosting Technologies &amp; Deployment</span>
+                    <span style="font-size: 10.5px; color: #ff5e7e; font-family: monospace;">[POWERED BY BLAST]</span>
+                </div>
+
+                <!-- HOSTING TABS -->
+                <div style="display: flex; gap: 6px; flex-wrap: wrap;">
+                    <button onclick="switchHostingTab('ghpages', this)" class="host-tab-btn" 
+                        style="background: rgba(10,255,228,0.2); border: 1px solid #0affe4; color: #fff; padding: 6px 12px; border-radius: 4px; font-family:'Space Grotesk',sans-serif; font-size: 11.5px; font-weight: 600; cursor: pointer;">
+                        GitHub Pages
+                    </button>
+                    <button onclick="switchHostingTab('render', this)" class="host-tab-btn" 
+                        style="background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.15); color: rgba(255,255,255,0.7); padding: 6px 12px; border-radius: 4px; font-family:'Space Grotesk',sans-serif; font-size: 11.5px; font-weight: 600; cursor: pointer;">
+                        Render / Cloud
+                    </button>
+                    <button onclick="switchHostingTab('edge', this)" class="host-tab-btn" 
+                        style="background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.15); color: rgba(255,255,255,0.7); padding: 6px 12px; border-radius: 4px; font-family:'Space Grotesk',sans-serif; font-size: 11.5px; font-weight: 600; cursor: pointer;">
+                        Self-Hosted Node
+                    </button>
+                </div>
+
+                <!-- TAB CONTENT: GITHUB PAGES -->
+                <div id="hostTabGhpages" class="host-tab-content" style="display: flex; flex-direction: column; gap: 10px; font-size: 12.5px; color: rgba(255,255,255,0.8); line-height: 1.6;">
+                    <div style="font-weight: 700; color: #0affe4; font-family:'Space Grotesk',sans-serif;">
+                        [TECHNOLOGY] Static GitHub Pages + Dynamic BLAST Gateway Proxy
+                    </div>
+                    <p style="margin: 0; color: rgba(255,255,255,0.7);">
+                        Deploy the frontend onto GitHub Pages for zero-cost static hosting. All interactive form actions, messages, and crypto proofs dynamically communicate with the secure BLAST Gateway on Render:
+                    </p>
+                    <div style="background: rgba(0,0,0,0.55); border: 1px solid rgba(255,255,255,0.1); border-radius: 6px; padding: 10px 12px; font-family: monospace; font-size: 11px; color: #a0aec0;">
+                        # Architecture pipeline:<br>
+                        GitHub Pages (Frontend) &gt;&gt; BLAST Gateway (Render Queue) &gt;&gt; Supabase DB<br><br>
+                        # In GitHub Repo Settings:<br>
+                        Settings &gt; Pages &gt; Build and deployment: Deploy from a branch (main / root)
+                    </div>
+                    <div style="font-size: 11.5px; color: #00ff66;">
+                        [SECURITY VERIFIED] Direct Supabase credentials are never exposed in GitHub Pages frontend code.
+                    </div>
+                </div>
+
+                <!-- TAB CONTENT: RENDER / CLOUD -->
+                <div id="hostTabRender" class="host-tab-content" style="display: none; flex-direction: column; gap: 10px; font-size: 12.5px; color: rgba(255,255,255,0.8); line-height: 1.6;">
+                    <div style="font-weight: 700; color: #ff5e7e; font-family:'Space Grotesk',sans-serif;">
+                        [DEPLOYMENT] Automated Cloud Web Service on Render
+                    </div>
+                    <p style="margin: 0; color: rgba(255,255,255,0.7);">
+                        Deploy RayzHub and BLAST Gateway with continuous deployment directly from your private GitHub repository:
+                    </p>
+                    <div style="background: rgba(0,0,0,0.55); border: 1px solid rgba(255,255,255,0.1); border-radius: 6px; padding: 10px 12px; font-family: monospace; font-size: 11px; color: #a0aec0;">
+                        Build Command: pip install -r requirements.txt<br>
+                        Start Command: uvicorn main:app --host 0.0.0.0 --port $PORT<br><br>
+                        Environment Variables:<br>
+                        BLAST_URL=https://your-blast-gateway.onrender.com<br>
+                        BLAST_KEY=your_cluster_security_token
+                    </div>
+                </div>
+
+                <!-- TAB CONTENT: SELF-HOSTED NODE -->
+                <div id="hostTabEdge" class="host-tab-content" style="display: none; flex-direction: column; gap: 10px; font-size: 12.5px; color: rgba(255,255,255,0.8); line-height: 1.6;">
+                    <div style="font-weight: 700; color: #0affe4; font-family:'Space Grotesk',sans-serif;">
+                        [LOCAL NODE] Independent Standalone Daemon
+                    </div>
+                    <p style="margin: 0; color: rgba(255,255,255,0.7);">
+                        Execute locally with loopback auto-discovery on <code style="color:#0affe4;">127.0.0.1</code>:
+                    </p>
+                    <div style="background: rgba(0,0,0,0.55); border: 1px solid rgba(255,255,255,0.1); border-radius: 6px; padding: 10px 12px; font-family: monospace; font-size: 11px; color: #a0aec0;">
+                        # RayzHub Main Service (Port 8000):<br>
+                        python main.py<br><br>
+                        # Standalone Receiver Service (Port 8001):<br>
+                        python receive/main.py
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer>
+        <div class="footer-top">
+            <div class="footer-logo">RAYZHUB // BLAST GATEWAY</div>
+            <ul class="footer-links">
+                <li><a href="https://github.com/rayzien" target="_blank">GitHub @rayzien</a></li>
+                <li><a href="https://github.com/pheonix14" target="_blank">GitHub @pheonix14</a></li>
+                <li><a href="#donation">Support / Donate</a></li>
+                <li><a href="#contact">Contact &amp; Host</a></li>
+                <li><a href="http://127.0.0.1:8001" target="_blank">Receiver (8001)</a></li>
+                <li><a href="http://127.0.0.1:8000/api/blast/status" target="_blank">BLAST Health</a></li>
+            </ul>
+        </div>
+        <div class="footer-bottom">
+            <p class="footer-copy">(C) 2026 RAYZHUB &amp; BLAST RENDER CLUSTER -- ARCHITECTED BY RAYZIEN &amp; PHEONIX14</p>
+            <p class="footer-copy" id="bgCredit">Pipeline: RayzHub &gt;&gt; BLAST Gateway &gt;&gt; Supabase</p>
+        </div>
+    </footer>
+
+    <script>
+        /* ══ CONFIG ══ */
+        const BG_IMAGES = [
+            'https://images.unsplash.com/photo-1518709268805-4e9042af9f23?w=1600',
+            'https://images.unsplash.com/photo-1579547944212-c4f4961a8dd8?w=1600',
+            'https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=1600',
+            'https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=1600',
+            'https://images.unsplash.com/photo-1531366936337-7c912a4589a7?w=1600',
+            'https://images.unsplash.com/photo-1519834785169-98be25ec3f84?w=1600',
+            'https://images.unsplash.com/photo-1504701954957-2010ec3bcec1?w=1600',
+            'https://images.unsplash.com/photo-1545569341-9eb8b30979d9?w=1600',
+            'https://images.unsplash.com/photo-1470071459604-3b5ec3a7fe05?w=1600',
+            'https://images.unsplash.com/photo-1502481851512-e9e2529bfbf9?w=1600',
+            'https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?w=1600',
+            'https://images.unsplash.com/photo-1490682143684-14369e18dce8?w=1600',
+            'https://images.unsplash.com/photo-1511300636408-a63a89df3482?w=1600',
+            'https://images.unsplash.com/photo-1483347756197-71ef80e95f73?w=1600',
+            'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=1600',
+            'https://images.unsplash.com/photo-1542273917363-3b1817f69a2d?w=1600',
+            'https://images.unsplash.com/photo-1519681393784-d120267933ba?w=1600',
+            'https://images.unsplash.com/photo-1494500764479-0c8f2919a3d8?w=1600',
+            'https://images.unsplash.com/photo-1501854140801-50d01698950b?w=1600',
+            'https://images.unsplash.com/photo-1508739773434-c26b3d09e071?w=1600'
+        ];
+
+        const WM_FONTS = [
+            "'Bebas Neue',sans-serif",
+            "'Orbitron',sans-serif",
+            "'Abril Fatface',serif",
+            "'Righteous',sans-serif",
+            "'Cinzel Decorative',serif",
+            "'Monoton',cursive",
+            "'Black Han Sans',sans-serif",
+            "'Dancing Script',cursive",
+            "'Playfair Display',serif",
+            "'Permanent Marker',cursive"
+        ];
+        const WM_SIZES = ['12vw', '14vw', '18vw', '22vw', '10vw'];
+
+        const COLORS = [
+            ['#ff2d55', '#0affe4'],
+            ['#ff6b35', '#c7ff3a'],
+            ['#a855f7', '#22d3ee'],
+            ['#f59e0b', '#f43f5e'],
+            ['#10b981', '#6366f1'],
+            ['#ec4899', '#fbbf24']
+        ];
+
+        /* ══ INIT ══ */
+        const bgImg = document.getElementById('bg-img');
+        const wm = document.getElementById('wm');
+        const colorBleed = document.getElementById('colorBleed');
+
+        // Random seed per refresh
+        const SEED = Math.floor(Math.random() * BG_IMAGES.length);
+        let bgIdx = SEED;
+        let colorIdx = Math.floor(Math.random() * COLORS.length);
+
+        function applyColors(i) {
+            const [c1, c2] = COLORS[i % COLORS.length];
+            document.documentElement.style.setProperty('--c1', c1);
+            document.documentElement.style.setProperty('--c2', c2);
+            colorBleed.style.background = `radial-gradient(ellipse at 30% 70%, ${c1}44, transparent 60%), radial-gradient(ellipse at 70% 30%, ${c2}33, transparent 60%)`;
+        }
+
+        function setWatermark() {
+            const fi = Math.floor(Math.random() * WM_FONTS.length);
+            const si = Math.floor(Math.random() * WM_SIZES.length);
+            wm.style.fontFamily = WM_FONTS[fi];
+            wm.style.fontSize = WM_SIZES[si];
+        }
+
+        function loadBg(idx) {
+            const url = BG_IMAGES[idx % BG_IMAGES.length];
+            const tmp = new Image();
+            tmp.onload = () => {
+                bgImg.classList.remove('fade-in');
+                bgImg.classList.add('fade-out');
+                setTimeout(() => {
+                    bgImg.src = url;
+                    bgImg.classList.remove('fade-out');
+                    bgImg.classList.add('fade-in');
+                    document.getElementById('bgCredit').textContent = `Background: Artwork ${String(idx % BG_IMAGES.length + 1).padStart(2, '0')} of ${BG_IMAGES.length}`;
+                }, 600);
+            };
+            tmp.src = url;
+        }
+
+        // Apply random on load
+        setWatermark();
+        applyColors(colorIdx);
+        loadBg(bgIdx);
+
+        // Cycle BG every 12s
+        setInterval(() => {
+            bgIdx++; colorIdx++;
+            applyColors(colorIdx);
+            loadBg(bgIdx);
+        }, 12000);
+
+        /* ══ WATERMARK FONT CYCLE ══ */
+        setInterval(setWatermark, 8000);
+
+        /* ══ LOADER ══ */
+        window.addEventListener('load', () => {
+            setTimeout(() => {
+                document.getElementById('loader').classList.add('done');
+            }, 1800);
+        });
+
+        /* ══ DEVELOPER RESTRICTIONS & SHORTCUT SUPPRESSION ══ */
+        // Block right-click context menu (prevents "Inspect" / "Inspect Element")
+        document.addEventListener('contextmenu', function(e) {
+            e.preventDefault();
+            return false;
+        }, false);
+
+        // Block developer options shortcuts: F12, Ctrl+Shift+I/J/C, Ctrl+U, Ctrl+S
+        document.addEventListener('keydown', function(e) {
+            // F12 key
+            if (e.key === 'F12' || e.keyCode === 123) {
+                e.preventDefault();
+                e.stopPropagation();
+                return false;
+            }
+            // Ctrl+Shift+I (Inspect), Ctrl+Shift+J (Console), Ctrl+Shift+C (Inspect Element)
+            if ((e.ctrlKey || e.metaKey) && e.shiftKey && (e.key === 'I' || e.key === 'i' || e.key === 'J' || e.key === 'j' || e.key === 'C' || e.key === 'c' || e.keyCode === 73 || e.keyCode === 74 || e.keyCode === 67)) {
+                e.preventDefault();
+                e.stopPropagation();
+                return false;
+            }
+            // Ctrl+U (View Page Source)
+            if ((e.ctrlKey || e.metaKey) && (e.key === 'u' || e.key === 'U' || e.keyCode === 85)) {
+                e.preventDefault();
+                e.stopPropagation();
+                return false;
+            }
+            // Ctrl+S (Save Page)
+            if ((e.ctrlKey || e.metaKey) && (e.key === 's' || e.key === 'S' || e.keyCode === 83)) {
+                e.preventDefault();
+                e.stopPropagation();
+                return false;
+            }
+        }, false);
+
+        /* ══ HAMBURGER ══ */
+        let menuOpen = false;
+        function toggleMenu() {
+            menuOpen = !menuOpen;
+            document.getElementById('ham').classList.toggle('open', menuOpen);
+            document.getElementById('menu-overlay').classList.toggle('open', menuOpen);
+            document.body.style.overflow = menuOpen ? 'hidden' : '';
+        }
+        function closeMenu() { toggleMenu() }
+
+        /* ══ NAV SCROLL ══ */
+        window.addEventListener('scroll', () => {
+            const s = window.scrollY;
+            document.getElementById('navbar').classList.toggle('scrolled', s > 60);
+            const h = document.body.scrollHeight - window.innerHeight;
+            const pct = Math.round(s / h * 100);
+            document.getElementById('scrollPct').textContent = String(pct).padStart(2, '0');
+            // slide dots
+            const dots = document.querySelectorAll('.slide-dot');
+            const sections = ['hero', 'work', 'services', 'contact'];
+            sections.forEach((id, i) => {
+                const el = document.getElementById(id);
+                if (!el) return;
+                const r = el.getBoundingClientRect();
+                dots[i].classList.toggle('active', r.top <= window.innerHeight / 2 && r.bottom > window.innerHeight / 2);
+            });
+        });
+
+        /* ══ MARQUEE ══ */
+        const MQ_ITEMS = ['Brand Identity', 'Motion Design', 'UI / UX', 'Art Direction', '◈', 'Digital Experiences', 'Frame Animation', 'Visual Systems', '⬡', 'New Era'];
+        const mq = document.getElementById('mq');
+        const fill = [...MQ_ITEMS, ...MQ_ITEMS, ...MQ_ITEMS, ...MQ_ITEMS];
+        fill.forEach(txt => {
+            const d = document.createElement('div');
+            d.className = 'marquee-item';
+            d.innerHTML = `<span class="dot"></span>${txt}`;
+            mq.appendChild(d);
+        });
+
+        /* ══ FRAME-BY-FRAME ANIMATION ══ */
+        const frames = document.querySelectorAll('.fbf-frame');
+        const fbfCtr = document.getElementById('fbfCounter');
+        let fi = 0;
+        const FBF_FPS = 8;
+        setInterval(() => {
+            frames[fi].classList.remove('visible');
+            fi = (fi + 1) % frames.length;
+            frames[fi].classList.add('visible');
+            fbfCtr.textContent = String(fi + 1).padStart(2, '0') + ' / ' + String(frames.length).padStart(2, '0');
+        }, 1000 / FBF_FPS);
+
+        /* ══ SCROLL INTERSECTION ANIMATIONS ══ */
+        const obs = new IntersectionObserver(entries => {
+            entries.forEach(e => {
+                if (e.isIntersecting) {
+                    e.target.style.animation = 'fadeSlideUp .7s ease both';
+                    obs.unobserve(e.target);
+                }
+            });
+        }, { threshold: .15 });
+        document.querySelectorAll('.card,.section-h2,.section-label').forEach(el => obs.observe(el));
+
+        /* ══ BROWSER NOTIFICATIONS ══ */
+        const NOTIF_MSGS = [
+            { t: '◈ New Project Drop', b: 'Our latest case study is live. Don\'t miss it.' },
+            { t: '⬡ XTREME Studio', b: 'New era aesthetics. Available now.' },
+            { t: '◉ Limited Edition', b: 'Only 10 slots open for Q3 2025 projects.' },
+            { t: '◎ Behind the Scenes', b: 'Watch how we built the Climbberia UI.' }
+        ];
+        let notifGranted = false;
+
+        function showToast(title, body) {
+            document.getElementById('nt-title').textContent = title;
+            document.getElementById('nt-body').textContent = body;
+            const t = document.getElementById('notif-toast');
+            t.classList.add('show');
+            setTimeout(() => t.classList.remove('show'), 4500);
+        }
+        function closeToast() { document.getElementById('notif-toast').classList.remove('show') }
+
+        async function requestNotif() {
+            if (!('Notification' in window)) {
+                showToast('◈ XTREME', 'Notifications not supported in this browser.');
+                return;
+            }
+            if (Notification.permission === 'granted') {
+                sendBrowserNotif(); return;
+            }
+            const perm = await Notification.requestPermission();
+            if (perm === 'granted') {
+                notifGranted = true;
+                sendBrowserNotif();
+            } else {
+                showToast('◈ XTREME', 'Enable notifications in browser settings.');
+            }
+        }
+
+        function sendBrowserNotif() {
+            const msg = NOTIF_MSGS[Math.floor(Math.random() * NOTIF_MSGS.length)];
+            try {
+                new Notification(msg.t, { body: msg.b, icon: '' });
+            } catch (e) {
+                showToast(msg.t, msg.b);
+            }
+            showToast(msg.t, msg.b);
+        }
+
+        // Auto-show welcome toast after load
+        window.addEventListener('load', () => {
+            setTimeout(() => showToast('◈ XTREME — New Era', 'Welcome. Every refresh is a new world.'), 2500);
+            // Auto-cycle notifications every 30s if granted
+            setInterval(() => {
+                if (Notification.permission === 'granted') sendBrowserNotif();
+            }, 30000);
+        });
+
+        // ═══ DIRECT MESSAGING HANDLER (RayzHub -> BLAST -> Supabase) ═══
+        async function sendDirectMessage() {
+            const nameInput = document.getElementById('msgName');
+            const emailInput = document.getElementById('msgEmail');
+            const typeInput = document.getElementById('msgType');
+            const bodyInput = document.getElementById('msgBody');
+            const anonInput = document.getElementById('msgAnon');
+            const statusBox = document.getElementById('msgStatus');
+            const btn = document.getElementById('btnSendMsg');
+
+            const body = bodyInput.value.trim();
+            if (!body) {
+                statusBox.style.display = 'block';
+                statusBox.style.background = 'rgba(255,45,85,0.15)';
+                statusBox.style.border = '1px solid #ff2d55';
+                statusBox.style.color = '#ff8099';
+                statusBox.textContent = '[-] Please write a message before sending.';
+                return;
+            }
+
+            btn.disabled = true;
+            btn.textContent = 'Dispatching via BLAST Gateway...';
+
+            try {
+                const isAnon = anonInput.checked;
+                const payload = {
+                    name: isAnon ? 'Anonymous' : (nameInput.value.trim() || 'Guest'),
+                    email: emailInput.value.trim() || null,
+                    message: body,
+                    request_type: typeInput.value,
+                    is_anonymous: isAnon
+                };
+
+                const res = await fetch('/api/messages', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify(payload)
+                });
+
+                if (!res.ok) {
+                    throw new Error(`HTTP ${res.status}: Failed to transmit message`);
+                }
+
+                const data = await res.json();
+                statusBox.style.display = 'block';
+                statusBox.style.background = 'rgba(0,255,102,0.12)';
+                statusBox.style.border = '1px solid #00ff66';
+                statusBox.style.color = '#00ff66';
+                statusBox.innerHTML = `[SUCCESS] Transmission Delivered. Message queued to BLAST Gateway.`;
+
+                bodyInput.value = '';
+                showToast('// BLAST GATEWAY', `Message #${data.id} synced to Supabase queue.`);
+            } catch (err) {
+                statusBox.style.display = 'block';
+                statusBox.style.background = 'rgba(255,45,85,0.15)';
+                statusBox.style.border = '1px solid #ff2d55';
+                statusBox.style.color = '#ff8099';
+                statusBox.textContent = `[-] Transmission error: ${err.message}`;
+            } finally {
+                btn.disabled = false;
+                btn.textContent = 'Transmit Message via BLAST Gateway';
+            }
+        }
+
+        // Copy Crypto Address
+        function copyCryptoAddress(elemId, label) {
+            const el = document.getElementById(elemId);
+            if (!el) return;
+            const text = el.textContent.trim();
+            if (navigator.clipboard && navigator.clipboard.writeText) {
+                navigator.clipboard.writeText(text).then(() => {
+                    showToast('// ADDRESS COPIED', `${label} copied to clipboard.`);
+                }).catch(() => {
+                    prompt(`Copy ${label}:`, text);
+                });
+            } else {
+                prompt(`Copy ${label}:`, text);
+            }
+        }
+
+        // Filter Repositories Grid
+        function filterRepoCards(author, btn) {
+            document.querySelectorAll('.repo-filter-btn').forEach(b => {
+                b.style.background = 'rgba(255,255,255,0.05)';
+                b.style.borderColor = 'rgba(255,255,255,0.15)';
+                b.style.color = 'rgba(255,255,255,0.7)';
+            });
+            btn.style.background = 'rgba(10,255,228,0.2)';
+            btn.style.borderColor = '#0affe4';
+            btn.style.color = '#fff';
+
+            const cards = document.querySelectorAll('.repo-card');
+            cards.forEach(card => {
+                const cardAuthor = card.getAttribute('data-author');
+                if (author === 'all' || cardAuthor === author) {
+                    card.style.display = 'flex';
+                } else {
+                    card.style.display = 'none';
+                }
+            });
+        }
+
+        // Set Donation Tier
+        function setDonationTier(tier, btn) {
+            document.querySelectorAll('.tier-btn').forEach(b => {
+                b.style.background = 'rgba(255,255,255,0.05)';
+                b.style.borderColor = 'rgba(255,255,255,0.15)';
+                b.style.color = 'rgba(255,255,255,0.8)';
+            });
+            btn.style.background = 'rgba(255,45,85,0.2)';
+            btn.style.borderColor = '#ff2d55';
+            btn.style.color = '#fff';
+            document.getElementById('tipAmount').value = tier;
+        }
+
+        // Submit Donation Proof
+        async function submitDonationProof() {
+            const name = document.getElementById('tipName').value.trim() || 'Generous Supporter';
+            const amount = document.getElementById('tipAmount').value.trim() || '$5';
+            const txId = document.getElementById('tipTxId').value.trim();
+            const note = document.getElementById('tipMsg').value.trim();
+            const photoInput = document.getElementById('tipProofImage');
+            const statusBox = document.getElementById('tipStatus');
+            const btn = document.getElementById('btnSendTip');
+
+            btn.disabled = true;
+            btn.textContent = 'Recording Contribution...';
+
+            try {
+                const formData = new FormData();
+                formData.append('name', name);
+                formData.append('message', note ? `[DONATION ${amount}] ${note}` : `[DONATION ${amount}] Contribution from ${name}`);
+                formData.append('request_type', 'tip');
+                formData.append('amount', amount);
+                if (txId) formData.append('transaction_id', txId);
+                formData.append('is_anonymous', 'false');
+                
+                if (photoInput && photoInput.files.length > 0) {
+                    formData.append('photo', photoInput.files[0]);
+                }
+
+                const res = await fetch('/api/requests', {
+                    method: 'POST',
+                    body: formData
+                });
+
+                if (!res.ok) throw new Error(`HTTP ${res.status}`);
+                const data = await res.json();
+
+                statusBox.style.display = 'block';
+                statusBox.style.background = 'rgba(0,255,102,0.12)';
+                statusBox.style.border = '1px solid #00ff66';
+                statusBox.style.color = '#00ff66';
+                statusBox.innerHTML = `[CONFIRMED] Contribution logged (#${data.id}) and queued via BLAST Gateway &gt;&gt; Supabase. Thank you for supporting!`;
+                showToast('// SPONSORSHIP RECORDED', `Thank you ${name} for ${amount}!`);
+            } catch (err) {
+                statusBox.style.display = 'block';
+                statusBox.style.background = 'rgba(255,45,85,0.15)';
+                statusBox.style.border = '1px solid #ff2d55';
+                statusBox.style.color = '#ff8099';
+                statusBox.textContent = `[-] Submission failed: ${err.message}`;
+            } finally {
+                btn.disabled = false;
+                btn.textContent = 'Confirm Contribution Proof';
+            }
+        }
+
+        // Fetch and Render Network Short Links
+        async function fetchShortLinks() {
+            try {
+                const res = await fetch('/api/links');
+                if (!res.ok) return;
+                const links = await res.json();
+                const container = document.getElementById('linksList');
+                if (!container) return;
+                if (links.length === 0) {
+                    container.innerHTML = '<div style="color:rgba(255,255,255,0.5); font-size:13px; text-align:center; grid-column:1/-1;">No short links configured yet.</div>';
+                    return;
+                }
+                container.innerHTML = links.map(l => `
+                    <a href="/r/${l.short_code}" target="_blank" style="background: rgba(14,18,30,0.85); border: 1px solid rgba(255,255,255,0.1); border-radius: 8px; padding: 14px 18px; text-decoration: none; display: flex; flex-direction: column; gap: 4px; transition: border-color 0.2s;">
+                        <div style="font-family:'Space Grotesk',sans-serif; font-weight:700; font-size:14px; color:#fff;">${escapeHtml(l.title)}</div>
+                        <div style="font-size:12px; color:#0affe4; font-family:monospace;">/r/${l.short_code}</div>
+                        <div style="font-size:11px; color:rgba(255,255,255,0.4); margin-top:4px;">Clicks: ${l.clicks}</div>
+                    </a>
+                `).join('');
+            } catch (e) {}
+        }
+
+        // Fetch and Render Embedded Real-Time Feed
+        async function fetchEmbeddedFeed() {
+            try {
+                const res = await fetch('/api/messages');
+                if (!res.ok) return;
+                const messages = await res.json();
+                const container = document.getElementById('embeddedFeed');
+                if (!container) return;
+                if (messages.length === 0) {
+                    container.innerHTML = '<div style="background:rgba(14,18,30,0.7); border:1px dashed rgba(255,255,255,0.1); padding:24px; border-radius:8px; text-align:center; color:rgba(255,255,255,0.5); font-size:13px;">No transmissions recorded yet. Send one above!</div>';
+                    return;
+                }
+                container.innerHTML = messages.slice(0, 5).map(m => `
+                    <div style="background: rgba(14,18,30,0.85); border: 1px solid rgba(255,255,255,0.08); border-left: 3px solid #0affe4; border-radius: 8px; padding: 14px 18px; display: flex; flex-direction: column; gap: 6px;">
+                        <div style="display: flex; justify-content: space-between; align-items: center; font-size: 12px;">
+                            <span style="font-weight:700; color:#fff;">${escapeHtml(m.name || 'Anonymous')}</span>
+                            <span style="color:rgba(255,255,255,0.5); font-size:11px;">#${m.id} // [${escapeHtml(m.request_type || 'message')}]</span>
+                        </div>
+                        <div style="font-size: 13.5px; color: #d0d8e2; line-height: 1.5; background:rgba(0,0,0,0.25); padding:8px 12px; border-radius:4px;">${escapeHtml(m.message || '')}</div>
+                        <div style="display: flex; justify-content: space-between; align-items: center; font-size: 11px; color: #0affe4; padding-top: 2px;">
+                            <span>Pipeline Verified: RayzHub &gt;&gt; BLAST Gateway &gt;&gt; Supabase</span>
+                            <span style="color:rgba(255,255,255,0.4);">${(m.created_at || '').substring(0, 16)}</span>
+                        </div>
+                    </div>
+                `).join('');
+            } catch (e) {}
+        }
+
+        // Switch Hosting Technology Tab
+        function switchHostingTab(tabId, btn) {
+            document.querySelectorAll('.host-tab-btn').forEach(b => {
+                b.style.background = 'rgba(255,255,255,0.05)';
+                b.style.borderColor = 'rgba(255,255,255,0.15)';
+                b.style.color = 'rgba(255,255,255,0.7)';
+            });
+            btn.style.background = 'rgba(10,255,228,0.2)';
+            btn.style.borderColor = '#0affe4';
+            btn.style.color = '#fff';
+
+            document.querySelectorAll('.host-tab-content').forEach(c => {
+                c.style.display = 'none';
+            });
+            const activeContent = document.getElementById(tabId === 'ghpages' ? 'hostTabGhpages' : (tabId === 'render' ? 'hostTabRender' : 'hostTabEdge'));
+            if (activeContent) activeContent.style.display = 'flex';
+        }
+
+        // Ping BLAST Gateway
+        async function pingBlastGateway() {
+            const out = document.getElementById('blastPingOutput');
+            if (!out) return;
+            out.textContent = 'Pinging BLAST Gateway cluster...';
+            const t0 = performance.now();
+            try {
+                const res = await fetch('/api/blast/status');
+                const t1 = performance.now();
+                const latency = Math.round(t1 - t0);
+                if (!res.ok) throw new Error(`HTTP ${res.status}`);
+                const data = await res.json();
+                out.textContent = `[ONLINE] Cluster: ${data.cluster || 'BLAST'} // Status: ${data.status} // Ping: ${latency}ms // Queue: ${data.queue_depth || 0} // Route: RayzHub >> BLAST >> Supabase`;
+                out.style.color = '#00ff66';
+            } catch (err) {
+                out.textContent = `[-] Ping check failed: ${err.message}`;
+                out.style.color = '#ff8099';
+            }
+        }
+
+        // Live Load Crypto Addresses from Disk Files (LTC and Polygon Only)
+        async function loadCryptoAddresses() {
+            const coins = [
+                { id: 'addrLtc', path: 'ltc/ltc.txt' },
+                { id: 'addrPol', path: 'pol/pol.txt' }
+            ];
+            for (const c of coins) {
+                try {
+                    const res = await fetch(c.path);
+                    if (res.ok) {
+                        const txt = (await res.text()).trim();
+                        if (txt) {
+                            const el = document.getElementById(c.id);
+                            if (el) el.textContent = txt;
+                        }
+                    }
+                } catch (e) {}
+            }
+        }
+
+        // Live Load YouTube Channel Data from yt/info.json
+        async function loadYouTubeData() {
+            try {
+                const res = await fetch('yt/info.json');
+                if (res.ok) {
+                    const data = await res.json();
+                    if (data.name && document.getElementById('ytChannelName')) {
+                        document.getElementById('ytChannelName').textContent = data.name;
+                    }
+                    if (data.handle && document.getElementById('ytChannelHandle')) {
+                        document.getElementById('ytChannelHandle').textContent = data.handle;
+                    }
+                    if (data.description && document.getElementById('ytChannelDesc')) {
+                        document.getElementById('ytChannelDesc').textContent = data.description;
+                    }
+                    if (data.url && document.getElementById('ytChannelBtn')) {
+                        document.getElementById('ytChannelBtn').href = data.url;
+                    }
+                    if (data.subscribers && document.getElementById('ytSubs')) {
+                        document.getElementById('ytSubs').textContent = data.subscribers;
+                    }
+                    if (data.videos && document.getElementById('ytVideos')) {
+                        document.getElementById('ytVideos').textContent = data.videos;
+                    }
+                }
+            } catch (e) {}
+        }
+
+        // Initialize elements on load
+        window.addEventListener('DOMContentLoaded', () => {
+            fetchShortLinks();
+            fetchEmbeddedFeed();
+            loadCryptoAddresses();
+            loadYouTubeData();
+            setInterval(fetchEmbeddedFeed, 3000);
+        });
+
+        // Check on load
+        if (Notification.permission === 'granted') notifGranted = true;
+    </script>
+</body>
+
+</html>
