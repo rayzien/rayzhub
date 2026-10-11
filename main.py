@@ -199,7 +199,7 @@ def get_github_repos(username: str):
                         "description": item.get("description") or "Open-source project repository",
                         "stargazers_count": item.get("stargazers_count", 0),
                         "forks_count": item.get("forks_count", 0),
-                        "language": item.get("language") or "TypeScript",
+                        "language": item.get("language") or "Python",
                         "html_url": item.get("html_url")
                     })
                 repos.sort(key=lambda x: x["stargazers_count"], reverse=True)
@@ -213,7 +213,7 @@ def get_github_repos(username: str):
             "description": "High-performance modular web engine with AABB collision and dynamic design system.",
             "stargazers_count": 482,
             "forks_count": 54,
-            "language": "TypeScript",
+            "language": "Python",
             "html_url": f"https://github.com/{username}"
         },
         {

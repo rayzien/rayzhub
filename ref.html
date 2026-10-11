@@ -2356,13 +2356,40 @@
             }, 1800);
         });
 
-        /* ══ GLOBAL UNLOCK COMMAND ══ */
-        window.unlock = function() {
-            var current = localStorage.getItem('adminEditorMode') === 'true';
-            localStorage.setItem('adminEditorMode', (!current).toString());
-            console.log('◈ Admin Editor Mode: ' + (!current ? 'ACTIVATED' : 'DEACTIVATED') + ' ◈');
-            window.location.reload();
-        };
+        /* ══ DEVELOPER RESTRICTIONS & SHORTCUT SUPPRESSION ══ */
+        // Block right-click context menu (prevents "Inspect" / "Inspect Element")
+        document.addEventListener('contextmenu', function(e) {
+            e.preventDefault();
+            return false;
+        }, false);
+
+        // Block developer options shortcuts: F12, Ctrl+Shift+I/J/C, Ctrl+U, Ctrl+S
+        document.addEventListener('keydown', function(e) {
+            // F12 key
+            if (e.key === 'F12' || e.keyCode === 123) {
+                e.preventDefault();
+                e.stopPropagation();
+                return false;
+            }
+            // Ctrl+Shift+I (Inspect), Ctrl+Shift+J (Console), Ctrl+Shift+C (Inspect Element)
+            if ((e.ctrlKey || e.metaKey) && e.shiftKey && (e.key === 'I' || e.key === 'i' || e.key === 'J' || e.key === 'j' || e.key === 'C' || e.key === 'c' || e.keyCode === 73 || e.keyCode === 74 || e.keyCode === 67)) {
+                e.preventDefault();
+                e.stopPropagation();
+                return false;
+            }
+            // Ctrl+U (View Page Source)
+            if ((e.ctrlKey || e.metaKey) && (e.key === 'u' || e.key === 'U' || e.keyCode === 85)) {
+                e.preventDefault();
+                e.stopPropagation();
+                return false;
+            }
+            // Ctrl+S (Save Page)
+            if ((e.ctrlKey || e.metaKey) && (e.key === 's' || e.key === 'S' || e.keyCode === 83)) {
+                e.preventDefault();
+                e.stopPropagation();
+                return false;
+            }
+        }, false);
 
         /* ══ HAMBURGER ══ */
         let menuOpen = false;
