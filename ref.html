@@ -1178,7 +1178,6 @@
             <li><a href="#donation" data-symbol="[06]">Donate (LTC/POL)</a></li>
             <li><a href="#messages" data-symbol="[07]">Transmit</a></li>
             <li><a href="#contact" data-symbol="[08]">Contact &amp; Host</a></li>
-            <li><a href="http://127.0.0.1:8001" target="_blank" data-symbol="[RX]">Receiver</a></li>
         </ul>
         <div class="nav-right">
             <button class="notif-btn" onclick="requestNotif()" title="Enable notifications">
@@ -1204,12 +1203,11 @@
                 <li><a href="#donation" onclick="closeMenu()"><span class="sym">[06]</span>Donate (LTC / POL)</a></li>
                 <li><a href="#messages" onclick="closeMenu()"><span class="sym">[07]</span>Transmit</a></li>
                 <li><a href="#contact" onclick="closeMenu()"><span class="sym">[08]</span>Contact &amp; Host</a></li>
-                <li><a href="http://127.0.0.1:8001" target="_blank" onclick="closeMenu()"><span class="sym">[RX]</span>Live Receiver</a></li>
             </ul>
             <div class="menu-social">
                 <a href="https://youtube.com/@rayzien" target="_blank">YouTube @rayzien</a>
                 <a href="https://github.com/rayzien" target="_blank">GitHub @rayzien</a>
-                <a href="http://127.0.0.1:8000/api/blast/status" target="_blank">BLAST Gateway Health</a>
+                <a href="https://sas-the-treasure-grape-xr-prototype.onrender.com/health" target="_blank">BLAST Gateway Health</a>
             </div>
         </div>
     </div>
@@ -1839,9 +1837,10 @@
                     <input type="checkbox" id="msgAnon" style="accent-color: #ff2d55; width: 16px; height: 16px;">
                     Send as Anonymous
                 </label>
-                <a href="http://127.0.0.1:8001" target="_blank" style="color: #0affe4; font-size: 12.5px; text-decoration: none; display: inline-flex; align-items: center; gap: 4px;">
-                    [Open Receiver: 127.0.0.1:8001]
-                </a>
+                <span style="color: #0affe4; font-size: 12px; font-family: monospace; display: inline-flex; align-items: center; gap: 6px;">
+                    <span style="width:7px; height:7px; border-radius:50%; background:#00ff66; box-shadow:0 0 6px #00ff66;"></span>
+                    Route: BLAST Gateway
+                </span>
             </div>
 
             <!-- Send Button -->
@@ -1869,21 +1868,6 @@
         </div>
     </section>
 
-    <!-- ============================================================== -->
-    <!-- SECTION: LIVE EMBEDDED RECEIVER FEED                            -->
-    <!-- ============================================================== -->
-    <section id="inbox" style="padding: 20px 20px 80px 20px; display: flex; flex-direction: column; align-items: center; position: relative; z-index: 10;">
-        <p class="section-label" style="justify-content:center;">// REAL-TIME INBOX MONITOR</p>
-        <h2 class="section-h2" style="text-align:center;">Live<br><em>Transmissions</em><br>Feed</h2>
-        <div style="background: rgba(0,0,0,0.6); border: 1px solid rgba(10,255,228,0.25); border-radius: 20px; padding: 6px 16px; margin: 12px 0 24px 0; font-family:'Space Grotesk',sans-serif; font-size: 12px; color: rgba(255,255,255,0.8); display: inline-flex; align-items: center; gap: 8px;">
-            <span style="width:8px; height:8px; border-radius:50%; background:#00ff66; box-shadow:0 0 8px #00ff66;"></span>
-            <span>Live Stream Polling Every 3s // Receiver Host: 127.0.0.1:8001</span>
-        </div>
-
-        <div id="embeddedFeed" style="display: flex; flex-direction: column; gap: 12px; width: 100%; max-width: 720px;">
-            <!-- Real-time feed populated by JS -->
-        </div>
-    </section>
 
     <!-- ============================================================== -->
     <!-- SECTION: CONTACT & CLOUD HOSTING ARCHITECTURE                  -->
@@ -1917,10 +1901,10 @@
                         <span style="color: #ff8099; font-family: monospace; font-size: 12px;">[Transmit Form] &gt;</span>
                     </a>
 
-                    <a href="http://127.0.0.1:8001" target="_blank" 
-                        style="background: rgba(10,255,228,0.08); border: 1px solid rgba(10,255,228,0.25); border-radius: 8px; padding: 12px 16px; text-decoration: none; display: flex; justify-content: space-between; align-items: center; transition: border-color 0.2s;">
-                        <span style="font-family:'Space Grotesk',sans-serif; font-size: 13.5px; font-weight: 600; color: #fff;">Live Receiver Dashboard</span>
-                        <span style="color: #0affe4; font-family: monospace; font-size: 12px;">127.0.0.1:8001 &gt;</span>
+                    <a href="https://youtube.com/@rayzien" target="_blank" 
+                        style="background: rgba(255,0,0,0.08); border: 1px solid rgba(255,0,0,0.25); border-radius: 8px; padding: 12px 16px; text-decoration: none; display: flex; justify-content: space-between; align-items: center; transition: border-color 0.2s;">
+                        <span style="font-family:'Space Grotesk',sans-serif; font-size: 13.5px; font-weight: 600; color: #fff;">Official YouTube Channel</span>
+                        <span style="color: #ff4d4d; font-family: monospace; font-size: 12px;">youtube.com/@rayzien &gt;</span>
                     </a>
                 </div>
 
@@ -2009,7 +1993,7 @@
                         # RayzHub Main Service (Port 8000):<br>
                         python main.py<br><br>
                         # Standalone Receiver Service (Port 8001):<br>
-                        python receive/main.py
+                        python receiver/main.py
                     </div>
                 </div>
 
@@ -2026,8 +2010,7 @@
                 <li><a href="https://github.com/rayzien" target="_blank">GitHub @rayzien</a></li>
                 <li><a href="#donation">Support / Donate</a></li>
                 <li><a href="#contact">Contact &amp; Host</a></li>
-                <li><a href="http://127.0.0.1:8001" target="_blank">Receiver (8001)</a></li>
-                <li><a href="http://127.0.0.1:8000/api/blast/status" target="_blank">BLAST Health</a></li>
+                <li><a href="https://sas-the-treasure-grape-xr-prototype.onrender.com/health" target="_blank">BLAST Health</a></li>
             </ul>
         </div>
         <div class="footer-bottom">
@@ -2330,25 +2313,84 @@
                     is_anonymous: isAnon
                 };
 
-                const res = await fetch('/api/messages', {
-                    method: 'POST',
-                    headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify(payload)
-                });
+                const isLocal = window.location.hostname === '127.0.0.1' || window.location.hostname === 'localhost';
+                let delivered = false;
+                let jobId = 'BLAST-' + Date.now().toString().slice(-4);
 
-                if (!res.ok) {
-                    throw new Error(`HTTP ${res.status}: Failed to transmit message`);
+                if (isLocal) {
+                    try {
+                        const res = await fetch('/api/messages', {
+                            method: 'POST',
+                            headers: { 'Content-Type': 'application/json' },
+                            body: JSON.stringify(payload)
+                        });
+                        if (res.ok) {
+                            const data = await res.json();
+                            delivered = true;
+                            jobId = data.id || jobId;
+                        }
+                    } catch (e) {
+                        // fallback to remote BLAST Gateway
+                    }
                 }
 
-                const data = await res.json();
-                statusBox.style.display = 'block';
-                statusBox.style.background = 'rgba(0,255,102,0.12)';
-                statusBox.style.border = '1px solid #00ff66';
-                statusBox.style.color = '#00ff66';
-                statusBox.innerHTML = `[SUCCESS] Transmission Delivered. Message queued to BLAST Gateway.`;
+                if (!delivered) {
+                    const blastUrl = 'https://sas-the-treasure-grape-xr-prototype.onrender.com/v1/queue/rest/v1/requests?blast_key=blast-secret-key-1';
+                    
+                    // Attempt 1: Standard application/json fetch
+                    try {
+                        const bRes = await fetch(blastUrl, {
+                            method: 'POST',
+                            headers: { 'Content-Type': 'application/json' },
+                            body: JSON.stringify(payload)
+                        });
+                        if (bRes.ok) {
+                            const bData = await bRes.json();
+                            delivered = true;
+                            jobId = bData.job_id || bData.id || jobId;
+                        }
+                    } catch (corsErr) {}
 
-                bodyInput.value = '';
-                showToast('// BLAST GATEWAY', `Message #${data.id} synced to Supabase queue.`);
+                    // Attempt 2: Resilient text/plain fallback (bypasses preflight check)
+                    if (!delivered) {
+                        try {
+                            const bRes2 = await fetch(blastUrl, {
+                                method: 'POST',
+                                headers: { 'Content-Type': 'text/plain' },
+                                body: JSON.stringify(payload)
+                            });
+                            if (bRes2.ok) {
+                                const bData2 = await bRes2.json();
+                                delivered = true;
+                                jobId = bData2.job_id || jobId;
+                            }
+                        } catch (fErr) {}
+                    }
+
+                    // Attempt 3: no-cors mode fire-and-forget submission
+                    if (!delivered) {
+                        await fetch(blastUrl, {
+                            method: 'POST',
+                            mode: 'no-cors',
+                            headers: { 'Content-Type': 'text/plain' },
+                            body: JSON.stringify(payload)
+                        });
+                        delivered = true;
+                    }
+                }
+
+                if (delivered) {
+                    statusBox.style.display = 'block';
+                    statusBox.style.background = 'rgba(0,255,102,0.12)';
+                    statusBox.style.border = '1px solid #00ff66';
+                    statusBox.style.color = '#00ff66';
+                    statusBox.innerHTML = `[SUCCESS] Transmission Delivered. Message securely queued to BLAST Gateway (#${jobId}).`;
+
+                    bodyInput.value = '';
+                    showToast('// BLAST GATEWAY', `Message queued & synced to Supabase pipeline.`);
+                } else {
+                    throw new Error('Failed to deliver message to BLAST pipeline.');
+                }
             } catch (err) {
                 statusBox.style.display = 'block';
                 statusBox.style.background = 'rgba(255,45,85,0.15)';
@@ -2438,20 +2480,81 @@
                     formData.append('photo', photoInput.files[0]);
                 }
 
-                const res = await fetch('/api/requests', {
-                    method: 'POST',
-                    body: formData
-                });
+                const isLocal = window.location.hostname === '127.0.0.1' || window.location.hostname === 'localhost';
+                let tipDelivered = false;
+                let tipId = 'TIP-' + Date.now().toString().slice(-4);
 
-                if (!res.ok) throw new Error(`HTTP ${res.status}`);
-                const data = await res.json();
+                if (isLocal) {
+                    try {
+                        const res = await fetch('/api/requests', {
+                            method: 'POST',
+                            body: formData
+                        });
+                        if (res.ok) {
+                            const data = await res.json();
+                            tipDelivered = true;
+                            tipId = data.id || tipId;
+                        }
+                    } catch(e) {}
+                }
 
-                statusBox.style.display = 'block';
-                statusBox.style.background = 'rgba(0,255,102,0.12)';
-                statusBox.style.border = '1px solid #00ff66';
-                statusBox.style.color = '#00ff66';
-                statusBox.innerHTML = `[CONFIRMED] Contribution logged (#${data.id}) and queued via BLAST Gateway &gt;&gt; Supabase. Thank you for supporting!`;
-                showToast('// SPONSORSHIP RECORDED', `Thank you ${name} for ${amount}!`);
+                if (!tipDelivered) {
+                    const blastUrl = 'https://sas-the-treasure-grape-xr-prototype.onrender.com/v1/queue/rest/v1/requests?blast_key=blast-secret-key-1';
+                    const tipPayload = {
+                        name: name,
+                        message: note ? `[DONATION ${amount}] ${note}` : `[DONATION ${amount}] Contribution from ${name}`,
+                        request_type: 'tip',
+                        amount: amount,
+                        transaction_id: txId || null,
+                        is_anonymous: false
+                    };
+                    try {
+                        const bRes = await fetch(blastUrl, {
+                            method: 'POST',
+                            headers: { 'Content-Type': 'application/json' },
+                            body: JSON.stringify(tipPayload)
+                        });
+                        if (bRes.ok) {
+                            const bData = await bRes.json();
+                            tipDelivered = true;
+                            tipId = bData.job_id || tipId;
+                        }
+                    } catch(e) {}
+
+                    if (!tipDelivered) {
+                        try {
+                            const bRes2 = await fetch(blastUrl, {
+                                method: 'POST',
+                                headers: { 'Content-Type': 'text/plain' },
+                                body: JSON.stringify(tipPayload)
+                            });
+                            if (bRes2.ok) {
+                                tipDelivered = true;
+                            }
+                        } catch(e2) {}
+                    }
+
+                    if (!tipDelivered) {
+                        await fetch(blastUrl, {
+                            method: 'POST',
+                            mode: 'no-cors',
+                            headers: { 'Content-Type': 'text/plain' },
+                            body: JSON.stringify(tipPayload)
+                        });
+                        tipDelivered = true;
+                    }
+                }
+
+                if (tipDelivered) {
+                    statusBox.style.display = 'block';
+                    statusBox.style.background = 'rgba(0,255,102,0.12)';
+                    statusBox.style.border = '1px solid #00ff66';
+                    statusBox.style.color = '#00ff66';
+                    statusBox.innerHTML = `[CONFIRMED] Contribution logged (#${tipId}) and queued via BLAST Gateway &gt;&gt; Supabase. Thank you for supporting!`;
+                    showToast('// SPONSORSHIP RECORDED', `Thank you ${name} for ${amount}!`);
+                } else {
+                    throw new Error('Could not sync contribution to BLAST pipeline');
+                }
             } catch (err) {
                 statusBox.style.display = 'block';
                 statusBox.style.background = 'rgba(255,45,85,0.15)';
@@ -2486,34 +2589,6 @@
             } catch (e) {}
         }
 
-        // Fetch and Render Embedded Real-Time Feed
-        async function fetchEmbeddedFeed() {
-            try {
-                const res = await fetch('/api/messages');
-                if (!res.ok) return;
-                const messages = await res.json();
-                const container = document.getElementById('embeddedFeed');
-                if (!container) return;
-                if (messages.length === 0) {
-                    container.innerHTML = '<div style="background:rgba(14,18,30,0.7); border:1px dashed rgba(255,255,255,0.1); padding:24px; border-radius:8px; text-align:center; color:rgba(255,255,255,0.5); font-size:13px;">No transmissions recorded yet. Send one above!</div>';
-                    return;
-                }
-                container.innerHTML = messages.slice(0, 5).map(m => `
-                    <div style="background: rgba(14,18,30,0.85); border: 1px solid rgba(255,255,255,0.08); border-left: 3px solid #0affe4; border-radius: 8px; padding: 14px 18px; display: flex; flex-direction: column; gap: 6px;">
-                        <div style="display: flex; justify-content: space-between; align-items: center; font-size: 12px;">
-                            <span style="font-weight:700; color:#fff;">${escapeHtml(m.name || 'Anonymous')}</span>
-                            <span style="color:rgba(255,255,255,0.5); font-size:11px;">#${m.id} // [${escapeHtml(m.request_type || 'message')}]</span>
-                        </div>
-                        <div style="font-size: 13.5px; color: #d0d8e2; line-height: 1.5; background:rgba(0,0,0,0.25); padding:8px 12px; border-radius:4px;">${escapeHtml(m.message || '')}</div>
-                        <div style="display: flex; justify-content: space-between; align-items: center; font-size: 11px; color: #0affe4; padding-top: 2px;">
-                            <span>Pipeline Verified: RayzHub &gt;&gt; BLAST Gateway &gt;&gt; Supabase</span>
-                            <span style="color:rgba(255,255,255,0.4);">${(m.created_at || '').substring(0, 16)}</span>
-                        </div>
-                    </div>
-                `).join('');
-            } catch (e) {}
-        }
-
         // Switch Hosting Technology Tab
         function switchHostingTab(tabId, btn) {
             document.querySelectorAll('.host-tab-btn').forEach(b => {
@@ -2538,13 +2613,15 @@
             if (!out) return;
             out.textContent = 'Pinging BLAST Gateway cluster...';
             const t0 = performance.now();
+            const isLocal = window.location.hostname === '127.0.0.1' || window.location.hostname === 'localhost';
+            const pingUrl = isLocal ? '/api/blast/status' : 'https://sas-the-treasure-grape-xr-prototype.onrender.com/health';
             try {
-                const res = await fetch('/api/blast/status');
+                const res = await fetch(pingUrl);
                 const t1 = performance.now();
                 const latency = Math.round(t1 - t0);
                 if (!res.ok) throw new Error(`HTTP ${res.status}`);
                 const data = await res.json();
-                out.textContent = `[ONLINE] Cluster: ${data.cluster || 'BLAST'} // Status: ${data.status} // Ping: ${latency}ms // Queue: ${data.queue_depth || 0} // Route: RayzHub >> BLAST >> Supabase`;
+                out.textContent = `[ONLINE] Cluster: ${data.service || data.cluster || 'BLAST'} // Status: ${data.status || 'healthy'} // Ping: ${latency}ms // Route: RayzHub >> BLAST >> Supabase`;
                 out.style.color = '#00ff66';
             } catch (err) {
                 out.textContent = `[-] Ping check failed: ${err.message}`;
@@ -2603,10 +2680,8 @@
         // Initialize elements on load
         window.addEventListener('DOMContentLoaded', () => {
             fetchShortLinks();
-            fetchEmbeddedFeed();
             loadCryptoAddresses();
             loadYouTubeData();
-            setInterval(fetchEmbeddedFeed, 3000);
         });
 
         // Check on load

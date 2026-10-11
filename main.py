@@ -450,8 +450,10 @@ async def serve_frontend(full_path: str):
     if clean_path and os.path.isfile(clean_path):
         return FileResponse(clean_path)
 
-    # Root or empty path serves main portal (ref.html)
+    # Root or empty path serves main portal (index.html or ref.html)
     if clean_path == "" or clean_path == "/" or clean_path == "index.html":
+        if os.path.isfile("index.html"):
+            return FileResponse("index.html")
         if os.path.isfile("ref.html"):
             return FileResponse("ref.html")
 
