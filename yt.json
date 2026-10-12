@@ -1,9 +1,9 @@
 {
-  "enabled": true,
-  "handle": "@rayzien",
-  "name": "Rayzien Tech",
-  "url": "https://youtube.com/@rayzien",
-  "description": "Deep-dives into anti-detect systems, distributed high-throughput routing, and autonomous cluster tooling.",
-  "subscribers": "1.2K Subscribers",
-  "videos": "28 Releases"
+  "enabled": false,
+  "handle": "",
+  "name": "",
+  "url": "",
+  "description": "",
+  "subscribers": "",
+  "videos": ""
 }
