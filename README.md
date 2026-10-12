@@ -1,6 +1,6 @@
 # RAYZHUB -- DISTRIBUTED PLATFORM & ARCHITECTURE
 
-> **Created by Rayzien**  
+> **Created by Rayzien & Pheonix14**  
 > *Autonomous Systems, Anti-Detect Engines, and Distributed Infrastructure.*  
 > Complete documentation: See [RAYZIEN.README.md](file:///home/zero/Desktop/rayzhub/RAYZIEN.README.md).
 
@@ -8,7 +8,7 @@
 
 ## 1. OVERVIEW & ABOUT
 
-**RayzHub** is an open-source, high-performance distributed web platform and real-time portfolio system architected by **Rayzien**.
+**RayzHub** is an open-source, high-performance distributed web platform and real-time portfolio system architected by **Rayzien** and **Pheonix14**.
 
 Built for speed and simplification of life, RayzHub eliminates third-party platform limitations with zero paywalls, zero tracking, and complete privacy.
 
@@ -40,6 +40,7 @@ RayzHub decouples backend storage through the **BLAST Gateway** queue:
 ## 3. ARCHITECTS & CHANNELS
 
 - **Rayzien**: https://github.com/rayzien
+- **Pheonix14**: https://github.com/pheonix14
 - **Official YouTube Channel**: Data maintained in folder `yt/` (`yt/channel.txt`, `yt/yt.txt`, `yt/info.json`, `yt/yt.png`)
 
 ---
@@ -102,4 +103,4 @@ Access the receiver dashboard:
 ## 7. LICENSE & PRIVACY
 
 Maintained as a private repository under `https://github.com/rayzien/rayzhub`.
-All rights reserved by Rayzien.
+All rights reserved by Rayzien and Pheonix14.
