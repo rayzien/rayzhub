@@ -308,6 +308,68 @@ def get_gitlab_projects(username: str):
         }
     ]
 
+# ─── YOUTUBE CHANNEL METADATA & REAL-TIME ENDPOINT ───
+@app.get("/api/youtube/channel")
+def get_youtube_channel():
+    """Reads yt.json (or yt/info.json) and dynamically fetches real-time channel metadata."""
+    config_file = "yt.json" if os.path.exists("yt.json") else ("yt/info.json" if os.path.exists("yt/info.json") else None)
+    if not config_file:
+        return {"enabled": False, "message": "No yt.json configuration found"}
+    
+    try:
+        with open(config_file, "r", encoding="utf-8") as f:
+            yt_data = json.load(f)
+    except Exception as e:
+        return {"enabled": False, "error": str(e)}
+    
+    if not yt_data or yt_data.get("enabled") is False:
+        return {"enabled": False}
+
+    handle = yt_data.get("handle") or yt_data.get("channel") or yt_data.get("url", "")
+    if not handle:
+        return {"enabled": False}
+
+    clean_handle = handle.strip()
+    if clean_handle.startswith("https://youtube.com/"):
+        clean_handle = clean_handle.replace("https://youtube.com/", "")
+    elif clean_handle.startswith("https://www.youtube.com/"):
+        clean_handle = clean_handle.replace("https://www.youtube.com/", "")
+
+    if not clean_handle.startswith("@") and not clean_handle.startswith("channel/") and not clean_handle.startswith("c/"):
+        clean_handle = f"@{clean_handle}"
+
+    result = dict(yt_data)
+    result["enabled"] = True
+    try:
+        url = f"https://www.youtube.com/{clean_handle}"
+        req = urllib.request.Request(url, headers={
+            "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36",
+            "Accept-Language": "en-US,en;q=0.9"
+        })
+        with urllib.request.urlopen(req, timeout=4) as response:
+            if response.status == 200:
+                html = response.read().decode("utf-8", errors="ignore")
+                import re
+                match_title = re.search(r'<title>(.*?)</title>', html)
+                if match_title:
+                    raw_title = match_title.group(1).replace(" - YouTube", "").strip()
+                    if raw_title:
+                        result["name"] = raw_title
+                match_avatar = re.search(r'\"avatar\":\{\"thumbnails\":\[\{\"url\":\"(.*?)\"', html)
+                if match_avatar:
+                    result["avatar"] = match_avatar.group(1)
+                match_subs = re.search(r'\"subscriberCountText\":\{\"simpleText\":\"(.*?)\"\}', html)
+                if match_subs:
+                    result["subscribers"] = match_subs.group(1)
+                else:
+                    match_subs_acc = re.search(r'\"subscriberCountText\":\{\"accessibility\":\{\"accessibilityData\":\{\"label\":\"(.*?)\"\}\}', html)
+                    if match_subs_acc:
+                        result["subscribers"] = match_subs_acc.group(1)
+    except Exception:
+        pass
+
+    return result
+
 # ─── REQUESTS, TIPS, & UPLOADS ENDPOINTS ───
 @app.post("/api/requests", response_model=schemas.RequestOut)
 async def create_request(
