@@ -45,14 +45,13 @@ RayzHub decouples backend storage through the **BLAST Gateway** queue:
 
 ---
 
-## 4. CRYPTOGRAPHIC DONATION (LITECOIN & POLYGON ONLY)
+## 4. CRYPTOGRAPHIC DONATION (LITECOIN ONLY)
 
-Public addresses and QR codes are restricted to Litecoin and Polygon:
+Public address and QR code are restricted to Litecoin:
 
 - `ltc/` (and `sltc/`) -> `ltc.png` & `ltc.txt` (Litecoin)
-- `pol/` (and `polygon/`) -> `pol.png` & `pol.txt` (Polygon POL / MATIC)
 
-To update any QR or address, drop `<coin>.png` and `<coin>.txt` into the corresponding folder. The web interface updates automatically.
+To update the QR or address, drop `ltc.png` and `ltc.txt` into the corresponding folder. The web interface updates automatically.
 
 ---
 

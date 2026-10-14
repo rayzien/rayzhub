@@ -67,21 +67,18 @@ The web interface dynamically loads from `/yt/info.json`. Updating these files i
 
 ---
 
-## 4. CRYPTOGRAPHIC DONATION & QR FOLDERS (LITECOIN & POLYGON ONLY)
+## 4. CRYPTOGRAPHIC DONATION & QR FOLDERS (LITECOIN ONLY)
 
-Public donation addresses and QR codes are strictly limited to **Litecoin** and **Polygon**:
+Public donation address and QR code are strictly limited to **Litecoin**:
 
 ### Storage Directory Layout:
 - `ltc/` (and `sltc/` alias)
   - `ltc.png`: High-contrast QR code image for Litecoin
   - `ltc.txt`: Plaintext Litecoin wallet address
-- `pol/` (and `polygon/` alias)
-  - `pol.png` / `polygon.png`: High-contrast QR code image for Polygon
-  - `pol.txt` / `polygon.txt`: Plaintext Polygon (POL / MATIC) wallet address
 
 ### Updating Addresses
-1. Save your custom QR image as `ltc/ltc.png` or `pol/pol.png`.
-2. Save your wallet string into `ltc/ltc.txt` or `pol/pol.txt`.
+1. Save your custom QR image as `ltc/ltc.png`.
+2. Save your wallet string into `ltc/ltc.txt`.
 3. Refresh `http://127.0.0.1:8000/#donation` to view the updated credentials live.
 
 ---

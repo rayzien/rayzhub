@@ -1175,7 +1175,7 @@
             <li id="navYt" style="display: none;"><a href="#youtube" data-symbol="[03]">YouTube</a></li>
             <li><a href="#profiles" data-symbol="[04]">Architects</a></li>
             <li><a href="#stars" data-symbol="[05]">Stars &amp; Repos</a></li>
-            <li><a href="#donation" data-symbol="[06]">Donate (LTC/POL)</a></li>
+            <li><a href="#donation" data-symbol="[06]">Donate (LTC)</a></li>
             <li><a href="#messages" data-symbol="[07]">Transmit</a></li>
             <li><a href="#contact" data-symbol="[08]">Contact &amp; Host</a></li>
         </ul>
@@ -1200,7 +1200,7 @@
                 <li id="menuYt" style="display: none;"><a href="#youtube" onclick="closeMenu()"><span class="sym">[03]</span>YouTube Channel</a></li>
                 <li><a href="#profiles" onclick="closeMenu()"><span class="sym">[04]</span>Architects</a></li>
                 <li><a href="#stars" onclick="closeMenu()"><span class="sym">[05]</span>Stars &amp; Repos</a></li>
-                <li><a href="#donation" onclick="closeMenu()"><span class="sym">[06]</span>Donate (LTC / POL)</a></li>
+                <li><a href="#donation" onclick="closeMenu()"><span class="sym">[06]</span>Donate (LTC)</a></li>
                 <li><a href="#messages" onclick="closeMenu()"><span class="sym">[07]</span>Transmit</a></li>
                 <li><a href="#contact" onclick="closeMenu()"><span class="sym">[08]</span>Contact &amp; Host</a></li>
             </ul>
@@ -1242,7 +1242,7 @@
             <a id="heroYtBtn" href="#youtube" class="btn-ghost" style="display: none; text-decoration:none; border-color:#ff2d55; color:#ff8099;">YouTube Channel</a>
             <a href="#profiles" class="btn-ghost" style="text-decoration:none;">Architects</a>
             <a href="#stars" class="btn-ghost" style="text-decoration:none;">Repositories</a>
-            <a href="#donation" class="btn-ghost" style="text-decoration:none; border-color:#9945ff; color:#bb7eff;">Donate (LTC/POL)</a>
+            <a href="#donation" class="btn-ghost" style="text-decoration:none; border-color:#ff2d55; color:#ff8099;">Donate (LTC)</a>
             <a href="#messages" class="btn-ghost" style="text-decoration:none; border-color:#0affe4; color:#0affe4;">Transmit</a>
             <a href="#contact" class="btn-ghost" style="text-decoration:none; border-color:#00ff66; color:#00ff66;">Contact &amp; Host</a>
         </div>
@@ -1259,18 +1259,18 @@
         <div style="background: rgba(10, 14, 24, 0.85); border: 1px solid rgba(10,255,228,0.3); border-radius: 8px; padding: 12px 18px; margin-bottom: 24px; max-width: 880px; width: 100%; font-family:'Space Grotesk',sans-serif; font-size: 12.5px; color: rgba(255,255,255,0.8); display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 8px;">
             <div>
                 <span style="color:#0affe4; font-weight:700;">[STORAGE STRUCTURE]</span>
-                Folders: <code style="color:#ff8099; background:rgba(255,45,85,0.1); padding:2px 6px; border-radius:3px;">ltc/</code>, <code style="color:#ff8099; background:rgba(255,45,85,0.1); padding:2px 6px; border-radius:3px;">sltc/</code>, <code style="color:#bb7eff; background:rgba(153,69,255,0.15); padding:2px 6px; border-radius:3px;">pol/</code>, <code style="color:#bb7eff; background:rgba(153,69,255,0.15); padding:2px 6px; border-radius:3px;">polygon/</code>
+                Folders: <code style="color:#ff8099; background:rgba(255,45,85,0.1); padding:2px 6px; border-radius:3px;">ltc/</code>, <code style="color:#ff8099; background:rgba(255,45,85,0.1); padding:2px 6px; border-radius:3px;">sltc/</code>
             </div>
             <div style="font-size: 11.5px; color: rgba(255,255,255,0.55);">
-                Replace &lt;coin&gt;.png &amp; &lt;coin&gt;.txt to live-update addresses
+                Replace ltc.png &amp; ltc.txt to live-update address
             </div>
         </div>
 
-        <!-- CRYPTO ADDRESS CARDS WITH HIGH-CONTRAST QR DISPLAY (LITECOIN & POLYGON ONLY) -->
-        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 24px; width: 100%; max-width: 880px; margin-bottom: 36px;">
+        <!-- CRYPTO ADDRESS CARDS WITH HIGH-CONTRAST QR DISPLAY (LITECOIN ONLY) -->
+        <div style="display: flex; justify-content: center; width: 100%; max-width: 480px; margin-bottom: 36px;">
             
             <!-- LITECOIN (LTC / SLTC) -->
-            <div style="background: rgba(14, 18, 30, 0.85); backdrop-filter: blur(16px); border: 1px solid rgba(255, 45, 85, 0.4); border-radius: 10px; padding: 24px; display: flex; flex-direction: column; gap: 14px; text-align: center;">
+            <div style="width: 100%; background: rgba(14, 18, 30, 0.85); backdrop-filter: blur(16px); border: 1px solid rgba(255, 45, 85, 0.4); border-radius: 10px; padding: 24px; display: flex; flex-direction: column; gap: 14px; text-align: center;">
                 <div style="display: flex; justify-content: space-between; align-items: center;">
                     <span style="font-family:'Space Grotesk',sans-serif; font-weight: 700; font-size: 15px; color: #fff;">Litecoin (LTC / SLTC)</span>
                     <span style="background: rgba(255,45,85,0.15); color: #ff5e7e; padding: 2px 8px; border-radius: 4px; font-size: 10px; font-weight: 700; text-transform: uppercase;">Scrypt // Fast</span>
@@ -1278,9 +1278,7 @@
                 <div style="background: #ffffff; border-radius: 8px; padding: 10px; width: 150px; height: 150px; margin: 0 auto; display: flex; align-items: center; justify-content: center; box-shadow: 0 4px 16px rgba(0,0,0,0.5);">
                     <img src="ltc/ltc.png" alt="LTC QR" style="width: 130px; height: 130px; object-fit: contain; image-rendering: pixelated;">
                 </div>
-                <div style="background: rgba(0,0,0,0.55); padding: 10px 12px; border-radius: 6px; border: 1px solid rgba(255,255,255,0.08); font-family: monospace; font-size: 12px; color: #ff5e7e; word-break: break-all;" id="addrLtc">
-                    LTC_PLACEHOLDER_WALLET_ADDRESS
-                </div>
+                <div style="background: rgba(0,0,0,0.55); padding: 10px 12px; border-radius: 6px; border: 1px solid rgba(255,255,255,0.08); font-family: monospace; font-size: 12px; color: #ff5e7e; word-break: break-all;" id="addrLtc">ltc1q08zgc7n6lgghfxtlure29mc8dye70r6ccq8gx0</div>
                 <div style="display: flex; gap: 8px;">
                     <button onclick="copyCryptoAddress('addrLtc', 'Litecoin Address')" 
                         style="flex: 1; background: rgba(255,45,85,0.18); border: 1px solid #ff2d55; color: #fff; padding: 9px 14px; border-radius: 6px; font-family:'Space Grotesk',sans-serif; font-size: 12px; font-weight: 600; cursor: pointer; transition: background 0.2s;">
@@ -1291,30 +1289,6 @@
                     </a>
                 </div>
                 <span style="font-size: 10.5px; color: rgba(255,255,255,0.45); font-family: monospace;">Source: /ltc/ltc.png &amp; /sltc/</span>
-            </div>
-
-            <!-- POLYGON (POL / MATIC) -->
-            <div style="background: rgba(14, 18, 30, 0.85); backdrop-filter: blur(16px); border: 1px solid rgba(153, 69, 255, 0.45); border-radius: 10px; padding: 24px; display: flex; flex-direction: column; gap: 14px; text-align: center;">
-                <div style="display: flex; justify-content: space-between; align-items: center;">
-                    <span style="font-family:'Space Grotesk',sans-serif; font-weight: 700; font-size: 15px; color: #fff;">Polygon (POL / MATIC)</span>
-                    <span style="background: rgba(153,69,255,0.18); color: #bb7eff; padding: 2px 8px; border-radius: 4px; font-size: 10px; font-weight: 700; text-transform: uppercase;">Polygon PoS // EVM</span>
-                </div>
-                <div style="background: #ffffff; border-radius: 8px; padding: 10px; width: 150px; height: 150px; margin: 0 auto; display: flex; align-items: center; justify-content: center; box-shadow: 0 4px 16px rgba(0,0,0,0.5);">
-                    <img src="pol/pol.png" alt="Polygon QR" style="width: 130px; height: 130px; object-fit: contain; image-rendering: pixelated;">
-                </div>
-                <div style="background: rgba(0,0,0,0.55); padding: 10px 12px; border-radius: 6px; border: 1px solid rgba(255,255,255,0.08); font-family: monospace; font-size: 12px; color: #bb7eff; word-break: break-all;" id="addrPol">
-                    0x71C83a542b5B5187e59b7Ab486B26A476FCE6b38
-                </div>
-                <div style="display: flex; gap: 8px;">
-                    <button onclick="copyCryptoAddress('addrPol', 'Polygon Address')" 
-                        style="flex: 1; background: rgba(153,69,255,0.22); border: 1px solid #9945ff; color: #fff; padding: 9px 14px; border-radius: 6px; font-family:'Space Grotesk',sans-serif; font-size: 12px; font-weight: 600; cursor: pointer; transition: background 0.2s;">
-                        Copy POL Address
-                    </button>
-                    <a href="pol/pol.txt" target="_blank" style="background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.15); color: rgba(255,255,255,0.7); padding: 9px 12px; border-radius: 6px; font-family:'Space Grotesk',sans-serif; font-size: 11px; text-decoration: none; display: flex; align-items: center;">
-                        [txt]
-                    </a>
-                </div>
-                <span style="font-size: 10.5px; color: rgba(255,255,255,0.45); font-family: monospace;">Source: /pol/pol.png &amp; /polygon/</span>
             </div>
 
         </div>
@@ -2813,11 +2787,10 @@
             }
         }
 
-        // Live Load Crypto Addresses from Disk Files (LTC and Polygon Only)
+        // Live Load Crypto Addresses from Disk Files (Litecoin Only)
         async function loadCryptoAddresses() {
             const coins = [
-                { id: 'addrLtc', path: 'ltc/ltc.txt' },
-                { id: 'addrPol', path: 'pol/pol.txt' }
+                { id: 'addrLtc', path: 'ltc/ltc.txt' }
             ];
             for (const c of coins) {
                 try {
