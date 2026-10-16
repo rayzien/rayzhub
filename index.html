@@ -1382,35 +1382,217 @@
         </div>
     </div>
 
-    <!-- ═══ ENGINEERING DISCIPLINES ═══ -->
-    <section id="work">
-        <p class="section-label">// DISCIPLINES</p>
-        <h2 class="section-h2">Core Systems<br><em>Engineering</em></h2>
-        <div class="cards">
-            <div class="card">
-                <div class="card-num">01</div>
-                <div class="card-icon">[GTW]</div>
-                <h3>BLAST Gateway &amp; Proxies</h3>
-                <p>Supabase security firewall, token rate limiting, and durable retry queue engine.</p>
+    <!-- ═══ RECENT CONTRIBUTIONS & COMMITS (BOTH ACCOUNTS) ═══ -->
+    <section id="work" style="padding: 60px 20px; display: flex; flex-direction: column; align-items: center; position: relative; z-index: 10;">
+        <p class="section-label" style="justify-content:center;">// OPEN SOURCE PROVENANCE</p>
+        <h2 class="section-h2" style="text-align:center;">Recent<br><em>Contributions</em><br>&amp; Commits</h2>
+        <p style="font-family:'Space Grotesk',sans-serif; color:rgba(255,255,255,0.6); max-width:640px; text-align:center; font-size:14px; margin: 12px 0 28px 0; line-height: 1.6;">
+            Verified production commits, upstream pull requests, and core optimizations across <strong>@rayzien</strong> and <strong>@pheonix14</strong>.
+        </p>
+
+        <!-- ACTIVITY FILTER BUTTONS -->
+        <div style="display: flex; gap: 8px; flex-wrap: wrap; justify-content: center; margin-bottom: 28px;">
+            <button onclick="filterActivity('all', this)" class="activity-filter-btn active" 
+                style="background: rgba(10,255,228,0.2); border: 1px solid #0affe4; color: #fff; padding: 6px 16px; border-radius: 4px; font-family:'Space Grotesk',sans-serif; font-size: 12px; font-weight: 600; cursor: pointer;">
+                All Activity
+            </button>
+            <button onclick="filterActivity('rayzien', this)" class="activity-filter-btn" 
+                style="background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.15); color: rgba(255,255,255,0.7); padding: 6px 16px; border-radius: 4px; font-family:'Space Grotesk',sans-serif; font-size: 12px; font-weight: 600; cursor: pointer;">
+                @rayzien Commits &amp; PRs
+            </button>
+            <button onclick="filterActivity('pheonix14', this)" class="activity-filter-btn" 
+                style="background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.15); color: rgba(255,255,255,0.7); padding: 6px 16px; border-radius: 4px; font-family:'Space Grotesk',sans-serif; font-size: 12px; font-weight: 600; cursor: pointer;">
+                @pheonix14 Commits &amp; PRs
+            </button>
+        </div>
+
+        <!-- ACTIVITY CARDS GRID -->
+        <div id="activityGrid" style="display: grid; grid-template-columns: repeat(auto-fill, minmax(320px, 1fr)); gap: 16px; width: 100%; max-width: 1040px;">
+
+            <!-- RAYZIEN 1: Red-DiscordBot PR -->
+            <div class="activity-card" data-author="rayzien" style="background: rgba(15, 19, 31, 0.75); border: 1px solid rgba(10,255,228,0.25); border-radius: 8px; padding: 20px; display: flex; flex-direction: column; gap: 12px; transition: transform 0.2s, border-color 0.2s;">
+                <div style="display: flex; justify-content: space-between; align-items: flex-start; gap: 8px;">
+                    <div>
+                        <div style="display: flex; align-items: center; gap: 8px; margin-bottom: 4px;">
+                            <span style="font-size: 10px; color: #0affe4; font-weight: 700; text-transform: uppercase;">@rayzien</span>
+                            <span style="background: rgba(10,255,228,0.12); color: #0affe4; border: 1px solid rgba(10,255,228,0.3); padding: 1px 6px; border-radius: 3px; font-size: 10px; font-family: monospace;">PULL REQUEST</span>
+                        </div>
+                        <h4 style="font-family:'Space Grotesk',sans-serif; font-size: 16px; font-weight: 700; color: #fff; margin: 0;">
+                            <a href="https://github.com/Cog-Creators/Red-DiscordBot/pull/6810" target="_blank" style="color:#fff; text-decoration:none;">Cog-Creators / Red-DiscordBot #6810</a>
+                        </h4>
+                    </div>
+                    <span style="font-family: monospace; font-size: 11px; color: rgba(255,255,255,0.45); white-space: nowrap;">Oct 16, 2026</span>
+                </div>
+                <p style="font-family:'Space Grotesk',sans-serif; font-size: 13px; color: rgba(255,255,255,0.7); line-height: 1.5; margin: 0;">
+                    Audio: Truncate Track Error embed description to prevent HTTP 400 Bad Request on extended error traces.
+                </p>
+                <div style="display: flex; justify-content: space-between; align-items: center; margin-top: auto; padding-top: 8px; font-size: 12px; border-top: 1px solid rgba(255,255,255,0.06);">
+                    <span style="font-family: monospace; color: #0affe4;">Python / Audio Cog</span>
+                    <a href="https://github.com/Cog-Creators/Red-DiscordBot/pull/6810" target="_blank" style="color: #0affe4; text-decoration: none; font-weight: 600;">View PR &gt;</a>
+                </div>
             </div>
-            <div class="card">
-                <div class="card-num">02</div>
-                <div class="card-icon">[SCR]</div>
-                <h3>Anti-Detect Web Scraping</h3>
-                <p>Anakin headless browser proxy rotation and structured markdown extraction.</p>
+
+            <!-- PHEONIX14 1: sqlfluff PR -->
+            <div class="activity-card" data-author="pheonix14" style="background: rgba(15, 19, 31, 0.75); border: 1px solid rgba(255,45,85,0.25); border-radius: 8px; padding: 20px; display: flex; flex-direction: column; gap: 12px; transition: transform 0.2s, border-color 0.2s;">
+                <div style="display: flex; justify-content: space-between; align-items: flex-start; gap: 8px;">
+                    <div>
+                        <div style="display: flex; align-items: center; gap: 8px; margin-bottom: 4px;">
+                            <span style="font-size: 10px; color: #ff5e7e; font-weight: 700; text-transform: uppercase;">@pheonix14</span>
+                            <span style="background: rgba(255,45,85,0.12); color: #ff5e7e; border: 1px solid rgba(255,45,85,0.3); padding: 1px 6px; border-radius: 3px; font-size: 10px; font-family: monospace;">PULL REQUEST</span>
+                        </div>
+                        <h4 style="font-family:'Space Grotesk',sans-serif; font-size: 16px; font-weight: 700; color: #fff; margin: 0;">
+                            <a href="https://github.com/sqlfluff/sqlfluff/pull/8728" target="_blank" style="color:#fff; text-decoration:none;">sqlfluff / sqlfluff #8728</a>
+                        </h4>
+                    </div>
+                    <span style="font-family: monospace; font-size: 11px; color: rgba(255,255,255,0.45); white-space: nowrap;">Oct 13, 2026</span>
+                </div>
+                <p style="font-family:'Space Grotesk',sans-serif; font-size: 13px; color: rgba(255,255,255,0.7); line-height: 1.5; margin: 0;">
+                    Redshift: Add Masking Policy DDL grammar and parser implementation for AWS Redshift column security policies.
+                </p>
+                <div style="display: flex; justify-content: space-between; align-items: center; margin-top: auto; padding-top: 8px; font-size: 12px; border-top: 1px solid rgba(255,255,255,0.06);">
+                    <span style="font-family: monospace; color: #ff5e7e;">Python / SQL DDL</span>
+                    <a href="https://github.com/sqlfluff/sqlfluff/pull/8728" target="_blank" style="color: #ff5e7e; text-decoration: none; font-weight: 600;">View PR &gt;</a>
+                </div>
             </div>
-            <div class="card">
-                <div class="card-num">03</div>
-                <div class="card-icon">[DBS]</div>
-                <h3>Distributed Sharded Storage</h3>
-                <p>rayzOSS GitHub backend filesystem and GITBACK mirrored git preservation.</p>
+
+            <!-- RAYZIEN 2: Skyien Release & Core Commit -->
+            <div class="activity-card" data-author="rayzien" style="background: rgba(15, 19, 31, 0.75); border: 1px solid rgba(10,255,228,0.25); border-radius: 8px; padding: 20px; display: flex; flex-direction: column; gap: 12px; transition: transform 0.2s, border-color 0.2s;">
+                <div style="display: flex; justify-content: space-between; align-items: flex-start; gap: 8px;">
+                    <div>
+                        <div style="display: flex; align-items: center; gap: 8px; margin-bottom: 4px;">
+                            <span style="font-size: 10px; color: #0affe4; font-weight: 700; text-transform: uppercase;">@rayzien</span>
+                            <span style="background: rgba(10,255,228,0.12); color: #0affe4; border: 1px solid rgba(10,255,228,0.3); padding: 1px 6px; border-radius: 3px; font-size: 10px; font-family: monospace;">RELEASE v1.0.0</span>
+                        </div>
+                        <h4 style="font-family:'Space Grotesk',sans-serif; font-size: 16px; font-weight: 700; color: #fff; margin: 0;">
+                            <a href="https://github.com/rayzien/Skyien" target="_blank" style="color:#fff; text-decoration:none;">rayzien / Skyien (v1.0.0)</a>
+                        </h4>
+                    </div>
+                    <span style="font-family: monospace; font-size: 11px; color: rgba(255,255,255,0.45); white-space: nowrap;">Oct 15, 2026</span>
+                </div>
+                <p style="font-family:'Space Grotesk',sans-serif; font-size: 13px; color: rgba(255,255,255,0.7); line-height: 1.5; margin: 0;">
+                    Published Skyien: High-speed C++20 Telegram automation CLI with ethical pacing, TDLib bindings, and digital provenance verification.
+                </p>
+                <div style="display: flex; justify-content: space-between; align-items: center; margin-top: auto; padding-top: 8px; font-size: 12px; border-top: 1px solid rgba(255,255,255,0.06);">
+                    <span style="font-family: monospace; color: #0affe4;">C++20 / TDLib</span>
+                    <a href="https://github.com/rayzien/Skyien/releases/tag/v1.0.0" target="_blank" style="color: #0affe4; text-decoration: none; font-weight: 600;">View Release &gt;</a>
+                </div>
             </div>
-            <div class="card">
-                <div class="card-num">04</div>
-                <div class="card-icon">[SYS]</div>
-                <h3>Desktop Memory &amp; Privacy</h3>
-                <p>Yimiter PC RAM limiter and LiveDRIVE zero-logging encrypted cloud drive.</p>
+
+            <!-- PHEONIX14 2: Scrapy PR -->
+            <div class="activity-card" data-author="pheonix14" style="background: rgba(15, 19, 31, 0.75); border: 1px solid rgba(255,45,85,0.25); border-radius: 8px; padding: 20px; display: flex; flex-direction: column; gap: 12px; transition: transform 0.2s, border-color 0.2s;">
+                <div style="display: flex; justify-content: space-between; align-items: flex-start; gap: 8px;">
+                    <div>
+                        <div style="display: flex; align-items: center; gap: 8px; margin-bottom: 4px;">
+                            <span style="font-size: 10px; color: #ff5e7e; font-weight: 700; text-transform: uppercase;">@pheonix14</span>
+                            <span style="background: rgba(255,45,85,0.12); color: #ff5e7e; border: 1px solid rgba(255,45,85,0.3); padding: 1px 6px; border-radius: 3px; font-size: 10px; font-family: monospace;">PULL REQUEST</span>
+                        </div>
+                        <h4 style="font-family:'Space Grotesk',sans-serif; font-size: 16px; font-weight: 700; color: #fff; margin: 0;">
+                            <a href="https://github.com/scrapy/scrapy/pull/8310" target="_blank" style="color:#fff; text-decoration:none;">scrapy / scrapy #8310</a>
+                        </h4>
+                    </div>
+                    <span style="font-family: monospace; font-size: 11px; color: rgba(255,255,255,0.45); white-space: nowrap;">Oct 13, 2026</span>
+                </div>
+                <p style="font-family:'Space Grotesk',sans-serif; font-size: 13px; color: rgba(255,255,255,0.7); line-height: 1.5; margin: 0;">
+                    Fix robots.txt enforcement failing open for multiple concurrent waiters (#8297) across async crawling pipelines.
+                </p>
+                <div style="display: flex; justify-content: space-between; align-items: center; margin-top: auto; padding-top: 8px; font-size: 12px; border-top: 1px solid rgba(255,255,255,0.06);">
+                    <span style="font-family: monospace; color: #ff5e7e;">Python / Asyncio</span>
+                    <a href="https://github.com/scrapy/scrapy/pull/8310" target="_blank" style="color: #ff5e7e; text-decoration: none; font-weight: 600;">View PR &gt;</a>
+                </div>
             </div>
+
+            <!-- RAYZIEN 3: Ansible Merged PR -->
+            <div class="activity-card" data-author="rayzien" style="background: rgba(15, 19, 31, 0.75); border: 1px solid rgba(10,255,228,0.25); border-radius: 8px; padding: 20px; display: flex; flex-direction: column; gap: 12px; transition: transform 0.2s, border-color 0.2s;">
+                <div style="display: flex; justify-content: space-between; align-items: flex-start; gap: 8px;">
+                    <div>
+                        <div style="display: flex; align-items: center; gap: 8px; margin-bottom: 4px;">
+                            <span style="font-size: 10px; color: #0affe4; font-weight: 700; text-transform: uppercase;">@rayzien</span>
+                            <span style="background: rgba(0,255,102,0.12); color: #00ff66; border: 1px solid rgba(0,255,102,0.3); padding: 1px 6px; border-radius: 3px; font-size: 10px; font-family: monospace;">MERGED UPSTREAM</span>
+                        </div>
+                        <h4 style="font-family:'Space Grotesk',sans-serif; font-size: 16px; font-weight: 700; color: #fff; margin: 0;">
+                            <a href="https://github.com/ansible-collections/community.general/pull/12933" target="_blank" style="color:#fff; text-decoration:none;">community.general #12933</a>
+                        </h4>
+                    </div>
+                    <span style="font-family: monospace; font-size: 11px; color: rgba(255,255,255,0.45); white-space: nowrap;">Oct 11, 2026</span>
+                </div>
+                <p style="font-family:'Space Grotesk',sans-serif; font-size: 13px; color: rgba(255,255,255,0.7); line-height: 1.5; margin: 0;">
+                    pkgng: Close stdin stream to automatically pick default answers for interactive package prompts during automated provisioning.
+                </p>
+                <div style="display: flex; justify-content: space-between; align-items: center; margin-top: auto; padding-top: 8px; font-size: 12px; border-top: 1px solid rgba(255,255,255,0.06);">
+                    <span style="font-family: monospace; color: #00ff66;">Ansible / FreeBSD</span>
+                    <a href="https://github.com/ansible-collections/community.general/pull/12933" target="_blank" style="color: #0affe4; text-decoration: none; font-weight: 600;">View PR &gt;</a>
+                </div>
+            </div>
+
+            <!-- PHEONIX14 3: redis-py PR -->
+            <div class="activity-card" data-author="pheonix14" style="background: rgba(15, 19, 31, 0.75); border: 1px solid rgba(255,45,85,0.25); border-radius: 8px; padding: 20px; display: flex; flex-direction: column; gap: 12px; transition: transform 0.2s, border-color 0.2s;">
+                <div style="display: flex; justify-content: space-between; align-items: flex-start; gap: 8px;">
+                    <div>
+                        <div style="display: flex; align-items: center; gap: 8px; margin-bottom: 4px;">
+                            <span style="font-size: 10px; color: #ff5e7e; font-weight: 700; text-transform: uppercase;">@pheonix14</span>
+                            <span style="background: rgba(255,45,85,0.12); color: #ff5e7e; border: 1px solid rgba(255,45,85,0.3); padding: 1px 6px; border-radius: 3px; font-size: 10px; font-family: monospace;">PULL REQUEST</span>
+                        </div>
+                        <h4 style="font-family:'Space Grotesk',sans-serif; font-size: 16px; font-weight: 700; color: #fff; margin: 0;">
+                            <a href="https://github.com/redis/redis-py/pull/4425" target="_blank" style="color:#fff; text-decoration:none;">redis / redis-py #4425</a>
+                        </h4>
+                    </div>
+                    <span style="font-family: monospace; font-size: 11px; color: rgba(255,255,255,0.45); white-space: nowrap;">Oct 13, 2026</span>
+                </div>
+                <p style="font-family:'Space Grotesk',sans-serif; font-size: 13px; color: rgba(255,255,255,0.7); line-height: 1.5; margin: 0;">
+                    perf(utils): optimize @deprecated_args and @experimental_args fast path (#4423) in core Redis client execution loop.
+                </p>
+                <div style="display: flex; justify-content: space-between; align-items: center; margin-top: auto; padding-top: 8px; font-size: 12px; border-top: 1px solid rgba(255,255,255,0.06);">
+                    <span style="font-family: monospace; color: #ff5e7e;">Python / Performance</span>
+                    <a href="https://github.com/redis/redis-py/pull/4425" target="_blank" style="color: #ff5e7e; text-decoration: none; font-weight: 600;">View PR &gt;</a>
+                </div>
+            </div>
+
+            <!-- RAYZIEN 4: RayzHub Commit -->
+            <div class="activity-card" data-author="rayzien" style="background: rgba(15, 19, 31, 0.75); border: 1px solid rgba(10,255,228,0.25); border-radius: 8px; padding: 20px; display: flex; flex-direction: column; gap: 12px; transition: transform 0.2s, border-color 0.2s;">
+                <div style="display: flex; justify-content: space-between; align-items: flex-start; gap: 8px;">
+                    <div>
+                        <div style="display: flex; align-items: center; gap: 8px; margin-bottom: 4px;">
+                            <span style="font-size: 10px; color: #0affe4; font-weight: 700; text-transform: uppercase;">@rayzien</span>
+                            <span style="background: rgba(10,255,228,0.12); color: #0affe4; border: 1px solid rgba(10,255,228,0.3); padding: 1px 6px; border-radius: 3px; font-size: 10px; font-family: monospace;">CORE COMMIT</span>
+                        </div>
+                        <h4 style="font-family:'Space Grotesk',sans-serif; font-size: 16px; font-weight: 700; color: #fff; margin: 0;">
+                            <a href="https://github.com/rayzien/rayzhub" target="_blank" style="color:#fff; text-decoration:none;">rayzien / rayzhub</a>
+                        </h4>
+                    </div>
+                    <span style="font-family: monospace; font-size: 11px; color: rgba(255,255,255,0.45); white-space: nowrap;">Oct 16, 2026</span>
+                </div>
+                <p style="font-family:'Space Grotesk',sans-serif; font-size: 13px; color: rgba(255,255,255,0.7); line-height: 1.5; margin: 0;">
+                    Deployed Litecoin exclusive verification, encrypted message pipeline, and streamlined interface architecture.
+                </p>
+                <div style="display: flex; justify-content: space-between; align-items: center; margin-top: auto; padding-top: 8px; font-size: 12px; border-top: 1px solid rgba(255,255,255,0.06);">
+                    <span style="font-family: monospace; color: #0affe4;">JavaScript / Gateway</span>
+                    <a href="https://github.com/rayzien/rayzhub" target="_blank" style="color: #0affe4; text-decoration: none; font-weight: 600;">View Repo &gt;</a>
+                </div>
+            </div>
+
+            <!-- PHEONIX14 4: multriix-x Core Commit -->
+            <div class="activity-card" data-author="pheonix14" style="background: rgba(15, 19, 31, 0.75); border: 1px solid rgba(255,45,85,0.25); border-radius: 8px; padding: 20px; display: flex; flex-direction: column; gap: 12px; transition: transform 0.2s, border-color 0.2s;">
+                <div style="display: flex; justify-content: space-between; align-items: flex-start; gap: 8px;">
+                    <div>
+                        <div style="display: flex; align-items: center; gap: 8px; margin-bottom: 4px;">
+                            <span style="font-size: 10px; color: #ff5e7e; font-weight: 700; text-transform: uppercase;">@pheonix14</span>
+                            <span style="background: rgba(255,45,85,0.12); color: #ff5e7e; border: 1px solid rgba(255,45,85,0.3); padding: 1px 6px; border-radius: 3px; font-size: 10px; font-family: monospace;">CORE COMMIT</span>
+                        </div>
+                        <h4 style="font-family:'Space Grotesk',sans-serif; font-size: 16px; font-weight: 700; color: #fff; margin: 0;">
+                            <a href="https://github.com/pheonix14/multriix-x" target="_blank" style="color:#fff; text-decoration:none;">pheonix14 / multriix-x</a>
+                        </h4>
+                    </div>
+                    <span style="font-family: monospace; font-size: 11px; color: rgba(255,255,255,0.45); white-space: nowrap;">Oct 13, 2026</span>
+                </div>
+                <p style="font-family:'Space Grotesk',sans-serif; font-size: 13px; color: rgba(255,255,255,0.7); line-height: 1.5; margin: 0;">
+                    feat(cli): Built native C++ 'mx' global launcher, process supervisor, and portable savegame memory manager.
+                </p>
+                <div style="display: flex; justify-content: space-between; align-items: center; margin-top: auto; padding-top: 8px; font-size: 12px; border-top: 1px solid rgba(255,255,255,0.06);">
+                    <span style="font-family: monospace; color: #ff5e7e;">C++ / Workstations</span>
+                    <a href="https://github.com/pheonix14/multriix-x" target="_blank" style="color: #ff5e7e; text-decoration: none; font-weight: 600;">View Repo &gt;</a>
+                </div>
+            </div>
+
         </div>
     </section>
 
@@ -2447,6 +2629,28 @@
             btn.style.color = '#fff';
 
             const cards = document.querySelectorAll('.repo-card');
+            cards.forEach(card => {
+                const cardAuthor = card.getAttribute('data-author');
+                if (author === 'all' || cardAuthor === author) {
+                    card.style.display = 'flex';
+                } else {
+                    card.style.display = 'none';
+                }
+            });
+        }
+
+        // Filter Activity Grid (Recent Contributions & Commits)
+        function filterActivity(author, btn) {
+            document.querySelectorAll('.activity-filter-btn').forEach(b => {
+                b.style.background = 'rgba(255,255,255,0.05)';
+                b.style.borderColor = 'rgba(255,255,255,0.15)';
+                b.style.color = 'rgba(255,255,255,0.7)';
+            });
+            btn.style.background = 'rgba(10,255,228,0.2)';
+            btn.style.borderColor = '#0affe4';
+            btn.style.color = '#fff';
+
+            const cards = document.querySelectorAll('.activity-card');
             cards.forEach(card => {
                 const cardAuthor = card.getAttribute('data-author');
                 if (author === 'all' || cardAuthor === author) {
