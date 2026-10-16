@@ -2806,6 +2806,18 @@
             }
         }
 
+        // Helper to ensure YouTube elements stay hidden
+        function hideYouTubeElements() {
+            const ytSection = document.getElementById('youtube');
+            const navYt = document.getElementById('navYt');
+            const menuYt = document.getElementById('menuYt');
+            const heroYt = document.getElementById('heroYtBtn');
+            if (ytSection) ytSection.style.display = 'none';
+            if (navYt) navYt.style.display = 'none';
+            if (menuYt) menuYt.style.display = 'none';
+            if (heroYt) heroYt.style.display = 'none';
+        }
+
         // Live Load YouTube Channel Data from yt.json / real-time API
         async function loadYouTubeData() {
             try {
@@ -2816,7 +2828,11 @@
                     const apiRes = await fetch('/api/youtube/channel');
                     if (apiRes.ok) {
                         const json = await apiRes.json();
-                        if (json && json.enabled !== false && (json.handle || json.channel || json.url || json.name)) {
+                        if (json && json.enabled === false) {
+                            hideYouTubeElements();
+                            return;
+                        }
+                        if (json && json.enabled && (json.handle || json.channel || json.url || json.name)) {
                             data = json;
                         }
                     }
@@ -2825,10 +2841,14 @@
                 // 2. Direct fetch of yt.json (for static GitHub Pages hosting)
                 if (!data) {
                     try {
-                        const res = await fetch('yt.json');
+                        const res = await fetch('yt.json', { cache: 'no-cache' });
                         if (res.ok) {
                             const json = await res.json();
-                            if (json && json.enabled !== false && (json.handle || json.channel || json.url || json.name)) {
+                            if (json && json.enabled === false) {
+                                hideYouTubeElements();
+                                return;
+                            }
+                            if (json && json.enabled && (json.handle || json.channel || json.url || json.name)) {
                                 data = json;
                             }
                         }
@@ -2838,29 +2858,30 @@
                 // 3. Fallback check for yt/info.json
                 if (!data) {
                     try {
-                        const resInfo = await fetch('yt/info.json');
+                        const resInfo = await fetch('yt/info.json', { cache: 'no-cache' });
                         if (resInfo.ok) {
                             const json = await resInfo.json();
-                            if (json && json.enabled !== false && (json.handle || json.channel || json.url || json.name)) {
+                            if (json && json.enabled === false) {
+                                hideYouTubeElements();
+                                return;
+                            }
+                            if (json && json.enabled && (json.handle || json.channel || json.url || json.name)) {
                                 data = json;
                             }
                         }
                     } catch (e) {}
                 }
 
+                // If no yt.json or channel not added or explicitly disabled, ensure section remains hidden
+                if (!data || data.enabled === false) {
+                    hideYouTubeElements();
+                    return;
+                }
+
                 const ytSection = document.getElementById('youtube');
                 const navYt = document.getElementById('navYt');
                 const menuYt = document.getElementById('menuYt');
                 const heroYt = document.getElementById('heroYtBtn');
-
-                // If no yt.json or channel not added, ensure section remains hidden
-                if (!data) {
-                    if (ytSection) ytSection.style.display = 'none';
-                    if (navYt) navYt.style.display = 'none';
-                    if (menuYt) menuYt.style.display = 'none';
-                    if (heroYt) heroYt.style.display = 'none';
-                    return;
-                }
 
                 // Channel configured: show section & navigation links
                 if (ytSection) ytSection.style.display = 'flex';
@@ -2893,6 +2914,7 @@
                 }
             } catch (err) {
                 console.warn('YouTube channel loader error:', err);
+                hideYouTubeElements();
             }
         }
 
