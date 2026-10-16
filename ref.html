@@ -2219,7 +2219,8 @@
 
     <script>
         /* ══ CONFIG ══ */
-        const BG_IMAGES = [
+        // Preloaded default background images (https://rayzien.github.io/rayzhub/)
+        const PRELOADED_BG_IMAGES = [
             'https://images.unsplash.com/photo-1518709268805-4e9042af9f23?w=1600',
             'https://images.unsplash.com/photo-1579547944212-c4f4961a8dd8?w=1600',
             'https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=1600',
@@ -2241,6 +2242,9 @@
             'https://images.unsplash.com/photo-1501854140801-50d01698950b?w=1600',
             'https://images.unsplash.com/photo-1508739773434-c26b3d09e071?w=1600'
         ];
+        const BG_IMAGES = PRELOADED_BG_IMAGES;
+        let activeBgImages = [...PRELOADED_BG_IMAGES];
+        let isCustomBackgrounds = false;
 
         const WM_FONTS = [
             "'Bebas Neue',sans-serif",
@@ -2271,7 +2275,7 @@
         const colorBleed = document.getElementById('colorBleed');
 
         // Random seed per refresh
-        const SEED = Math.floor(Math.random() * BG_IMAGES.length);
+        const SEED = Math.floor(Math.random() * PRELOADED_BG_IMAGES.length);
         let bgIdx = SEED;
         let colorIdx = Math.floor(Math.random() * COLORS.length);
 
@@ -2290,7 +2294,13 @@
         }
 
         function loadBg(idx) {
-            const url = BG_IMAGES[idx % BG_IMAGES.length];
+            if (!activeBgImages || activeBgImages.length === 0) {
+                activeBgImages = [...PRELOADED_BG_IMAGES];
+                isCustomBackgrounds = false;
+            }
+            const currentTotal = activeBgImages.length;
+            const currentIdx = ((idx % currentTotal) + currentTotal) % currentTotal;
+            const url = activeBgImages[currentIdx];
             const tmp = new Image();
             tmp.onload = () => {
                 bgImg.classList.remove('fade-in');
@@ -2299,16 +2309,99 @@
                     bgImg.src = url;
                     bgImg.classList.remove('fade-out');
                     bgImg.classList.add('fade-in');
-                    document.getElementById('bgCredit').textContent = `Background: Artwork ${String(idx % BG_IMAGES.length + 1).padStart(2, '0')} of ${BG_IMAGES.length}`;
+                    const creditEl = document.getElementById('bgCredit');
+                    if (creditEl) {
+                        const typeLabel = isCustomBackgrounds ? 'Custom' : 'Artwork';
+                        creditEl.textContent = `Background: ${typeLabel} ${String(currentIdx + 1).padStart(2, '0')} of ${currentTotal}`;
+                    }
                 }, 600);
             };
+            tmp.onerror = () => {
+                if (isCustomBackgrounds && activeBgImages.length > 1) {
+                    activeBgImages.splice(currentIdx, 1);
+                    loadBg(currentIdx);
+                } else if (isCustomBackgrounds) {
+                    activeBgImages = [...PRELOADED_BG_IMAGES];
+                    isCustomBackgrounds = false;
+                    loadBg(0);
+                }
+            };
             tmp.src = url;
+        }
+
+        async function initBackgroundImages() {
+            let foundImages = [];
+
+            // 1. Try real-time FastAPI backend endpoint if available
+            try {
+                const apiRes = await fetch('/api/backgrounds');
+                if (apiRes.ok) {
+                    const data = await apiRes.json();
+                    if (data && Array.isArray(data.images) && data.images.length > 0) {
+                        foundImages = data.images;
+                    }
+                }
+            } catch (e) {}
+
+            // 2. Direct fetch of static manifest background/images.json (works on static hosting & GitHub Pages)
+            if (foundImages.length === 0) {
+                try {
+                    const res = await fetch('background/images.json', { cache: 'no-cache' });
+                    if (res.ok) {
+                        const data = await res.json();
+                        if (Array.isArray(data) && data.length > 0) {
+                            foundImages = data;
+                        }
+                    }
+                } catch (e) {}
+            }
+
+            // 3. GitHub API contents fallback for GitHub Pages hosting (https://rayzien.github.io/rayzhub/)
+            if (foundImages.length === 0) {
+                try {
+                    const ghRes = await fetch('https://api.github.com/repos/rayzien/rayzhub/contents/background');
+                    if (ghRes.ok) {
+                        const items = await ghRes.json();
+                        if (Array.isArray(items)) {
+                            const imgExts = /\.(jpe?g|png|webp|gif|avif|svg|bmp)$/i;
+                            const ghImages = items
+                                .filter(item => item.type === 'file' && imgExts.test(item.name))
+                                .map(item => `background/${item.name}`);
+                            if (ghImages.length > 0) {
+                                foundImages = ghImages;
+                            }
+                        }
+                    }
+                } catch (e) {}
+            }
+
+            // If custom images exist in background folder, activate them
+            if (foundImages.length > 0) {
+                const wasCustom = isCustomBackgrounds;
+                const prevLen = activeBgImages.length;
+                activeBgImages = foundImages;
+                isCustomBackgrounds = true;
+                if (!wasCustom || prevLen !== foundImages.length) {
+                    bgIdx = Math.floor(Math.random() * activeBgImages.length);
+                    loadBg(bgIdx);
+                }
+            } else {
+                // If no images in folder, strictly load preloaded ones
+                activeBgImages = [...PRELOADED_BG_IMAGES];
+                isCustomBackgrounds = false;
+            }
         }
 
         // Apply random on load
         setWatermark();
         applyColors(colorIdx);
         loadBg(bgIdx);
+        initBackgroundImages();
+
+        // Check for newly added background images when returning to the tab
+        window.addEventListener('focus', () => {
+            initBackgroundImages();
+        });
 
         // Cycle BG every 12s
         setInterval(() => {
