@@ -13,45 +13,9 @@
     {
       "label": "Services",
       "href": "#services"
-    },
-    {
-      "label": "Contact",
-      "href": "#contact"
     }
   ],
   "widgets": [
-    {
-      "id": "widget-1789293385209",
-      "type": "contact",
-      "position": {
-        "x": 749,
-        "y": 3307.6670837402344
-      },
-      "size": {
-        "width": "587px",
-        "height": "553px"
-      },
-      "rotation": 0,
-      "isUnboxed": false,
-      "styleProps": {
-        "animation": "none",
-        "font": "Space Grotesk",
-        "border": {
-          "style": "solid",
-          "width": 1,
-          "color": "rgba(255,255,255,0.15)",
-          "radius": 10,
-          "glowColor": "#0affe4",
-          "glowIntensity": 0
-        },
-        "color": {
-          "textColor": "#ffffff",
-          "bgColor": "rgba(12,12,12,0.85)",
-          "accentColor": "#0affe4"
-        }
-      },
-      "contentProps": {}
-    },
     {
       "id": "widget-1789293471545",
       "type": "payment_qr",
@@ -444,11 +408,6 @@
       "title": "We Don't Follow Trends",
       "content": "RayzHub is a design-first studio obsessed with the intersection of art, motion, and technology. We build work that refuses to be ordinary.",
       "font": "Playfair Display"
-    },
-    "contact-widget": {
-      "label": "◎ Contact",
-      "title": "Let's Build Something",
-      "buttonText": "◈ Get In Touch"
     }
   }
 }

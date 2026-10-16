@@ -19,10 +19,14 @@ database.auto_migrate()
 
 app = FastAPI(title="RayzHub Complete Platform API & Backend Engine (via BLAST Gateway)", version="2.0")
 
-# Setup uploads directory
+# Setup uploads and background directories
 UPLOAD_DIR = "uploads"
 os.makedirs(UPLOAD_DIR, exist_ok=True)
 app.mount("/uploads", StaticFiles(directory=UPLOAD_DIR), name="uploads")
+
+BACKGROUND_DIR = "background"
+os.makedirs(BACKGROUND_DIR, exist_ok=True)
+app.mount("/background", StaticFiles(directory=BACKGROUND_DIR), name="background")
 
 @app.get("/api/blast/status")
 def get_blast_status():
@@ -369,6 +373,31 @@ def get_youtube_channel():
         pass
 
     return result
+
+# ─── BACKGROUND IMAGES ENDPOINT ───
+@app.get("/api/backgrounds")
+def get_background_images():
+    """Scans the background folder for image files and returns their URLs."""
+    valid_exts = {".jpg", ".jpeg", ".png", ".webp", ".gif", ".avif", ".svg", ".bmp"}
+    images = []
+    for folder in ["background", "backgrounds"]:
+        if os.path.isdir(folder):
+            for fname in sorted(os.listdir(folder)):
+                if fname.startswith("."):
+                    continue
+                ext = os.path.splitext(fname)[1].lower()
+                if ext in valid_exts:
+                    images.append(f"{folder}/{fname}")
+    
+    # Auto-sync manifest for static environments (GitHub Pages, etc.)
+    try:
+        manifest_path = os.path.join(BACKGROUND_DIR, "images.json")
+        with open(manifest_path, "w", encoding="utf-8") as f:
+            json.dump(images, f, indent=2)
+    except Exception:
+        pass
+
+    return {"images": images, "count": len(images)}
 
 # ─── REQUESTS, TIPS, & UPLOADS ENDPOINTS ───
 @app.post("/api/requests", response_model=schemas.RequestOut)
