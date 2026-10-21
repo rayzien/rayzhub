@@ -1,5 +1,7 @@
 # RAYZHUB -- DISTRIBUTED PLATFORM & ARCHITECTURE
 
+> *"When I think no one cares, but few 90 people starred my repo"*  
+>  
 > **Created by Rayzien & Pheonix14**  
 > *Autonomous Systems, Anti-Detect Engines, and Distributed Infrastructure.*  
 > Complete documentation: See [RAYZIEN.README.md](file:///home/zero/Desktop/rayzhub/RAYZIEN.README.md).
