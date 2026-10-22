@@ -537,7 +537,7 @@ def get_verification_logs(limit: int = 50, db: Session = Depends(get_db)):
 async def serve_frontend(full_path: str):
     clean_path = full_path.lstrip("/")
 
-    # Check for direct local files (e.g., ltc/ltc.png, pol/pol.png, yt/yt.png, yt/info.json)
+    # Check for direct local files (e.g., ltc/ltc.png, yt/yt.png, yt/info.json)
     if clean_path and os.path.isfile(clean_path):
         return FileResponse(clean_path)
 
