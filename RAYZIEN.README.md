@@ -1,4 +1,4 @@
-# RAYZIEN -- RAYZHUB ARCHITECTURE
+# RAYZIEN // PHEONIX14 -- RAYZHUB ARCHITECTURE
 
 Distributed platform, anti-detect systems, and high-throughput routing engine.
 
@@ -36,18 +36,20 @@ RayzHub implements a decoupled database security model:
 
 ---
 
-## 2. SYSTEM ARCHITECT & ABOUT
+## 2. SYSTEM ARCHITECTS & ABOUT
 
 - **Rayzien**: System Architecture, Distributed Routing, Autonomous Infrastructure  
   Profile: https://github.com/rayzien
+- **Pheonix14**: Core Engine, Anti-Detect Modules, High-Throughput Pipelines  
+  Profile: https://github.com/pheonix14
 
 ### Core Philosophy
-Rayzien builds open-source software engineered for speed, privacy, and simplification of life. All tools eliminate artificial paywalls and third-party tracking, providing developers with absolute sovereignty over their data.
+Rayzien and Pheonix14 build open-source software engineered for speed, privacy, and simplification of life. All tools eliminate artificial paywalls and third-party tracking, providing developers with absolute sovereignty over their data.
 
 ### Published GitHub Marketplace Actions
-- **RayzHub MCP Shield**: Automated CI/CD security linter for Model Context Protocol and AI agents.
-- **RayzHub Achievement Radar**: Dynamic tier milestone tracker for GitHub developer accomplishments.
-- **RayzHub Glass Bento Cards**: Ultra-modern cybernetic Bento Grid components.
+- **Pheonix14 MCP Shield**: Automated CI/CD security linter for Model Context Protocol and AI agents.
+- **Pheonix14 Achievement Radar**: Dynamic tier milestone tracker for GitHub developer accomplishments.
+- **Pheonix14 Glass Bento Cards**: Ultra-modern cybernetic Bento Grid components.
 
 ---
 
