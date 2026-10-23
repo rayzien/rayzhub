@@ -55,7 +55,7 @@ RayzHub decouples backend storage through the **BLAST Gateway** queue:
 #### 2. GameGhost (by rayzien)
 - **Repository**: [https://github.com/rayzien/gameghost](https://github.com/rayzien/gameghost)
 - **Role**: High-Performance PC Gaming Handheld Cast & Universal Controller Subsystem.
-- **Capabilities**: Based on CPUGhost (work in progress). Functions exactly like a PlayStation Portal and cloud gaming system, but streams from local PC directly to your phone anywhere within range with ultra-low latency. Supports interactive on-screen touch controller layouts (Xbox/PlayStation profiles, clickable L3/R3, triggers), physical gamepad remapping, and full Termux-X11 mobile gaming.
+- **Capabilities**: Based on CPUGhost (work in progress). Functions exactly like PS Portal (PlayStation Portal) and cloud gaming, but streams from local PC directly to your phone anywhere within range with ultra-low latency. Supports interactive on-screen touch controller layouts (Xbox/PlayStation profiles, clickable L3/R3, triggers), physical gamepad remapping, and full Termux-X11 mobile gaming.
 
 ---
 
