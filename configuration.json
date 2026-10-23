@@ -357,18 +357,18 @@
       "cards": [
         {
           "num": "I",
-          "title": "⬡ UI / UX Design",
-          "desc": "Interfaces that feel inevitable. Products people don't want to put down."
+          "title": "⬡ Multi-PC Web Chains & Mesh",
+          "desc": "Connect multiple PCs together locally forming a huge web chain via CPUGhost. Headless screens, multi-screen tabs, and virtual pen drive sync."
         },
         {
           "num": "II",
-          "title": "◈ Art Direction",
-          "desc": "A single visual voice across every touchpoint of your brand."
+          "title": "◈ Handheld PC Gaming Cast",
+          "desc": "GameGhost low-latency PC to mobile streaming like PS Portal and cloud gaming, casting games anywhere in range to your phone."
         },
         {
           "num": "III",
-          "title": "◎ Development",
-          "desc": "Production-grade code. Lightning fast. Pixel perfect. Always."
+          "title": "◎ Distributed Gateways & Pipelines",
+          "desc": "High-throughput proxies, BLAST Gateway queues, and decoupled database systems with zero key exposure."
         }
       ]
     },
@@ -380,33 +380,33 @@
         {
           "num": "01",
           "icon": "◈",
-          "title": "Brand Identity",
-          "desc": "Complete visual systems built from the ground up. Every pixel with intent."
+          "title": "CPUGhost (by pheonix14)",
+          "desc": "Connects multiple PCs together forming a huge chain like a web locally. Free scrcpy alternative, headless multi-screen desktop, and virtual pen drive."
         },
         {
           "num": "02",
           "icon": "⬡",
-          "title": "Motion Design",
-          "desc": "Optimized digital motion that tells stories no static image ever could."
+          "title": "GameGhost (by rayzien)",
+          "desc": "Based on CPUGhost (WIP). Operates like PS Portal and cloud gaming, casting from local PC to phone anywhere in range with ultra-low latency."
         },
         {
           "num": "03",
           "icon": "◎",
-          "title": "Digital Experiences",
-          "desc": "Immersive web experiences at the intersection of art and technology."
+          "title": "RayzHub & BLAST Gateway",
+          "desc": "Distributed architecture routing client traffic through Render clusters into Supabase with zero credential exposure."
         },
         {
           "num": "04",
           "icon": "◉",
-          "title": "Editorial Design",
-          "desc": "Typography-first layouts where every character earns its place."
+          "title": "multriix-x & LiveDRIVE",
+          "desc": "Local AI developer ensemble platform and anonymous zero-log encrypted file storage."
         }
       ]
     },
     "about-widget": {
       "label": "◫ About",
       "title": "We Don't Follow Trends",
-      "content": "RayzHub is a design-first studio obsessed with the intersection of art, motion, and technology. We build work that refuses to be ordinary.",
+      "content": "RayzHub is an open-source, high-performance distributed web platform architected by Rayzien & Pheonix14. Engineering CPUGhost (multi-PC local chain web system), GameGhost (PS Portal-style PC-to-phone cast), and BLAST Gateway with zero tracking and full data sovereignty.",
       "font": "Playfair Display"
     }
   }

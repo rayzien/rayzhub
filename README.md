@@ -39,11 +39,23 @@ RayzHub decouples backend storage through the **BLAST Gateway** queue:
 
 ---
 
-## 3. ARCHITECTS & CHANNELS
+## 3. ARCHITECTS & ECOSYSTEM
 
 - **Rayzien**: https://github.com/rayzien
 - **Pheonix14**: https://github.com/pheonix14
 - **Official YouTube Channel**: Data maintained in folder `yt/` (`yt/channel.txt`, `yt/yt.txt`, `yt/info.json`, `yt/yt.png`)
+
+### Core Ecosystem Systems
+
+#### 1. CPUGhost (by pheonix14)
+- **Repository**: [https://github.com/pheonix14/cpughost](https://github.com/pheonix14/cpughost)
+- **Role**: Headless Dual-PC Hotspot Screen & Multi-PC Mesh System.
+- **Capabilities**: Works like `scrcpy` but 100% free and open-source. Can connect multiple PCs together forming a huge chain like a web locally over Wi-Fi or hotspot. Features multi-screen tabs (Screens 1..8 + Caesar Phone), remote headless desktop, zero-configuration discovery, and virtual pen drive file synchronization.
+
+#### 2. GameGhost (by rayzien)
+- **Repository**: [https://github.com/rayzien/gameghost](https://github.com/rayzien/gameghost)
+- **Role**: High-Performance PC Gaming Handheld Cast & Universal Controller Subsystem.
+- **Capabilities**: Based on CPUGhost (work in progress). Functions exactly like a PlayStation Portal and cloud gaming system, but streams from local PC directly to your phone anywhere within range with ultra-low latency. Supports interactive on-screen touch controller layouts (Xbox/PlayStation profiles, clickable L3/R3, triggers), physical gamepad remapping, and full Termux-X11 mobile gaming.
 
 ---
 

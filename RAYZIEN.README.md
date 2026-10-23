@@ -46,6 +46,12 @@ RayzHub implements a decoupled database security model:
 ### Core Philosophy
 Rayzien and Pheonix14 build open-source software engineered for speed, privacy, and simplification of life. All tools eliminate artificial paywalls and third-party tracking, providing developers with absolute sovereignty over their data.
 
+### Flagship Collaborative Systems
+- **CPUGhost (by pheonix14)**: [https://github.com/pheonix14/cpughost](https://github.com/pheonix14/cpughost)
+  - Headless dual-PC hotspot screen & multi-PC local mesh. Functions like `scrcpy` but 100% free and open-source. Can connect multiple PCs together forming a huge chain like a web locally over hotspot or LAN. Features multi-screen tabs, Caesar Android phone mirroring (60fps), and virtual pen drive file synchronization.
+- **GameGhost (by rayzien)**: [https://github.com/rayzien/gameghost](https://github.com/rayzien/gameghost)
+  - Handheld PC gaming cast subsystem based on CPUGhost (work in progress). Works exactly like a PS Portal and cloud gaming service, casting local PC games directly to phone anywhere in range with ultra-low latency, custom on-screen touch layout controls, and virtual controller emulation.
+
 ### Published GitHub Marketplace Actions
 - **Pheonix14 MCP Shield**: Automated CI/CD security linter for Model Context Protocol and AI agents.
 - **Pheonix14 Achievement Radar**: Dynamic tier milestone tracker for GitHub developer accomplishments.
